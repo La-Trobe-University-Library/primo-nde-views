@@ -1,0 +1,154 @@
+:root {
+  --sys-primary: #e2231b;  
+  --sys-secondary: #242424;
+  --sys-primary-container: #ffdad4;
+  --sys-primary-fixed: var(--sys-primary);
+  --sys-on-primary-fixed-variant: #fff;
+  --sys-secondary-container: #fce9e8;
+  --sys-background: #fff8f7;
+  /*--sys-outline: #b51c16;*/
+  --sys-surface-tint: #b51c16;
+  --sys-inverse-on-surface: #ffedea;
+
+  --mat-filled-button-state-layer-color: #000;
+  --mat-filled-button-hover-state-layer-opacity: 0.2;
+}
+
+.container[_ngcontent-ng-c1597471306]   .custom-search-bar-container[_ngcontent-ng-c1597471306]   .background-overlay[_ngcontent-ng-c1597471306] {
+  background-color: var(--sys-secondary) !important;
+}
+
+/* reverse the initials (to the correct order) on user menu button */
+.user-area[_ngcontent-ng-c4231447735] .user-area-logged-in[_ngcontent-ng-c4231447735] span[_ngcontent-ng-c4231447735] {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  display: inline-block !important;
+  line-height: 24px;
+}
+
+/* 'back to top' and 'report a problem' buttons 
+.mat-mdc-mini-fab.report-a-problem-button {
+  background: var(--sys-primary-fixed);
+
+  .icon-primary-fill.mat-icon svg path {
+    fill: var(--sys-on-primary-fixed-variant);
+  }
+}
+*/
+.report-a-problem-overlay-container[_ngcontent-ng-c2803578366] .report-submit[_ngcontent-ng-c2803578366] {
+  border: none;
+
+  &:hover, &:focus {
+    background-color: var(--sys-surface-tint);
+  }
+}
+
+/* header */
+section.container[_ngcontent-ng-c1597471306] .top-bar[_ngcontent-ng-c1597471306] {
+  padding-block: 1rem;
+
+  div[_ngcontent-ng-c1597471306] div[_ngcontent-ng-c1597471306] {
+    margin-left: 0;
+  }
+}
+header nde-logo {
+  margin-right: 20px;
+
+  img {
+    padding-top: 5px;
+  }
+}
+
+/* main menu */
+nde-main-menu-dialog li:has(a[href*="/nde/tags?"]) {
+  display: none;
+}
+
+/* footer */
+footer {
+  font-size: 0.9em;
+  text-align: center; 
+  padding: 1em; 
+  background-color: var(--sys-inverse-on-surface); 
+
+  > :last-child,  > :last-child > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* results page */
+#searchResults .search-result-item[_ngcontent-ng-c2617106287]:focus-within {
+  border-inline-start: none;
+}
+#searchResults .search-result-item[_ngcontent-ng-c2617106287]:has(.mdc-checkbox--selected) {
+  border-inline-start: 4px solid var(--sys-primary);
+}
+.results-top-bar-container[_ngcontent-ng-c4113886278] {
+    box-shadow: 0 -8px 0 0px var(--whiteBG);
+}
+.quicklink-menu-item .mat-icon svg path,
+.scopus-badge .mat-icon svg path,
+.webOfScience-badge .mat-icon svg path {
+  fill: var(--sys-primary);
+}
+.np-search-container[_ngcontent-ng-c1764759741] button[_ngcontent-ng-c1764759741].mdc-button {
+  margin-left: calc(var(--mat-text-button-horizontal-padding, 12px) * -1);
+  padding: 0 var(--mat-text-button-horizontal-padding, 12px);
+}
+nde-carousel .prev-button[_ngcontent-ng-c4240042327], nde-carousel .next-button[_ngcontent-ng-c4240042327] {
+  width: calc(var(--mdc-icon-button-icon-size) + 4px);
+  height: calc(var(--mdc-icon-button-icon-size) + 4px);
+}
+.filter-checkbox.mat-mdc-checkbox .mdc-label div {
+  flex-grow: 1;
+}
+.mat-mdc-checkbox[_ngcontent-ng-c3162346997] .exclude-btn[_ngcontent-ng-c3162346997] {
+  --mdc-icon-button-state-layer-size: 32px !important;
+  --mdc-icon-button-icon-size: 20px;
+  margin-top: 4px;
+}
+.search-result-content[_ngcontent-ng-c1764759741] .filters-container[_ngcontent-ng-c1764759741] {
+  box-shadow: 0 -1px 0 1px #fff;
+}
+.citation-indicator[_ngcontent-ng-c68073767]:hover {
+  text-decoration: underline;
+}
+
+/* databases */
+nde-journal-database-layout-component {
+  margin-bottom: 3rem;
+}
+.mat-tree:has(.mat-tree-node > button) > .mat-tree-node:not(:has(button)) {
+  padding-left: 40px !important;
+
+  &[aria-level="2"] {
+    margin-left: 20px;
+  }
+}
+.mat-tree-node > button {
+  --mdc-icon-button-state-layer-size: 35px;
+  margin-right: 5px;
+}
+
+/* newspapers */
+nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
+  margin-bottom: 2rem;
+}
+
+/* collections */
+.item-grid-card[_ngcontent-ng-c363324610] {
+  height: 100%;
+}
+
+/* dialogs */
+.mat-mdc-dialog-actions .mat-mdc-icon-button {
+  --mdc-icon-button-icon-size: 24px !important;
+}
+.mat-mdc-dialog-actions .mat-icon[_ngcontent-ng-c1742074232] {
+  width: var(--mdc-icon-button-icon-size, 24px);
+  height: var(--mdc-icon-button-icon-size, 24px);
+  vertical-align: text-top !important;
+}
+.copy-to-clipboard-cont[_ngcontent-ng-c2220865467] .mdc-icon-button[_ngcontent-ng-c2220865467] {
+  align-items: flex-start;
+}
