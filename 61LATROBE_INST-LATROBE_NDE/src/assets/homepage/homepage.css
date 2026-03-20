@@ -1,18 +1,27 @@
-@use "src/app/styles/nde-variables" as vars;
-@use "src/app/styles/nde-mixing" as mixing;
+:root {
+  --font-medium: 1rem;
+  --font-big: 1.25rem;
+  --font-large: 1.5rem;
+  --font-xlarge: 2rem;
+}
 
 .main-landing-page {
-  width: vars.$responsiveWidth;
-  @include vars.set-responsive-width;
+  width: clamp(1088px, 85%, 1368px);
   margin: 0 auto 5rem;
   gap: 5rem;
-  //need to delete when the Featured Books will be developed
+  /* need to delete when the Featured Books will be developed */
   margin-block-end: 100px;
 
-  @include mixing.respond-to('xsmall') {
+  @media (min-width: 960px) and (max-width: 1279.98px) {
+    width: clamp(912px, 85%, 1088px);
+  }
+  @media (min-width: 600px) and (max-width: 959px) {
+   width: clamp(288px, 88.42544317%, 848px);
+  }
+  /*@include mixing.respond-to('xsmall') {*/
+  @media (max-width: 599px) {
     width: 100%;
   }
-
 
   .menu-container {
     .menu {
@@ -23,7 +32,7 @@
       li {
 
         a {
-          background-color: var(--sys-inverse-on-surface);
+          background-color: var(--sys-tinted-on-surface);
           display: flex;
           padding: 1rem;
           /*border: .0625rem solid var(--sys-primary);*/
@@ -37,7 +46,7 @@
           height: 100%;
 
           /*@include mixing.respond-to('large', 'xlarge') {*/
-
+          /*@media (min-width: 1280px) {*/
             &:hover, &:focus {
             transition: box-shadow .3s, transform .3s ease-in-out;
             /*box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
@@ -49,16 +58,15 @@
 
           /*}*/
 
-
-
           .icon {
-            background-color: var(--sys-inverse-on-surface);
+            background-color: transparent;
             border-radius: 50%;
             width: 3.75rem;
             height: 3.75rem;
             align-items: center;
 
-            @include mixing.respond-to('medium', 'small', 'xsmall') {
+            /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+            @media (max-width: 1279px) {            
               width: 2.5rem;
               height: 2.5rem;
               align-items: normal;
@@ -84,14 +92,15 @@
 
           span {
             margin-top: .3125rem;
-            font-size: vars.$bigFontSize;
-            font-weight: vars.$bold;
+            font-size: var(--font-big);;
+            font-weight: bold;
             display: flex;
             align-items: center;
             min-height: 2.5rem;
             text-align: center;
 
-            @include mixing.respond-to('medium', 'small', 'xsmall') {
+            /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+            @media (max-width: 1279px) {
               font-size: .88rem;
               min-height: 2.2rem;
             }
@@ -104,32 +113,36 @@
   .welcome-announcements-container {
     gap: 2rem;
 
-    @include mixing.respond-to('small', 'xsmall') {
+    /*@include mixing.respond-to('small', 'xsmall') {*/
+    @media (max-width: 959px) {
       flex-direction: column;
     }
 
     .welcome {
-      //max-width: 32rem;
+      /*max-width: 32rem;*/
       padding-block: 1rem;
       gap: 1.5rem;
 
-      @include mixing.respond-to('small', 'xsmall') {
+      /*@include mixing.respond-to('small', 'xsmall') {*/
+      @media (max-width: 959px) {
         padding: 0;
       }
 
       .welcome-title {
         margin-block-end: .5rem;
-        @include mixing.respond-to('medium', 'small', 'xsmall') {
-          font-size: vars.$largeFontSize;
+        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+        @media (max-width: 1279px) {
+          font-size: var(--font-large);;
         }
       }
 
       .welcome-content {
-        font-size: vars.$bigFontSize;
-        font-weight: vars.$normal;
+        font-size: var(--font-big);;
+        font-weight: normal;
 
-        @include mixing.respond-to('medium', 'small', 'xsmall') {
-          font-size: vars.$mediumFontSize;
+        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+        @media (max-width: 1279px) {
+          font-size: var(--font-medium);;
         }
       }
 
@@ -139,16 +152,17 @@
         border-radius: 2rem;
         background-color: var(--sys-primary);
         color: var(--whiteText);
-        font-weight: vars.$bold;
-        font-size: vars.$bigFontSize;
+        font-weight: bold;
+        font-size: var(--font-big);;
         font-family: inherit;
         border: none;
         cursor: pointer;
         transition: background-color 0.3s ease;
         text-underline: none;
 
-        @include mixing.respond-to('medium', 'small', 'xsmall') {
-          font-size: vars.$mediumFontSize;
+        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+        @media (max-width: 1279px) {
+          font-size: var(--font-medium);;
         }
 
         &:hover {
@@ -163,7 +177,7 @@
     }
 
     .announcements {
-      background-color: var(--sys-inverse-on-surface);
+      background-color: var(--sys-tinted-on-surface);
       padding: 1.5rem;
       border-radius: .5rem;
       /*border: .0625rem solid var(--sys-primary);*/
@@ -172,15 +186,16 @@
       gap:1rem;
 
 
-      @include mixing.respond-to('small', 'xsmall') {
+      /*@include mixing.respond-to('small', 'xsmall') {*/
+      @media (max-width: 959px) {
         padding: 1rem;
         gap: 1rem;
         max-width: none;
       }
 
       .announcements-item-main-title{
-        font-size: vars.$mediumFontSize;
-        font-weight: vars.$normal;
+        font-size: var(--font-medium);;
+        font-weight: normal;
         line-height: 2rem;
 
       }
@@ -188,8 +203,9 @@
       .announcements-item-title {
         color: var(--darkText);
 
-        @include mixing.respond-to('medium', 'small', 'xsmall') {
-          font-size: vars.$largeFontSize;
+        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+        @media (max-width: 1279px) {
+          font-size: var(--font-large);;
         }
       }
     }
@@ -200,49 +216,55 @@
       border-radius: .625rem;
       overflow: hidden;
 
-      @include mixing.respond-to('small', 'xsmall') {
+      /*@include mixing.respond-to('small', 'xsmall') {*/
+      @media (max-width: 959px) {
         flex-direction: column-reverse;
       }
 
       .about-text {
         padding: 2rem;
-        background-color: var(--sys-inverse-on-surface);
+        background-color: var(--sys-tinted-on-surface);
         gap: 1.5rem;
 
-        @include mixing.respond-to('small', 'xsmall') {
+        /*@include mixing.respond-to('small', 'xsmall') {*/
+        @media (max-width: 959px) {
           padding: 1rem;
           gap: 1rem;
         }
 
         .about-text-title {
-          font-weight: vars.$bold;
-          font-size: vars.$xLargeFontSize;
+          font-weight: bold;
+          font-size: var(--font-xlarge)
 
-          @include mixing.respond-to('medium') {
-            font-size: vars.$largeFontSize;
+          /*@include mixing.respond-to('medium') {*/
+          @media (min-width: 960px) and (max-width: 1279px) {
+            font-size: var(--font-large);;
           }
 
-          @include mixing.respond-to('small', 'xsmall') {
-            font-size: vars.$largeFontSize;
+          /*@include mixing.respond-to('small', 'xsmall') {*/
+          @media (max-width: 959px) {
+            font-size: var(--font-large);;
           }
         }
 
         .about-text-description {
           line-height: 2rem;
-          font-size: vars.$largeFontSize;
-          font-weight: vars.$normal;
+          font-size: var(--font-large);;
+          font-weight: normal;
 
-          @include mixing.respond-to('medium', 'small', 'xsmall') {
-            font-size: vars.$mediumFontSize;
+          /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+          @media (max-width: 1279px) {
+            font-size: var(--font-medium);;
             line-height: 1.4rem;
           }
         }
 
         .help-sign-in-container {
-          font-size: vars.$largeFontSize;
+          font-size: var(--font-large);;
 
-          @include mixing.respond-to('medium', 'small', 'xsmall') {
-            font-size: vars.$mediumFontSize;
+          /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+          @media (max-width: 1279px) {
+            font-size: var(--font-medium);;
 
             ul {
               li {
@@ -270,8 +292,8 @@
           object-fit: cover;
           border-radius: 0 .625rem .625rem 0;
 
-          @media only screen and (min-width: 600px) and (max-width: 959.98px) {
           /*@include mixing.respond-to('small', 'xsmall') {*/
+          @media (max-width: 959px) {
             border-radius: .625rem .625rem 0 0;
             width: 100%;
           }
