@@ -9,6 +9,7 @@
   /*--sys-outline: #b51c16;*/
   --sys-surface-tint: #b51c16;
   --sys-inverse-on-surface: #ffedea;
+  --sys-tinted-on-surface: #eee;
 
   --mat-filled-button-state-layer-color: #000;
   --mat-filled-button-hover-state-layer-opacity: 0.2;
@@ -69,7 +70,7 @@ footer {
   font-size: 0.9em;
   text-align: center; 
   padding: 1em; 
-  background-color: var(--sys-inverse-on-surface); 
+  background-color: var(--sys-tinted-on-surface); 
 
   > :last-child,  > :last-child > :last-child {
     margin-bottom: 0;
