@@ -1,0 +1,103 @@
+/* LibChat (and adjusting buttons around it) */
+.s-lch-widget-float[aria-label="Chat Widget"] {
+  bottom: calc(1.5rem - 9px);
+  right: calc(1.5rem - 9px);
+  padding: 0;
+  z-index: 10;
+
+  &.open {
+      z-index: 1000;
+      top: 5px;
+      height: calc(100% - .5rem - 12px);
+
+      .s-lch-widget-float-btn {
+
+        &.online {
+          &:before {
+            background: var(--sys-primary);
+          }
+
+          &:hover, &:focus {
+            &:before {
+              background-color: var(--sys-surface-tint);
+            }
+          }
+        }
+
+        &:before {
+          content: '–';
+          top: 20px;
+          /*content: 'X';
+          top: 21px;*/
+          left: 20px;
+          position: absolute;
+          background: #000;
+          margin: 0 auto;
+          text-align: center;
+          display: block;
+          width: 18px;
+          height: 12px;
+          border-radius: 5px;
+          font-weight: 600;
+          font-size: 12px;
+        }
+
+        &:hover, &:focus {
+          &:before {
+            background-color: #333;
+          }
+        }
+    }
+  }
+
+  .s-lch-widget-float-load {
+    border-radius: 1.75rem;
+    border: none;
+    box-shadow: 0.1em 0.2em 0.5em #ccc;
+  }
+
+  .s-lch-widget-float-btn {
+    width: 58px;
+    height: 58px;
+    box-shadow: var(--mdc-fab-small-container-elevation-shadow, var(--mat-sys-level3));
+    cursor: pointer;
+    border-radius: 50%;
+
+    &.online {
+      background-color: var(--sys-primary);
+
+      &:hover, &:focus {
+        background-color: var(--sys-surface-tint);
+      }
+    }
+
+    &:hover, &:focus {
+      background-color: #333;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+
+      path {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 7px;
+      }
+    }
+  }
+}
+:has(.side-bottom-buttons.bumped-above-snackbar[_ngcontent-ng-c1597471306]) .s-lch-widget-float[aria-label="Chat Widget"] {
+    bottom: calc(7.5rem - 9px);
+
+    &.open {
+      height: calc(100% - 6.5rem - 12px);
+    }
+}
+:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons[_ngcontent-ng-c1597471306] {
+    inset-block-end: 5.5rem;
+
+    &.bumped-above-snackbar {
+        inset-block-end: 11.5rem;
+    }
+}

@@ -16,6 +16,7 @@ nde-collection-discovery-gallery-item:has(.author-date ) {
     > * {
       font-size: 0.9em;
       line-height: 1.5;
+      z-index: 1;
     }
   }
 }
