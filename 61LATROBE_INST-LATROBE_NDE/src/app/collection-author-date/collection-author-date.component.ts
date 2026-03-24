@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { tap } from 'rxjs';
+//import { tap } from 'rxjs';
 
 @Component({
   selector: 'custom-collection-author-date',
@@ -18,18 +18,16 @@ export class CollectionAuthorDateComponent {
   @Input() private hostComponent!: any;
 
   ngOnInit() {
-    console.log('CollectionAuthorDateComponent initialized with hostComponent:', this.hostComponent);
+    //console.log('CollectionAuthorDateComponent initialized with hostComponent:', this.hostComponent);
 
     this.setDetails();
-    console.log('Item author: ', this.author);
-    console.log('Item date: ', this.date);
-
-    this.hostComponent.viewModel$?.pipe(
+    
+    /*this.hostComponent.viewModel$?.pipe(
       tap((viewModel: any) => {
         console.log('Received viewModel in CollectionAuthorDateComponent:', JSON.stringify(viewModel));
 
       })
-    ).subscribe();
+    ).subscribe();*/
   }
 
   private setDetails() {

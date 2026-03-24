@@ -1,0 +1,3 @@
+These icons were either created by Shannon (and have their own PSD file) or downloaded from https://www.iconpacks.net and can be used for both personal and commercial projects without attribution.
+
+The actual 'icon_RESOURCETYPE.png' files should be created from the '_icons.psd' file, which contains the individual icons positioned and sized as needed. (The exception to this is 'icon_versions.psd', which uses different dimensions than the other icons.)
