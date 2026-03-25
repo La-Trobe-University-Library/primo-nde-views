@@ -54,9 +54,23 @@ section.container[_ngcontent-ng-c1597471306] .top-bar[_ngcontent-ng-c1597471306]
 }
 header nde-logo {
   margin-right: 20px;
+  margin-left: 20px;
+  order: 1;
 
   img {
     padding-top: 5px;
+  }
+
+  @media screen and (min-width: 600px) {
+    margin-left: 0;
+    order: unset;  
+  }
+}
+nde-main-menu {
+  order: 0;
+
+  @media screen and (min-width: 600px) {
+    order: unset;  
   }
 }
 
@@ -143,6 +157,28 @@ nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
 .item-grid-card[_ngcontent-ng-c363324610] {
   height: 100%;
 }
+.item-grid-card[_ngcontent-ng-c363324610] > a {
+  margin: -1rem -1rem 0;
+  padding: 1rem;
+  background: var(--sys-tinted-on-surface);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+nde-collection-discovery-item-thumbnail .grid-thumbnail-container[_ngcontent-ng-c308499257] img[_ngcontent-ng-c308499257] {
+  width: auto;
+
+  &:not([src*="/assets/images/icon_"]) {
+    outline: 1px solid var(--darkBG);
+  }
+}
+nde-collection-discovery-gallery-collection .collection-grid-card[_ngcontent-ng-c4059351110] .grid-collection-properties[_ngcontent-ng-c4059351110] .collection-title[_ngcontent-ng-c4059351110] {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* facets toggle button */
+nde-mobile-filters-toggle {
+    z-index: 9;
+}
 
 /* dialogs */
 .mat-mdc-dialog-actions .mat-mdc-icon-button {
@@ -155,4 +191,44 @@ nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
 }
 .copy-to-clipboard-cont[_ngcontent-ng-c2220865467] .mdc-icon-button[_ngcontent-ng-c2220865467] {
   align-items: flex-start;
+}
+
+/* banner */
+nde-resource-recommender-banner {
+  .resource-recommender-banner-container[_ngcontent-ng-c1626620944] {
+    margin-bottom: 0;
+
+    .banner-close-button[_ngcontent-ng-c1626620944] {
+      z-index: 1;
+
+      .mat-mdc-button-persistent-ripple {
+        background-color: var(--sys-on-primary-fixed-variant);
+        opacity: 0.3;
+      }
+
+      .mat-icon svg path {
+        fill: var(--sys-on-primary-fixed-variant);
+      }
+    }
+  }
+  .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    border-radius: 0.5rem;
+
+    .banner-description[_ngcontent-ng-c1626620944] {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      overflow-wrap: normal;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      line-height: normal;
+      word-break: break-word;
+      white-space: normal;
+    }
+  }
 }
