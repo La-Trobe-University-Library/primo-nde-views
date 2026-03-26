@@ -20,15 +20,20 @@ export class AvailabilityCountComponent implements OnInit {
   constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    // output the state (for debugging)
-    //this.store.select(state => state.Search)
-    //  .subscribe(s => console.log('Search state:', s));
-
+    // get the filters from the store and listen for changes
     this.store.select(state => state?.Search?.filter?.filters)
       .subscribe((filters: any[]) => {
+        // get the tlevel filter values
         const tlevel = filters?.find(f => f.name === 'tlevel');
         this.filters = tlevel?.values ?? [];
 
+        // get the newrecords filter values and add them to the filters array
+        const newrecords = filters?.find(f => f.name === 'newrecords');
+        if (newrecords) {
+          this.filters = this.filters.concat(newrecords.values);
+        }
+
+        // update the DOM with the new counts
         this.injectCountsIntoDom();
       });
   }
@@ -37,7 +42,7 @@ export class AvailabilityCountComponent implements OnInit {
     const targetNode = document.querySelector('nde-search-filters-side-nav') as HTMLElement | null;
 
     if (!targetNode) {
-      // If it may not be present immediately, set a short retry:
+      // if it's not in the DOM yet, set a timeout to recheck`
       setTimeout(() => this.ngAfterViewInit(), 100);
       return;
     }
@@ -59,18 +64,21 @@ export class AvailabilityCountComponent implements OnInit {
       // format count with commas
       const countWithCommas = element.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-      // create the count span
+      //console.log(`Injecting count for ${element.value}: ${countWithCommas}`);
+
+      // create the count span (with a tilde as it's an approximation)
       const countSpan = this.renderer.createElement('span');
       this.renderer.addClass(countSpan, 'filter-results-count');
       this.renderer.setAttribute(countSpan, '_ngcontent-ng-c3162346997', '');
-      const text = this.renderer.createText(` (~${countWithCommas})`);
+      const text = this.renderer.createText(`(~${countWithCommas})`);
       this.renderer.appendChild(countSpan, text);
 
-      // find the target element in the DOM
+      // find the target element in the DOM (either tlevel or newrecords)
       let target = document.querySelector(`nde-filters-value:has([data-qa="tlevel.${element.value}"]) .mdc-label > div`);
+      if (!target) target = document.querySelector(`nde-filters-value:has([data-qa="newrecords.${element.value}"]) .mdc-label > div`);
       if (!target) return;
 
-      // prevent duplicates
+      // prevent any duplicates
       if (target.querySelector('.filter-results-count')) return;
 
       // append count
