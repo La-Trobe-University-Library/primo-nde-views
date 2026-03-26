@@ -1,12 +1,14 @@
-import { Component, Input, inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Input, inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'custom-availability-count',
   standalone: true,
+  encapsulation: ViewEncapsulation.None, 
   imports: [CommonModule],
-  templateUrl: './availability-count.component.html'
+  templateUrl: './availability-count.component.html',
+  styleUrl: './availability-count.component.scss'
 })
   
 export class AvailabilityCountComponent implements OnInit {
