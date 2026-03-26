@@ -2,6 +2,8 @@
 .s-lch-widget-float[aria-label="Chat Widget"] {
   bottom: calc(1.5rem - 9px);
   right: calc(1.5rem - 9px);
+  left: auto;
+  width: auto;
   padding: 0;
   z-index: 10;
 
@@ -88,10 +90,28 @@
   }
 }
 :has(.side-bottom-buttons.bumped-above-snackbar[_ngcontent-ng-c1597471306]) .s-lch-widget-float[aria-label="Chat Widget"] {
-    bottom: calc(7.5rem - 9px);
+    bottom: calc(7.5rem - 3px);
 
     &.open {
-      height: calc(100% - 6.5rem - 12px);
+      height: calc(100% - 6.5rem - 6px);
+    }
+
+    @media screen and (min-width: 600px) {
+        bottom: calc(7.5rem - 3px);
+
+        &.open {
+          height: calc(100% - 7.5rem - 2px);
+        }
+      
+    }
+
+    @media screen and (min-width: 960px) {
+        bottom: calc(7.5rem - 9px);
+
+        &.open {
+          height: calc(100% - 6.5rem - 12px);
+        }
+      
     }
 }
 :has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons[_ngcontent-ng-c1597471306] {
