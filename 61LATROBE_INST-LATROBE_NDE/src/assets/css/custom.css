@@ -156,6 +156,14 @@ nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
 }
 
 /* collections */
+nde-collection-discovery-lobby-header .collection-discovery-header[_ngcontent-ng-c3087192115] {
+  background-image: url("../images/header/featured-collections-header-img.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  min-height: 150px;
+}
 .item-grid-card[_ngcontent-ng-c363324610] {
   height: 100%;
 }
@@ -251,7 +259,7 @@ nde-mobile-filters-toggle {
 /* alert bar (notice) */
 .alert-bar {
   margin: 0 1rem 4rem;
-  padding: .5rem 1rem;
+  padding: 1rem;
   max-width: 100%;
   border-top: 1px solid #c3e3e0;
   border-bottom: 1px solid #c3e3e0;
