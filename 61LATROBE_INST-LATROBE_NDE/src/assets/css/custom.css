@@ -1,4 +1,7 @@
 :root {
+  --latrobe-black: #242424;
+  --latrobe-red: #e2231b;
+
   --sys-primary: #e2231b;  
   --sys-secondary: #242424;
   --sys-primary-container: #ffdad4;
@@ -284,41 +287,158 @@ nde-mobile-filters-toggle {
 }
 
 /* banner */
+.resource-recommenders-container:has(nde-search-results-recommendations) nde-resource-recommender-banner {
+  margin-bottom: 1rem;
+  display: block;
+}
 nde-resource-recommender-banner {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+
+  @media screen and (min-width: 600px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .resource-recommender-banner-container[_ngcontent-ng-c1626620944] {
     margin-bottom: 0;
 
-    .banner-close-button[_ngcontent-ng-c1626620944] {
-      z-index: 1;
+    /* the following style is dependent on the path of a banner's background image - it's for a 'Cultural sensitivity advice' banner */
+    &[style*="cultural-advice"] {
+      max-width: 900px;
+      height: 17rem;
 
-      .mat-mdc-button-persistent-ripple {
-        background-color: var(--sys-on-primary-fixed-variant);
-        opacity: 0.3;
+      .banner-button[_ngcontent-ng-c1626620944] {
+        border: none;
       }
 
-      .mat-icon svg path {
-        fill: var(--sys-on-primary-fixed-variant);
+      .banner-close-button[_ngcontent-ng-c1626620944] {
+        z-index: 1;
+        background-color: #000b;
+
+        .mat-mdc-button-persistent-ripple {
+          background-color: var(--sys-on-primary-fixed-variant);
+          opacity: 0.3;
+        }
+
+        .mat-icon svg path {
+          fill: var(--sys-on-primary-fixed-variant);
+        }
+      }
+
+      .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        border-radius: 0.5rem;
+
+        padding-right: 60px;
+        /*background: #fce9e8;*/
+        background: linear-gradient(135deg, #fce9e8 20%, #ffd3be 80%);
+
+        .banner-name[_ngcontent-ng-c1626620944] {
+          color: var(--latrobe-black);
+          display: none;
+        }
+
+        .banner-description[_ngcontent-ng-c1626620944] {
+          display: -webkit-box;
+          font-size: 0.775rem;
+          -webkit-line-clamp: 9;
+          line-clamp: 9;
+          overflow-wrap: normal;
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          line-height: normal;
+          word-break: break-word;
+          white-space: normal;
+          color: var(--latrobe-black);
+        }
+
+        .banner-title[_ngcontent-ng-c1626620944] {
+          color: var(--latrobe-black);
+          font-size: 1.2rem;
+        }
+
+        /* adds the 'swish' background shape (like the default vertical banner) 
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0%;
+          right: -22px;
+          height: 100%;
+          width: 200px;
+          background-color: var(--sys-primary-fixed);
+          z-index: 0;
+          clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");
+        }*/
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: -5%;
+          right: -100px;
+          height: 18rem;
+          width: 200px;
+          z-index: 0;
+          background-image: url("../images/graphics/AdobeStock_291128647_partial.png");
+          background-size: cover;
+          background-repeat: no-repeat;
+          
+          /* adds a 'swish' mask for the background image
+          right: -30px;
+          clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");*/
+        }
+      }
+
+      @media screen and (min-width: 400px) {
+        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+          .banner-description[_ngcontent-ng-c1626620944] {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      @media screen and (min-width: 500px) {
+        height: 15rem;
+
+        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+          padding-right: 100px;
+
+          &:after {
+            top: -8%;
+            right: -70px;
+            height: 17rem;
+          }
+        }
+      }
+      @media screen and (min-width: 700px) {
+        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+          .banner-title[_ngcontent-ng-c1626620944] {
+            font-size: 1.75rem;
+          }
+          .banner-description[_ngcontent-ng-c1626620944] {
+            font-size: 0.875rem;
+            -webkit-line-clamp: 6;
+            line-clamp: 6;
+          }
+        }
+      }
+      @media screen and (min-width: 840px) {
+        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+          padding-right: 170px;
+
+          &:after {
+            right: 0;
+          }
+        }
+      }
+      @media screen and (min-width: 960px) {
+        height: 13rem;
       }
     }
+    
   }
-  .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 100%;
-    border-radius: 0.5rem;
-
-    .banner-description[_ngcontent-ng-c1626620944] {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      line-clamp: 3;
-      overflow-wrap: normal;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-      line-height: normal;
-      word-break: break-word;
-      white-space: normal;
-    }
-  }
+  
 }
