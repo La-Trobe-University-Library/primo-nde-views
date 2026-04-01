@@ -20,6 +20,39 @@
   --mdc-outlined-text-field-outline-color: var(--border);
 }
 
+html {
+    --sys-body-large: 500 1rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-body-large-font: dm sans, Arial, sans-serif;
+    --sys-body-medium: 500 .875rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-body-medium-font: dm sans, Arial, sans-serif;
+    --sys-body-small: 400 .75rem / 1rem dm sans, Arial, sans-serif;
+    --sys-body-small-font: dm sans, Arial, sans-serif;
+    --sys-display-large: 400 3.562rem / 4rem dm sans, Arial, sans-serif;
+    --sys-display-large-font: dm sans, Arial, sans-serif;
+    --sys-display-medium: 400 2.812rem / 3.25rem dm sans, Arial, sans-serif;
+    --sys-display-medium-font: dm sans, Arial, sans-serif;
+    --sys-display-small: 400 2.25rem / 2.75rem dm sans, Arial, sans-serif;
+    --sys-display-small-font: dm sans, Arial, sans-serif;
+    --sys-headline-large: 400 2rem / 2.5rem dm sans, Arial, sans-serif;
+    --sys-headline-large-font: dm sans, Arial, sans-serif;
+    --sys-headline-medium: 400 1.75rem / 2.25rem dm sans, Arial, sans-serif;
+    --sys-headline-medium-font: dm sans, Arial, sans-serif;
+    --sys-headline-small: 400 1.5rem / 2rem dm sans, Arial, sans-serif;
+    --sys-headline-small-font: dm sans, Arial, sans-serif;
+    --sys-label-large: 500 .875rem / 1.25rem dm sans, Arial, sans-serif;
+    --sys-label-large-font: dm sans, Arial, sans-serif;
+    --sys-label-medium: 500 .75rem / 1rem dm sans, Arial, sans-serif;
+    --sys-label-medium-font: dm sans, Arial, sans-serif;
+    --sys-label-small: 500 .688rem / 1rem dm sans, Arial, sans-serif;
+    --sys-label-small-font: dm sans, Arial, sans-serif;
+    --sys-title-large: 400 1.375rem / 1.75rem dm sans, Arial, sans-serif;
+    --sys-title-large-font: dm sans, Arial, sans-serif;
+    --sys-title-medium: 500 1rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-title-medium-font: dm sans, Arial, sans-serif;
+    --sys-title-small: 500 .875rem / 1.25rem dm sans, Arial, sans-serif;
+    --sys-title-small-font: dm sans, Arial, sans-serif;
+}
+
 .container[_ngcontent-ng-c1597471306]   .custom-search-bar-container[_ngcontent-ng-c1597471306]   .background-overlay[_ngcontent-ng-c1597471306] {
   background-color: var(--sys-secondary) !important;
 }
@@ -79,6 +112,41 @@ nde-main-menu {
   }
 }
 
+/* black header (requires white LTU logo) 
+section.container[_ngcontent-ng-c1597471306] .top-bar[_ngcontent-ng-c1597471306] {
+  background-color: var(--latrobe-black);
+}
+nde-main-menu, nde-user-area {
+  --mat-text-button-state-layer-color: var(--sys-on-primary-fixed-variant);
+  --mat-text-button-ripple-color: #ffffff0c;
+  --mat-icon-button-state-layer-color: var(--sys-on-primary-fixed-variant);
+}
+nde-main-menu .mat-mdc-button:not(:disabled) {
+  color: var(--sys-on-primary-fixed-variant);
+
+  .mat-icon svg path {
+    fill: #fff;
+  }
+
+  .mdc-button__label {
+    text-transform: none;
+  }
+
+  &:not(.show-more-btn):hover .mdc-button__label {
+    text-decoration: none;
+
+    &:after {
+      content: '';
+      display: block;
+      background: #e2231b;
+      top: 100%;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+    }
+  }
+} */
+
 /* main menu */
 nde-main-menu-dialog li:has(a[href*="/nde/tags?"]) {
   display: none;
@@ -135,6 +203,9 @@ nde-carousel .prev-button[_ngcontent-ng-c4240042327], nde-carousel .next-button[
 }
 .record-thumbnail[_ngcontent-ng-c913457845][src*="/assets/images/icon_"] {
   outline: none;
+}
+.filter-checkbox.mat-mdc-checkbox .mdc-label div {
+  padding-block-start: 10px;
 }
 
 /* databases */
@@ -294,26 +365,131 @@ nde-mobile-filters-toggle {
 nde-resource-recommender-banner {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
+  display: block;
 
   @media screen and (min-width: 600px) {
     margin-left: 0;
     margin-right: 0;
+    display: unset;
   }
 
   .resource-recommender-banner-container[_ngcontent-ng-c1626620944] {
     margin-bottom: 0;
+    max-width: 900px;
+    height: 17rem;
+    box-shadow: 0 0 0 2px #e2231b;
 
-    /* the following style is dependent on the path of a banner's background image - it's for a 'Cultural sensitivity advice' banner */
-    &[style*="cultural-advice"] {
-      max-width: 900px;
-      height: 17rem;
+    .banner-close-button[_ngcontent-ng-c1626620944] {
+      z-index: 1;
+      background: transparent;
 
-      .banner-button[_ngcontent-ng-c1626620944] {
-        border: none;
+      .mat-icon svg path {
+        /*fill: var(--sys-outline);*/
+        fill: var(--sys-on-secondary-fixed-variant);
+      }
+    }
+
+    .banner-button[_ngcontent-ng-c1626620944] {
+      border: none;
+    }
+
+    .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 100%;
+      border-radius: 0.5rem;
+      /*padding-right: 50px;*/
+      background: #fce9e8;
+
+      .banner-name[_ngcontent-ng-c1626620944] {
+        color: var(--latrobe-black);
+        display: none;
       }
 
+      .banner-description[_ngcontent-ng-c1626620944] {
+        display: -webkit-box;
+        font-size: 0.775rem;
+        -webkit-line-clamp: 9;
+        line-clamp: 9;
+        overflow-wrap: normal;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        line-height: normal;
+        word-break: break-word;
+        white-space: normal;
+        color: var(--latrobe-black);
+      }
+
+      .banner-title[_ngcontent-ng-c1626620944] {
+        color: var(--latrobe-black);
+        font-size: 1.2rem;
+      }
+
+      /* adds the 'swish' background shape (like the default vertical banner) 
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0%;
+        right: -22px;
+        height: 100%;
+        width: 200px;
+        background-color: var(--sys-primary-fixed);
+        z-index: 0;
+        clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");
+      }*/
+
+      /* adds a background image masked with a 'swish'
+      &:after {
+        content: '';
+        position: absolute;
+        top: -5%;
+        right: -30px;
+        height: 18rem;
+        width: 200px;
+        z-index: 0;
+        background-image: url("../images/header/featured-collections-header-img.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");
+      }*/
+    }
+
+    @media screen and (min-width: 400px) {
+      .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+        .banner-description[_ngcontent-ng-c1626620944] {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    @media screen and (min-width: 500px) {
+      height: 15rem;
+    }
+    @media screen and (min-width: 700px) {
+      .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+        padding-right: 50px;
+
+        .banner-title[_ngcontent-ng-c1626620944] {
+          font-size: 1.75rem;
+        }
+        .banner-description[_ngcontent-ng-c1626620944] {
+          font-size: 0.875rem;
+          -webkit-line-clamp: 6;
+          line-clamp: 6;
+        }
+      }
+    }
+    @media screen and (min-width: 960px) {
+      height: 13rem;
+    }
+
+    /* the following style is dependent on the path of a banner's background image - it's for a 'Cultural sensitivity advice' banner */
+    &[style*="cultural-advice_DISABLED"] {
+      box-shadow: none;
+
+      /* when image used */
       .banner-close-button[_ngcontent-ng-c1626620944] {
-        z-index: 1;
         background-color: #000b;
 
         .mat-mdc-button-persistent-ripple {
@@ -325,55 +501,21 @@ nde-resource-recommender-banner {
           fill: var(--sys-on-primary-fixed-variant);
         }
       }
+      /* when no image, but gradient 
+      .banner-close-button[_ngcontent-ng-c1626620944] {
+        .mat-icon svg path {
+          fill: var(--sys-on-surface);
+        }
+      }*/
 
       .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        max-width: 100%;
-        border-radius: 0.5rem;
-
         padding-right: 60px;
-        /*background: #fce9e8;*/
-        background: linear-gradient(135deg, #fce9e8 20%, #ffd3be 80%);
+        background: linear-gradient(135deg, #fce9e8 20%, #ffd3be 80%); /* when image used */
+        /*background: linear-gradient(110deg, #fce9e8 0%, #e9c6b5 80%, #cd9a83 100%); /* when no image */
 
-        .banner-name[_ngcontent-ng-c1626620944] {
-          color: var(--latrobe-black);
-          display: none;
-        }
-
-        .banner-description[_ngcontent-ng-c1626620944] {
-          display: -webkit-box;
-          font-size: 0.775rem;
-          -webkit-line-clamp: 9;
-          line-clamp: 9;
-          overflow-wrap: normal;
-          overflow: hidden;
-          -webkit-box-orient: vertical;
-          line-height: normal;
-          word-break: break-word;
-          white-space: normal;
-          color: var(--latrobe-black);
-        }
-
-        .banner-title[_ngcontent-ng-c1626620944] {
-          color: var(--latrobe-black);
-          font-size: 1.2rem;
-        }
-
-        /* adds the 'swish' background shape (like the default vertical banner) 
         &:before {
-          content: '';
-          position: absolute;
-          top: 0%;
-          right: -22px;
-          height: 100%;
-          width: 200px;
-          background-color: var(--sys-primary-fixed);
-          z-index: 0;
-          clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");
-        }*/
+          content: none;
+        }
 
         &:after {
           content: '';
@@ -386,23 +528,9 @@ nde-resource-recommender-banner {
           background-image: url("../images/graphics/AdobeStock_291128647_partial.png");
           background-size: cover;
           background-repeat: no-repeat;
-          
-          /* adds a 'swish' mask for the background image
-          right: -30px;
-          clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");*/
-        }
-      }
-
-      @media screen and (min-width: 400px) {
-        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
-          .banner-description[_ngcontent-ng-c1626620944] {
-            font-size: 0.8rem;
-          }
         }
       }
       @media screen and (min-width: 500px) {
-        height: 15rem;
-
         .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
           padding-right: 100px;
 
@@ -413,29 +541,14 @@ nde-resource-recommender-banner {
           }
         }
       }
-      @media screen and (min-width: 700px) {
-        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
-          .banner-title[_ngcontent-ng-c1626620944] {
-            font-size: 1.75rem;
-          }
-          .banner-description[_ngcontent-ng-c1626620944] {
-            font-size: 0.875rem;
-            -webkit-line-clamp: 6;
-            line-clamp: 6;
-          }
-        }
-      }
       @media screen and (min-width: 840px) {
         .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
-          padding-right: 170px;
+          padding-right: 170px; /* when image used */
 
           &:after {
             right: 0;
           }
         }
-      }
-      @media screen and (min-width: 960px) {
-        height: 13rem;
       }
     }
     
