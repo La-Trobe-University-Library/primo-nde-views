@@ -299,8 +299,13 @@ nde-journal-database-layout-component {
 }
 
 /* newspapers */
-nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
-  margin-bottom: 2rem;
+nde-newspaper-search-container {
+  .title[_ngcontent-ng-c1469883706] {
+    font: var(--sys-title-large);
+  }
+  .results-container[_ngcontent-ng-c259129437] {
+    margin-bottom: 2rem;
+  }
 }
 
 /* browse */
@@ -313,16 +318,7 @@ nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
   max-width: 63rem;
 
   nde-browse-home-page > .container:first-child {
-    margin-block-start: 0
-  }
-
-  .description-container {
-    padding: 1.5rem;
-    margin-block-start: 1.5rem;
-
-    .description-text {
-      color: var(--sys-outline);
-    }
+    /*margin-block-start: 0;*/
   }
 }
 
