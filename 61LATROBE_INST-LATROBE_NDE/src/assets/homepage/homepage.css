@@ -1,16 +1,18 @@
-:root {
+.main-landing-page {
   --font-medium: 1rem;
   --font-big: 1.25rem;
   --font-large: 1.5rem;
   --font-xlarge: 2rem;
-}
 
-.main-landing-page {
   width: clamp(1088px, 85%, 1368px);
-  margin: 0 auto 5rem;
-  gap: 5rem;
-  /* need to delete when the Featured Books will be developed */
-  margin-block-end: 100px;
+  margin: 0 auto 4rem;
+  gap: 4rem;
+  font-weight: 400;
+
+  ul, ol {
+    list-style: initial;
+    padding-left: 40px;
+  }
 
   @media (min-width: 960px) and (max-width: 1279.98px) {
     width: clamp(912px, 85%, 1088px);
@@ -23,6 +25,135 @@
     width: 100%;
   }
 
+  .welcome-about-container {
+    gap: 2rem;
+
+    /*@include mixing.respond-to('small', 'xsmall') {*/
+    @media (max-width: 959px) {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .welcome {
+      max-width: 42rem;
+      padding-block: 0;
+      gap: 1.5rem;
+
+      /*@include mixing.respond-to('small', 'xsmall') {*/
+      @media (max-width: 959px) {
+        padding: 0;
+      }
+
+      .welcome-title {
+        margin-block-end: .5rem;
+        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+        @media (max-width: 1279px) {
+          font-size: var(--font-large);
+        }
+      }
+
+      .welcome-content {
+        font-size: var(--font-medium);
+        font-weight: 400;
+
+        ul, ol {
+          list-style: none;
+          padding-left: 25px;
+
+          li {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 0.5rem;
+
+            img {
+              position: absolute;
+              left: 0;
+            }
+          }
+        }
+
+        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+        @media (max-width: 1279px) {
+          /*font-size: var(--font-medium);*/
+        }
+      }
+
+      a {
+        padding-block: .5rem;
+        padding-inline: 1rem;
+        border-radius: 2rem;
+        background-color: var(--sys-primary);
+        color: var(--whiteText);
+        /*font-weight: bold;*/
+        font-size: 1.15rem;
+        font-family: inherit;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-underline: none;
+
+        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
+        @media (max-width: 1279px) {
+          font-size: var(--font-medium);
+        }
+
+        &:hover {
+          background-color: var(--sys-surface-tint);
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px white, 0 0 0 3px #000000;
+        }
+      }
+    }
+
+    .about {
+      border-radius: .625rem;
+      min-width: 45%;
+      overflow: hidden;
+
+      /*@include mixing.respond-to('small', 'xsmall') {*/
+      @media (max-width: 959px) {
+        flex-direction: column-reverse;
+      }
+
+      .about-text {
+        padding: 2rem;
+        background-color: var(--sys-tinted-on-surface);
+        gap: 1.5rem;
+
+        /*@include mixing.respond-to('small', 'xsmall') {*/
+        @media (max-width: 959px) {
+          padding: 1rem;
+          gap: 1rem;
+        }
+
+        li {
+          margin-top: 0.25rem;
+        }
+      }
+
+      .about-image {
+        img {
+          width: auto;
+          max-width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0 .625rem .625rem 0;
+
+          /*@include mixing.respond-to('small', 'xsmall') {*/
+          @media (max-width: 959px) {
+            border-radius: .625rem .625rem 0 0;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+
+  /* the menu isn't currently being used on this home page */
   .menu-container {
     .menu {
       display: grid;
@@ -109,199 +240,7 @@
       }
     }
   }
-
-  .welcome-announcements-container {
-    gap: 2rem;
-
-    /*@include mixing.respond-to('small', 'xsmall') {*/
-    @media (max-width: 959px) {
-      flex-direction: column;
-    }
-
-    .welcome {
-      /*max-width: 32rem;*/
-      padding-block: 1rem;
-      gap: 1.5rem;
-
-      /*@include mixing.respond-to('small', 'xsmall') {*/
-      @media (max-width: 959px) {
-        padding: 0;
-      }
-
-      .welcome-title {
-        margin-block-end: .5rem;
-        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
-        @media (max-width: 1279px) {
-          font-size: var(--font-large);;
-        }
-      }
-
-      .welcome-content {
-        font-size: var(--font-big);;
-        font-weight: normal;
-
-        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
-        @media (max-width: 1279px) {
-          font-size: var(--font-medium);;
-        }
-      }
-
-      a {
-        padding-block: .5rem;
-        padding-inline: 1rem;
-        border-radius: 2rem;
-        background-color: var(--sys-primary);
-        color: var(--whiteText);
-        font-weight: bold;
-        font-size: var(--font-big);;
-        font-family: inherit;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-underline: none;
-
-        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
-        @media (max-width: 1279px) {
-          font-size: var(--font-medium);;
-        }
-
-        &:hover {
-          background-color: var(--sys-surface-tint);
-        }
-
-        &:focus {
-          outline: none;
-          box-shadow: 0 0 0 2px white, 0 0 0 3px #000000;
-        }
-      }
-    }
-
-    .announcements {
-      background-color: var(--sys-tinted-on-surface);
-      padding: 1.5rem;
-      border-radius: .5rem;
-      /*border: .0625rem solid var(--sys-primary);*/
-      border: none;
-      max-width: 32.6875rem;
-      gap:1rem;
-
-
-      /*@include mixing.respond-to('small', 'xsmall') {*/
-      @media (max-width: 959px) {
-        padding: 1rem;
-        gap: 1rem;
-        max-width: none;
-      }
-
-      .announcements-item-main-title{
-        font-size: var(--font-medium);;
-        font-weight: normal;
-        line-height: 2rem;
-
-      }
-
-      .announcements-item-title {
-        color: var(--darkText);
-
-        /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
-        @media (max-width: 1279px) {
-          font-size: var(--font-large);;
-        }
-      }
-    }
-  }
-
-  .about {
-    .about-content {
-      border-radius: .625rem;
-      overflow: hidden;
-
-      /*@include mixing.respond-to('small', 'xsmall') {*/
-      @media (max-width: 959px) {
-        flex-direction: column-reverse;
-      }
-
-      .about-text {
-        padding: 2rem;
-        background-color: var(--sys-tinted-on-surface);
-        gap: 1.5rem;
-
-        /*@include mixing.respond-to('small', 'xsmall') {*/
-        @media (max-width: 959px) {
-          padding: 1rem;
-          gap: 1rem;
-        }
-
-        .about-text-title {
-          font-weight: bold;
-          font-size: var(--font-xlarge)
-
-          /*@include mixing.respond-to('medium') {*/
-          @media (min-width: 960px) and (max-width: 1279px) {
-            font-size: var(--font-large);;
-          }
-
-          /*@include mixing.respond-to('small', 'xsmall') {*/
-          @media (max-width: 959px) {
-            font-size: var(--font-large);;
-          }
-        }
-
-        .about-text-description {
-          line-height: 2rem;
-          font-size: var(--font-large);;
-          font-weight: normal;
-
-          /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
-          @media (max-width: 1279px) {
-            font-size: var(--font-medium);;
-            line-height: 1.4rem;
-          }
-        }
-
-        .help-sign-in-container {
-          font-size: var(--font-large);;
-
-          /*@include mixing.respond-to('medium', 'small', 'xsmall') {*/
-          @media (max-width: 1279px) {
-            font-size: var(--font-medium);;
-
-            ul {
-              li {
-                margin-block: .625rem;
-              }
-            }
-          }
-
-          ul {
-            li {
-              margin-block: 1rem;
-              display: flex;
-              align-items: center;
-              gap: .5rem;
-            }
-          }
-        }
-      }
-
-      .about-image {
-        img {
-          width: auto;
-          max-width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 0 .625rem .625rem 0;
-
-          /*@include mixing.respond-to('small', 'xsmall') {*/
-          @media (max-width: 959px) {
-            border-radius: .625rem .625rem 0 0;
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-
+  
 }
 
 

@@ -1,4 +1,7 @@
 :root {
+  --latrobe-black: #242424;
+  --latrobe-red: #e2231b;
+
   --sys-primary: #e2231b;  
   --sys-secondary: #242424;
   --sys-primary-container: #ffdad4;
@@ -17,8 +20,109 @@
   --mdc-outlined-text-field-outline-color: var(--border);
 }
 
-.container[_ngcontent-ng-c1597471306]   .custom-search-bar-container[_ngcontent-ng-c1597471306]   .background-overlay[_ngcontent-ng-c1597471306] {
-  background-color: var(--sys-secondary) !important;
+/* ----- FONTS ----- */
+@font-face {
+  font-family:knockout;
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url(./fonts/knockout/Knockout-50Welterweight.woff2) format("woff2");
+  font-feature-settings:"ss02"
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:normal;
+  font-weight:400;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-regular.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-regular.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:italic;
+  font-weight:400;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-italic.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-italic.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:normal;
+  font-weight:500;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:italic;
+  font-weight:500;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500italic.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500italic.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:normal;
+  font-weight:700;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:italic;
+  font-weight:700;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700italic.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700italic.woff) format("woff")
+}
+/* ----- END FONTS ----- */
+
+/* typography */
+html {
+    --sys-body-large: 400 1rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-body-large-font: dm sans, Arial, sans-serif;
+    --sys-body-medium: 400 .875rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-body-medium-font: dm sans, Arial, sans-serif;
+    --sys-body-small: 400 .75rem / 1rem dm sans, Arial, sans-serif;
+    --sys-body-small-font: dm sans, Arial, sans-serif;
+    --sys-display-large: 400 3.562rem / 4rem dm sans, Arial, sans-serif;
+    --sys-display-large-font: dm sans, Arial, sans-serif;
+    --sys-display-medium: 400 2.812rem / 3.25rem dm sans, Arial, sans-serif;
+    --sys-display-medium-font: dm sans, Arial, sans-serif;
+    --sys-display-small: 400 2.25rem / 2.75rem dm sans, Arial, sans-serif;
+    --sys-display-small-font: dm sans, Arial, sans-serif;
+    --sys-headline-large: 400 2rem / 2.5rem dm sans, Arial, sans-serif;
+    --sys-headline-large-font: dm sans, Arial, sans-serif;
+    --sys-headline-medium: 400 1.75rem / 2.25rem dm sans, Arial, sans-serif;
+    --sys-headline-medium-font: dm sans, Arial, sans-serif;
+    --sys-headline-small: 400 1.5rem / 2rem dm sans, Arial, sans-serif;
+    --sys-headline-small-font: dm sans, Arial, sans-serif;
+    --sys-label-large: 500 .875rem / 1.25rem dm sans, Arial, sans-serif;
+    --sys-label-large-font: dm sans, Arial, sans-serif;
+    --sys-label-medium: 500 .75rem / 1rem dm sans, Arial, sans-serif;
+    --sys-label-medium-font: dm sans, Arial, sans-serif;
+    --sys-label-small: 500 .688rem / 1rem dm sans, Arial, sans-serif;
+    --sys-label-small-font: dm sans, Arial, sans-serif;
+    --sys-title-large: 400 1.375rem / 1.75rem dm sans, Arial, sans-serif;
+    --sys-title-large-font: dm sans, Arial, sans-serif;
+    --sys-title-medium: 500 1rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-title-medium-font: dm sans, Arial, sans-serif;
+    --sys-title-small: 500 .875rem / 1.25rem dm sans, Arial, sans-serif;
+    --sys-title-small-font: dm sans, Arial, sans-serif;
+}
+
+section.container[_ngcontent-ng-c1597471306] .custom-search-bar-container[_ngcontent-ng-c1597471306] {
+  height: 20rem;
+
+  .background-overlay[_ngcontent-ng-c1597471306] {
+    background-color: var(--sys-secondary) !important;
+  }
+
+  h2[_ngcontent-ng-c1597471306] {
+    font-size: 3rem;
+  }
 }
 
 /* reverse the initials (to the correct order) on user menu button */
@@ -76,6 +180,41 @@ nde-main-menu {
   }
 }
 
+/* black header (requires white LTU logo) 
+section.container[_ngcontent-ng-c1597471306] .top-bar[_ngcontent-ng-c1597471306] {
+  background-color: var(--latrobe-black);
+}
+nde-main-menu, nde-user-area {
+  --mat-text-button-state-layer-color: var(--sys-on-primary-fixed-variant);
+  --mat-text-button-ripple-color: #ffffff0c;
+  --mat-icon-button-state-layer-color: var(--sys-on-primary-fixed-variant);
+}
+nde-main-menu .mat-mdc-button:not(:disabled) {
+  color: var(--sys-on-primary-fixed-variant);
+
+  .mat-icon svg path {
+    fill: #fff;
+  }
+
+  .mdc-button__label {
+    text-transform: none;
+  }
+
+  &:not(.show-more-btn):hover .mdc-button__label {
+    text-decoration: none;
+
+    &:after {
+      content: '';
+      display: block;
+      background: #e2231b;
+      top: 100%;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+    }
+  }
+} */
+
 /* main menu */
 nde-main-menu-dialog li:has(a[href*="/nde/tags?"]) {
   display: none;
@@ -91,6 +230,11 @@ footer {
   > :last-child,  > :last-child > :last-child {
     margin-bottom: 0;
   }
+}
+
+/* home page */
+nde-landing-page .home-page-container[_ngcontent-ng-c742759394] {
+  margin-top: 4rem;
 }
 
 /* results page */
@@ -126,12 +270,16 @@ nde-carousel .prev-button[_ngcontent-ng-c4240042327], nde-carousel .next-button[
 }
 .search-result-content[_ngcontent-ng-c1764759741] .filters-container[_ngcontent-ng-c1764759741] {
   box-shadow: 0 -1px 0 1px #fff;
+  overflow-x: hidden;
 }
 .citation-indicator[_ngcontent-ng-c68073767]:hover {
   text-decoration: underline;
 }
 .record-thumbnail[_ngcontent-ng-c913457845][src*="/assets/images/icon_"] {
   outline: none;
+}
+.filter-checkbox.mat-mdc-checkbox .mdc-label div {
+  padding-block-start: 10px;
 }
 
 /* databases */
@@ -151,11 +299,38 @@ nde-journal-database-layout-component {
 }
 
 /* newspapers */
-nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
-  margin-bottom: 2rem;
+nde-newspaper-search-container {
+  .title[_ngcontent-ng-c1469883706] {
+    font: var(--sys-title-large);
+  }
+  .results-container[_ngcontent-ng-c259129437] {
+    margin-bottom: 2rem;
+  }
+}
+
+/* browse */
+.browse-page[_ngcontent-ng-c1911745620] {
+  align-items: center;
+  justify-content: center;
+  margin-block-start: 4rem;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 63rem;
+
+  nde-browse-home-page > .container:first-child {
+    /*margin-block-start: 0;*/
+  }
 }
 
 /* collections */
+nde-collection-discovery-lobby-header .collection-discovery-header[_ngcontent-ng-c3087192115] {
+  background-image: url("../images/header/featured-collections-header-img.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  min-height: 150px;
+}
 .item-grid-card[_ngcontent-ng-c363324610] {
   height: 100%;
 }
@@ -230,6 +405,66 @@ nde-advanced-search {
   }
 }
 
+/* document delivery form */
+nde-ill-request {
+  margin-block-end: 1rem;
+  display: block;
+
+  .request-form-container.blank-request[_ngcontent-ng-c2383865171] {
+    width: 100%;
+  
+    & > div:has(> h2) {
+      background-image: url("../images/header/document-delivery-header-img.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      min-height: 150px;
+      margin-bottom: 3rem;
+
+      h2 {
+        width: 100%;
+        margin: 0 auto !important;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-transform: unset;
+      }
+    }
+    
+    & > div:not(div:has(> h2)) {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    @media only screen and (max-width: 599.98px) {
+      & > div {
+        padding-inline: 1rem;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 959.98px) {
+      & > div:not(div:has(> h2)), & > div:has(> h2) > h2 {
+        width: clamp(288px,88.42544317%,848px);
+      }
+    }
+    @media (min-width: 960px) and (max-width: 1279.98px) {
+      & > div:not(div:has(> h2)), & > div:has(> h2) > h2 {
+        width: clamp(912px,85%,1088px);
+      }
+    }
+    @media (min-width: 1280px) {
+      & > div:not(div:has(> h2)), & > div:has(> h2) > h2 {
+        width: clamp(1088px,85%,1368px);
+      }
+    }
+  }
+}
+/* hide the option groups in the Doc Del dialog */
+.cdk-overlay-container:has(nde-base-request-form) .mat-mdc-autocomplete-panel .mat-mdc-optgroup-label {
+  display: none;
+}
+
+
 /* facets toggle button */
 nde-mobile-filters-toggle {
     z-index: 9;
@@ -251,7 +486,7 @@ nde-mobile-filters-toggle {
 /* alert bar (notice) */
 .alert-bar {
   margin: 0 1rem 4rem;
-  padding: .5rem 1rem;
+  padding: 1rem;
   max-width: 100%;
   border-top: 1px solid #c3e3e0;
   border-bottom: 1px solid #c3e3e0;
@@ -275,42 +510,201 @@ nde-mobile-filters-toggle {
   color: #00aa98;
 }
 
-/* banner */
+/* resource recommender banner */
+.resource-recommenders-container:has(nde-search-results-recommendations) nde-resource-recommender-banner {
+  margin-bottom: 1rem;
+  display: block;
+}
 nde-resource-recommender-banner {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  display: block;
+
+  @media screen and (min-width: 600px) {
+    margin-left: 0;
+    margin-right: 0;
+    display: unset;
+  }
+
   .resource-recommender-banner-container[_ngcontent-ng-c1626620944] {
     margin-bottom: 0;
+    max-width: 900px;
+    height: 17rem;
+    box-shadow: 0 0 0 2px #e2231b;
 
     .banner-close-button[_ngcontent-ng-c1626620944] {
       z-index: 1;
-
-      .mat-mdc-button-persistent-ripple {
-        background-color: var(--sys-on-primary-fixed-variant);
-        opacity: 0.3;
-      }
+      background: transparent;
 
       .mat-icon svg path {
-        fill: var(--sys-on-primary-fixed-variant);
+        /*fill: var(--sys-outline);*/
+        fill: var(--sys-on-secondary-fixed-variant);
       }
     }
-  }
-  .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 100%;
-    border-radius: 0.5rem;
 
-    .banner-description[_ngcontent-ng-c1626620944] {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      line-clamp: 3;
-      overflow-wrap: normal;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-      line-height: normal;
-      word-break: break-word;
-      white-space: normal;
+    .banner-button[_ngcontent-ng-c1626620944] {
+      border: none;
     }
+
+    .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 100%;
+      border-radius: 0.5rem;
+      /*padding-right: 50px;*/
+      background: #fce9e8;
+
+      .banner-name[_ngcontent-ng-c1626620944] {
+        color: var(--latrobe-black);
+        display: none;
+      }
+
+      .banner-description[_ngcontent-ng-c1626620944] {
+        display: -webkit-box;
+        font-size: 0.775rem;
+        -webkit-line-clamp: 9;
+        line-clamp: 9;
+        overflow-wrap: normal;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        line-height: normal;
+        word-break: break-word;
+        white-space: normal;
+        color: var(--latrobe-black);
+      }
+
+      .banner-title[_ngcontent-ng-c1626620944] {
+        color: var(--latrobe-black);
+        font-size: 1.2rem;
+      }
+
+      /* adds the 'swish' background shape (like the default vertical banner) 
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0%;
+        right: -22px;
+        height: 100%;
+        width: 200px;
+        background-color: var(--sys-primary-fixed);
+        z-index: 0;
+        clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");
+      }*/
+
+      /* adds a background image masked with a 'swish'
+      &:after {
+        content: '';
+        position: absolute;
+        top: -5%;
+        right: -30px;
+        height: 18rem;
+        width: 200px;
+        z-index: 0;
+        background-image: url("../images/header/featured-collections-header-img.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");
+      }*/
+    }
+
+    @media screen and (min-width: 400px) {
+      .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+        .banner-description[_ngcontent-ng-c1626620944] {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    @media screen and (min-width: 500px) {
+      height: 15rem;
+    }
+    @media screen and (min-width: 700px) {
+      .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+        padding-right: 50px;
+
+        .banner-title[_ngcontent-ng-c1626620944] {
+          font-size: 1.75rem;
+        }
+        .banner-description[_ngcontent-ng-c1626620944] {
+          font-size: 0.875rem;
+          -webkit-line-clamp: 6;
+          line-clamp: 6;
+        }
+      }
+    }
+    @media screen and (min-width: 960px) {
+      height: 13rem;
+    }
+
+    /* the following style is dependent on the path of a banner's background image - it's for a 'Cultural sensitivity advice' banner */
+    &[style*="cultural-advice_DISABLED"] {
+      box-shadow: none;
+
+      /* when image used */
+      .banner-close-button[_ngcontent-ng-c1626620944] {
+        background-color: #000b;
+
+        .mat-mdc-button-persistent-ripple {
+          background-color: var(--sys-on-primary-fixed-variant);
+          opacity: 0.3;
+        }
+
+        .mat-icon svg path {
+          fill: var(--sys-on-primary-fixed-variant);
+        }
+      }
+      /* when no image, but gradient 
+      .banner-close-button[_ngcontent-ng-c1626620944] {
+        .mat-icon svg path {
+          fill: var(--sys-on-surface);
+        }
+      }*/
+
+      .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] {
+        padding-right: 60px;
+        background: linear-gradient(135deg, #fce9e8 20%, #ffd3be 80%); /* when image used */
+        /*background: linear-gradient(110deg, #fce9e8 0%, #e9c6b5 80%, #cd9a83 100%); /* when no image */
+
+        &:before {
+          content: none;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: -5%;
+          right: -100px;
+          height: 18rem;
+          width: 200px;
+          z-index: 0;
+          background-image: url("../images/graphics/AdobeStock_291128647_partial.png");
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
+      @media screen and (min-width: 500px) {
+        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+          padding-right: 100px;
+
+          &:after {
+            top: -8%;
+            right: -70px;
+            height: 17rem;
+          }
+        }
+      }
+      @media screen and (min-width: 840px) {
+        .resource-recommender-banner-overlay[_ngcontent-ng-c1626620944] { 
+          padding-right: 170px; /* when image used */
+
+          &:after {
+            right: 0;
+          }
+        }
+      }
+    }
+    
   }
+  
 }
