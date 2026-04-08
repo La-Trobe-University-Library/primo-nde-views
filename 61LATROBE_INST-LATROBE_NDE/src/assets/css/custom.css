@@ -20,10 +20,70 @@
   --mdc-outlined-text-field-outline-color: var(--border);
 }
 
+/* ----- FONTS ----- */
+@font-face {
+  font-family:knockout;
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url(./fonts/knockout/Knockout-50Welterweight.woff2) format("woff2");
+  font-feature-settings:"ss02"
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:normal;
+  font-weight:400;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-regular.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-regular.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:italic;
+  font-weight:400;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-italic.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-italic.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:normal;
+  font-weight:500;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:italic;
+  font-weight:500;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500italic.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-500italic.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:normal;
+  font-weight:700;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700.woff) format("woff")
+}
+@font-face {
+  font-display:swap;
+  font-family:dm sans;
+  font-style:italic;
+  font-weight:700;
+  src:url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700italic.woff2) format("woff2"),
+  url(./fonts/dm-sans/dm-sans-v11-latin_latin-ext-700italic.woff) format("woff")
+}
+/* ----- END FONTS ----- */
+
+/* typography */
 html {
-    --sys-body-large: 500 1rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-body-large: 400 1rem / 1.5rem dm sans, Arial, sans-serif;
     --sys-body-large-font: dm sans, Arial, sans-serif;
-    --sys-body-medium: 500 .875rem / 1.5rem dm sans, Arial, sans-serif;
+    --sys-body-medium: 400 .875rem / 1.5rem dm sans, Arial, sans-serif;
     --sys-body-medium-font: dm sans, Arial, sans-serif;
     --sys-body-small: 400 .75rem / 1rem dm sans, Arial, sans-serif;
     --sys-body-small-font: dm sans, Arial, sans-serif;
@@ -53,8 +113,16 @@ html {
     --sys-title-small-font: dm sans, Arial, sans-serif;
 }
 
-.container[_ngcontent-ng-c1597471306]   .custom-search-bar-container[_ngcontent-ng-c1597471306]   .background-overlay[_ngcontent-ng-c1597471306] {
-  background-color: var(--sys-secondary) !important;
+section.container[_ngcontent-ng-c1597471306] .custom-search-bar-container[_ngcontent-ng-c1597471306] {
+  height: 20rem;
+
+  .background-overlay[_ngcontent-ng-c1597471306] {
+    background-color: var(--sys-secondary) !important;
+  }
+
+  h2[_ngcontent-ng-c1597471306] {
+    font-size: 3rem;
+  }
 }
 
 /* reverse the initials (to the correct order) on user menu button */
@@ -164,6 +232,11 @@ footer {
   }
 }
 
+/* home page */
+nde-landing-page .home-page-container[_ngcontent-ng-c742759394] {
+  margin-top: 4rem;
+}
+
 /* results page */
 #searchResults .search-result-item[_ngcontent-ng-c2617106287]:focus-within {
   border-inline-start: none;
@@ -197,6 +270,7 @@ nde-carousel .prev-button[_ngcontent-ng-c4240042327], nde-carousel .next-button[
 }
 .search-result-content[_ngcontent-ng-c1764759741] .filters-container[_ngcontent-ng-c1764759741] {
   box-shadow: 0 -1px 0 1px #fff;
+  overflow-x: hidden;
 }
 .citation-indicator[_ngcontent-ng-c68073767]:hover {
   text-decoration: underline;
@@ -227,6 +301,29 @@ nde-journal-database-layout-component {
 /* newspapers */
 nde-newspaper-search-container .results-container[_ngcontent-ng-c259129437] {
   margin-bottom: 2rem;
+}
+
+/* browse */
+.browse-page[_ngcontent-ng-c1911745620] {
+  align-items: center;
+  justify-content: center;
+  margin-block-start: 4rem;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 63rem;
+
+  nde-browse-home-page > .container:first-child {
+    margin-block-start: 0
+  }
+
+  .description-container {
+    padding: 1.5rem;
+    margin-block-start: 1.5rem;
+
+    .description-text {
+      color: var(--sys-outline);
+    }
+  }
 }
 
 /* collections */
@@ -312,6 +409,66 @@ nde-advanced-search {
   }
 }
 
+/* document delivery form */
+nde-ill-request {
+  margin-block-end: 1rem;
+  display: block;
+
+  .request-form-container.blank-request[_ngcontent-ng-c2383865171] {
+    width: 100%;
+  
+    & > div:has(> h2) {
+      background-image: url("../images/header/document-delivery-header-img.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      min-height: 150px;
+      margin-bottom: 3rem;
+
+      h2 {
+        width: 100%;
+        margin: 0 auto !important;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-transform: unset;
+      }
+    }
+    
+    & > div:not(div:has(> h2)) {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    @media only screen and (max-width: 599.98px) {
+      & > div {
+        padding-inline: 1rem;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 959.98px) {
+      & > div:not(div:has(> h2)), & > div:has(> h2) > h2 {
+        width: clamp(288px,88.42544317%,848px);
+      }
+    }
+    @media (min-width: 960px) and (max-width: 1279.98px) {
+      & > div:not(div:has(> h2)), & > div:has(> h2) > h2 {
+        width: clamp(912px,85%,1088px);
+      }
+    }
+    @media (min-width: 1280px) {
+      & > div:not(div:has(> h2)), & > div:has(> h2) > h2 {
+        width: clamp(1088px,85%,1368px);
+      }
+    }
+  }
+}
+/* hide the option groups in the Doc Del dialog */
+.cdk-overlay-container:has(nde-base-request-form) .mat-mdc-autocomplete-panel .mat-mdc-optgroup-label {
+  display: none;
+}
+
+
 /* facets toggle button */
 nde-mobile-filters-toggle {
     z-index: 9;
@@ -357,7 +514,7 @@ nde-mobile-filters-toggle {
   color: #00aa98;
 }
 
-/* banner */
+/* resource recommender banner */
 .resource-recommenders-container:has(nde-search-results-recommendations) nde-resource-recommender-banner {
   margin-bottom: 1rem;
   display: block;
