@@ -183,11 +183,14 @@ nde-main-menu {
 /* black header (requires white LTU logo) 
 section.container[_ngcontent-ng-c1597471306] .top-bar[_ngcontent-ng-c1597471306] {
   background-color: var(--latrobe-black);
+  padding-block-start: 3rem;
+  padding-block-end: 2rem;
 }
 nde-main-menu, nde-user-area {
   --mat-text-button-state-layer-color: var(--sys-on-primary-fixed-variant);
   --mat-text-button-ripple-color: #ffffff0c;
   --mat-icon-button-state-layer-color: var(--sys-on-primary-fixed-variant);
+  --sys-outline: #fff9;
 }
 nde-main-menu .mat-mdc-button:not(:disabled) {
   color: var(--sys-on-primary-fixed-variant);
@@ -198,6 +201,7 @@ nde-main-menu .mat-mdc-button:not(:disabled) {
 
   .mdc-button__label {
     text-transform: none;
+    font-size: 1rem;
   }
 
   &:not(.show-more-btn):hover .mdc-button__label {
@@ -213,6 +217,40 @@ nde-main-menu .mat-mdc-button:not(:disabled) {
       width: 100%;
     }
   }
+}
+header nde-logo {
+  position: relative;
+  width: auto;
+  display: block;
+  
+  a {
+    width: 220px;
+    display: block;
+
+    img {
+      padding-top: 0;
+      position: absolute;
+      left: 0;
+      top: -20px;
+      height: 45px;
+    }
+  }
+}
+.main-menu-container[_ngcontent-ng-c431624541] .mat-divider[_ngcontent-ng-c431624541] {
+  display: none;
+}
+@media only screen and (min-width: 600px) {
+  .cdk-overlay-container:has(.main-menu-dialog) {
+      top: 80px;
+  }
+} */
+/* change the tooltip color (to be contrast better if the header is the blank version)
+:root {
+  --mdc-plain-tooltip-container-color: var(--sys-inverse-on-surface);
+  --mdc-plain-tooltip-supporting-text-color: #242424;
+}
+.mat-mdc-tooltip-surface {
+  box-shadow: 0 0 2px 1px #24242455;
 } */
 
 /* main menu */
@@ -280,6 +318,9 @@ nde-carousel .prev-button[_ngcontent-ng-c4240042327], nde-carousel .next-button[
 }
 .filter-checkbox.mat-mdc-checkbox .mdc-label div {
   padding-block-start: 10px;
+}
+nde-full-display-navigation[_ngcontent-ng-c542323497] {
+  box-shadow: 0 -2px 0 0px var(--whiteBG);
 }
 
 /* databases */
