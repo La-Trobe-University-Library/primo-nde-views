@@ -89,35 +89,60 @@
     }
   }
 }
-:has(.side-bottom-buttons.bumped-above-snackbar[_ngcontent-ng-c1597471306]) .s-lch-widget-float[aria-label="Chat Widget"] {
-    bottom: calc(7.5rem - 3px);
+body:has(.side-bottom-buttons.bumped-above-snackbar) .s-lch-widget-float[aria-label="Chat Widget"] {
+    bottom: calc(9rem - 3px);
 
     &.open {
-      height: calc(100% - 6.5rem - 6px);
+      height: calc(100% - 8rem - 6px);
+    }
+
+    @media screen and (min-width: 460px) {
+        bottom: calc(7.75rem - 3px);
+        
+        &.open {
+          height: calc(100% - 7.75rem - 2px);
+        }
+      
     }
 
     @media screen and (min-width: 600px) {
-        bottom: calc(7.5rem - 3px);
+        /*bottom: calc(7.5rem - 3px);*/
+        bottom: calc(9rem - 3px);
 
         &.open {
-          height: calc(100% - 7.5rem - 2px);
+          /*height: calc(100% - 7.5rem - 2px);*/
+          height: calc(100% - 9rem - 2px);
         }
       
     }
 
     @media screen and (min-width: 960px) {
-        bottom: calc(7.5rem - 9px);
+        /*bottom: calc(7.5rem - 9px);*/
+        bottom: calc(9rem - 9px);
 
         &.open {
-          height: calc(100% - 6.5rem - 12px);
+          /*height: calc(100% - 6.5rem - 12px);*/
+          height: calc(100% - 8rem - 12px);
         }
       
     }
 }
-:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons[_ngcontent-ng-c1597471306] {
+body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons {
     inset-block-end: 5.5rem;
 
     &.bumped-above-snackbar {
-        inset-block-end: 11.5rem;
+        inset-block-end: 13.25rem;
+
+        @media screen and (min-width: 460px) {
+          inset-block-end: 12rem;
+        }
+
+        @media screen and (min-width: 600px) {
+          inset-block-end: 13.25rem;
+        }
+
+        @media screen and (min-width: 960px) {
+          inset-block-end: 13rem;
+        }
     }
 }
