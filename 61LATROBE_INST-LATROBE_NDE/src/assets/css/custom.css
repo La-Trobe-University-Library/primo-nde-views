@@ -6,6 +6,7 @@
   --sys-secondary: #242424;
   --sys-primary-container: #ffdad4;
   --sys-primary-fixed: var(--sys-primary);
+  --sys-primary-fixed-dim: #e9c5c3;
   --sys-on-primary-fixed-variant: #fff;
   --sys-secondary-container: #fce9e8;
   --sys-background: #fff8f7;
@@ -198,6 +199,20 @@ section.container .top-bar {
   }
 }
 
+/* main menu */
+nde-main-menu {
+  .mat-mdc-button:not(:disabled) {
+    &.selected-page {
+      text-decoration: none;
+    }
+  }
+}
+nde-main-menu-dialog {
+  .main-menu-modal-btn .mat-icon svg path {
+    fill: var(--sys-primary);
+  }
+}
+
 /* black header (requires white LTU logo) 
 section.container .top-bar {
   background-color: var(--latrobe-black) !important;
@@ -304,15 +319,43 @@ footer {
   margin-top: 4rem;
 }
 
-/* results page */
-#searchResults .search-result-item:focus-within {
-  border-inline-start: none;
+/* login panel */
+.nde-login-container.cdk-overlay-pane {
+  max-width: 25rem !important;
+
+  .mat-mdc-dialog-surface {
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .mdc-dialog .mdc-dialog__content {
+    padding: 5px 0 !important;
+  }
+
+  .authentication-method-wrapper .authentication-method-btn {
+    button:hover {
+      /*color: var(--sys-surface-tint);*/
+    }
+
+    .authentication-method span {
+      font-weight: 500 !important;
+    }
+  }
 }
-#searchResults .search-result-item:has(.mdc-checkbox--selected) {
-  border-inline-start: 4px solid var(--sys-primary);
+
+/* results page */
+.search-result-item:focus-within {
+  border-inline-start: none !important;
+}
+.search-result-item:has(.mdc-checkbox--selected) {
+  border-inline-start: 4px solid var(--sys-primary) !important;
 }
 nde-search-results-top-bar .results-top-bar-container {
     box-shadow: 0 -8px 0 0px var(--whiteBG);
+}
+.quicklink-button:not(:disabled):hover {
+    /*color: var(--sys-surface-tint);
+    border-color: var(--sys-surface-tint);*/
 }
 .quicklink-menu-item .mat-icon svg path,
 .scopus-badge .mat-icon svg path,
@@ -324,8 +367,9 @@ div.np-search-container[data-qa="link-to-newspaper-search"] button.mdc-button {
   padding: 0 var(--mat-text-button-horizontal-padding, 12px);
 }
 nde-carousel .carousel .prev-button, nde-carousel .carousel .next-button {
-  width: calc(var(--mdc-icon-button-icon-size) + 4px);
-  height: calc(var(--mdc-icon-button-icon-size) + 4px);
+  width: calc(var(--mdc-icon-button-icon-size) + 0px);
+  height: calc(var(--mdc-icon-button-icon-size) + 0px);
+  line-height: calc(var(--mdc-icon-button-icon-size) + 4px);
 }
 .filter-checkbox.mat-mdc-checkbox .mdc-label div {
   flex-grow: 1;
@@ -363,8 +407,65 @@ nde-record-image .record-thumbnail[src*="/assets/images/icon_"] {
 .filter-checkbox.mat-mdc-checkbox .mdc-label div {
   padding-block-start: 10px;
 }
+
+/* full display of search result */
+nde-full-display-container {
+  .search-result-item:focus-within {
+    border-inline-start: none !important;
+  }
+
+  .mat-accordion .mat-expansion-panel {
+    border-radius: 0 !important;
+
+    &.mat-expanded .mat-expansion-panel-header:not([aria-disabled="true"]):hover:before {
+      background: #181c1c14;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: auto;
+      right: 12px;
+      height: 40px;
+      background: #ededed;
+      display: block;
+      border-radius: 50%;
+      width: 40px;
+      z-index: -1;
+      margin-top: -19px;
+    }
+  }
+}
 nde-full-display-navigation {
   box-shadow: 0 -2px 0 0px var(--whiteBG);
+}
+
+/* 'View it' panel */
+#view-it-card-links {
+  & > div:first-child {
+    margin-top: 0 !important;
+  }
+
+  & > div:last-child .view-it-card-container {
+    margin-bottom: 0;
+  }
+}
+.view-it-card-container {
+  .view-it-card-no-license-container {
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover h5 {
+      text-decoration: underline;
+    }
+  }
+
+  a {
+    color: var(--sys-primary);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 /* databases */
@@ -440,6 +541,11 @@ nde-collection-discovery-gallery-collection .collection-grid-card .grid-collecti
       outline: 1px solid var(--darkBG);
     }
   }
+}
+
+/* My account */
+.account-menu-container a.active-link {
+  color: var(--sys-secondary) !important;
 }
 
 /* natural language search */
@@ -552,6 +658,23 @@ nde-ill-request {
 /* hide the option groups in the Doc Del dialog */
 .cdk-overlay-container:has(nde-base-request-form) .mat-mdc-autocomplete-panel .mat-mdc-optgroup-label {
   display: none;
+}
+
+/* Research assistant */
+.research-assistant-side-button {
+  background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, #9161af, #1c92cc) !important;
+  /*background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, var(--sys-surface-tint), var(--sys-primary)) !important;
+  border-radius: 0 0 0.5rem 0.5rem;
+  outline: none;*/
+
+  &:hover {
+    background: radial-gradient(172.66% 165.08% at 63.18% 97.39%,#9161af,#1c92cc) !important;
+    /*background: var(--sys-surface-tint) !important;
+    outline: none !important;*/
+  }
+}
+nde-research-assistant-widget .mat-icon svg path {
+    fill: var(--sys-primary);
 }
 
 
