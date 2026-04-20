@@ -1,6 +1,8 @@
 :root {
   --latrobe-black: #242424;
   --latrobe-red: #e2231b;
+  --latrobe-blue: #1c92cc;
+  --latrobe-purple: #9161af;
 
   --sys-primary: #e2231b;  
   --sys-secondary: #242424;
@@ -547,6 +549,31 @@ nde-collection-discovery-gallery-collection .collection-grid-card .grid-collecti
 .account-menu-container a.active-link {
   color: var(--sys-secondary) !important;
 }
+nde-account-overview {
+  a.item-details {
+    h3 {
+      color: var(--sys-surface-tint);
+    }
+
+    &:hover h3 {
+      text-decoration: underline;
+    }
+  }
+
+  mat-card-content .mat-icon path {
+    fill: var(--sys-surface-tint);
+  }
+  mat-card-footer .mat-mdc-button:not(:disabled) {
+    color: var(--sys-surface-tint);
+
+    path {
+      fill: var(--sys-surface-tint);
+    }
+  }
+}
+.search-history-list .search-history-row .search-history-row-item.search-item:hover {
+  text-decoration: underline !important;
+}
 
 /* natural language search */
 nde-natural-language-search-dialog .natural-language-search-content .natural-language-search-content-form-container {
@@ -662,19 +689,34 @@ nde-ill-request {
 
 /* Research assistant */
 .research-assistant-side-button {
-  background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, #9161af, #1c92cc) !important;
+  border-radius: 0 0 0.25rem 0.25rem;
+  background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, var(--latrobe-purple), var(--latrobe-blue)) !important;
+  /*box-shadow: var(--mat-app-elevation-shadow-level-2);*/
   /*background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, var(--sys-surface-tint), var(--sys-primary)) !important;
   border-radius: 0 0 0.5rem 0.5rem;
   outline: none;*/
 
   &:hover {
-    background: radial-gradient(172.66% 165.08% at 63.18% 97.39%,#9161af,#1c92cc) !important;
-    /*background: var(--sys-surface-tint) !important;
-    outline: none !important;*/
+    background: radial-gradient(172.66% 165.08% at 63.18% 97.39%,var(--latrobe-purple),var(--latrobe-blue)) !important;
+    box-shadow: var(--mat-app-elevation-shadow-level-2);
+    outline: none !important;
+    /*background: var(--sys-surface-tint) !important; */
   }
 }
-nde-research-assistant-widget .mat-icon svg path {
-    fill: var(--sys-primary);
+nde-research-assistant-widget {
+  .snackbar-container {
+    border-style: solid;
+    border-color: var(--latrobe-blue);
+    border-width: 2px 0 2px 2px;
+    border-radius: 0.25rem 0 0 0.25rem;
+    top: 40% !important;
+    padding-top: 0.75rem !important;
+  }
+
+  .mat-icon svg path {
+    /*fill: var(--sys-primary);*/
+    fill: var(--latrobe-blue);
+  }
 }
 
 
