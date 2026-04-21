@@ -550,6 +550,11 @@ nde-collection-discovery-gallery-collection .collection-grid-card .grid-collecti
   color: var(--sys-secondary) !important;
 }
 nde-account-overview {
+  .overview-cards > .cards-row:first-child mat-card {
+    background: #fff8f7 !important;
+    /*border-color: var(--sys-outline-variant);*/
+  }
+
   a.item-details {
     h3 {
       color: var(--sys-surface-tint);
