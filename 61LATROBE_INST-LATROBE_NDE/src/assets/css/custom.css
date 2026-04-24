@@ -1,6 +1,13 @@
 :root {
   --latrobe-black: #242424;
   --latrobe-red: #e2231b;
+  --latrobe-red-shade-20: #b51c16;
+  --latrobe-red-shade-40: #881510;
+  --latrobe-red-shade-70: #44110f;
+  --latrobe-red-tint-50: #e84f49;
+  --latrobe-red-tint-90: #fce9e8;
+  --latrobe-blue: #1c92cc;
+  --latrobe-purple: #9161af;
 
   --sys-primary: #e2231b;  
   --sys-secondary: #242424;
@@ -118,7 +125,8 @@ section.container .custom-search-bar-container {
   height: 20rem !important;
 
   .background-overlay {
-    background-color: var(--sys-secondary) !important;
+    /*background-color: var(--sys-secondary) !important;*/
+    background-color: var(--latrobe-red-shade-70) !important;
   }
 
   h2 {
@@ -188,13 +196,13 @@ section.container .top-bar {
 /* main menu overlay */
 @media only screen and (min-width: 600px) {
   .cdk-global-overlay-wrapper:has(.main-menu-dialog) {
-    top: 70px;
+    top: 80px;
   }
   .cdk-overlay-container:has(.main-menu-dialog) {
     top: 0 !important;
 
     .cdk-overlay-backdrop {
-      top: 70px !important;
+      top: 80px !important;
     }
   }
 }
@@ -212,28 +220,32 @@ nde-main-menu-dialog {
     fill: var(--sys-primary);
   }
 }
+nde-user-panel {
+  align-self: center;
+}
 
-/* black header (requires white LTU logo) 
+/* black header (requires white LTU logo) */
 section.container .top-bar {
   background-color: var(--latrobe-black) !important;
-  padding-block-start: 3rem !important;
-  padding-block-end: 2rem !important;
+  padding-block-start: 1rem !important;
+  padding-block-end: 1rem !important;
 
-  header nde-logo {
+  nde-logo {
     position: relative;
     width: auto;
     display: block;
     
     a {
-      width: 220px;
       display: block;
+      border-radius: 10px;
+
+      &:hover {
+        background: #ffffff14;
+      }
 
       img {
-        padding-top: 0;
-        position: absolute;
-        left: 0;
-        top: -20px;
-        height: 45px;
+        height: 60px;
+        padding: 10px;
       }
     }
   }
@@ -287,15 +299,37 @@ section.container .top-bar {
   body .cdk-overlay-container:has(.main-menu-dialog) {
       top: 100px;
   }
-} */
-/* change the tooltip color (to be contrast better if the header is the blank version)
+} 
+.container .search-container .general-search-header-background {
+    position: relative;
+}
+.container .search-container .general-search-header-background:before, 
+nde-collection-discovery-lobby-header .collection-discovery-header:has(.collection-discovery-header-title):before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--latrobe-red-shade-40);
+    z-index: 0;
+    opacity: 0.3;
+}
+.general-search-header, .collection-discovery-header .content {
+    position: relative;
+    z-index: 1;
+}
+
+/* change the tooltip color (to be contrast better if the header is the blank version) */
 :root {
-  --mdc-plain-tooltip-container-color: var(--sys-inverse-on-surface);
+  /*--mdc-plain-tooltip-container-color: var(--sys-inverse-on-surface);*/
+  --mdc-plain-tooltip-container-color: #fbf2df;
   --mdc-plain-tooltip-supporting-text-color: #242424;
 }
 .mat-mdc-tooltip-surface {
   box-shadow: 0 0 2px 1px #24242455;
-} */
+} 
 
 /* main menu (in 'More' dropdown) */
 nde-main-menu-dialog li:has(a[href*="/nde/tags?"]) {
@@ -379,9 +413,12 @@ nde-carousel .carousel .prev-button, nde-carousel .carousel .next-button {
   --mdc-icon-button-icon-size: 20px;
   margin-top: 4px;
 }
-.search-result-content .filters-container {
-  box-shadow: 0 -1px 0 1px #fff;
-  overflow-x: hidden;
+.search-result-content {
+  /*overflow-x: hidden;*/
+
+  .filters-container {
+    box-shadow: 0 -1px 0 1px #fff;
+  }
 }
 .citation-indicator:hover {
   text-decoration: underline;
@@ -511,13 +548,22 @@ nde-browse-search-container {
 }
 
 /* collections */
-nde-collection-discovery-lobby-header .collection-discovery-header:has(.collection-discovery-header-title) {
-  background-image: url("../images/header/featured-collections-header-img.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #fff;
-  min-height: 150px;
+nde-collection-discovery-lobby-header .collection-discovery-header {
+  &:has(.collection-discovery-header-title) {
+    background-image: url("../images/header/featured-collections-header-img.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    min-height: 150px;
+    position: relative;
+  }
+}
+nde-collection-discovery-header  .collection-discovery-header {
+  .background-image:after {
+    background-color: var(--latrobe-red-shade-70) !important;
+    opacity: 0.7 !important;
+  }
 }
 nde-collection-discovery-gallery-collection .collection-grid-card .grid-collection-properties .collection-title {
   word-break: break-word;
@@ -546,6 +592,36 @@ nde-collection-discovery-gallery-collection .collection-grid-card .grid-collecti
 /* My account */
 .account-menu-container a.active-link {
   color: var(--sys-secondary) !important;
+}
+nde-account-overview {
+  .overview-cards > .cards-row:first-child mat-card {
+    background: #fff8f7 !important;
+    /*border-color: var(--sys-outline-variant);*/
+  }
+
+  a.item-details {
+    h3 {
+      color: var(--sys-surface-tint);
+    }
+
+    &:hover h3 {
+      text-decoration: underline;
+    }
+  }
+
+  mat-card-content .mat-icon path {
+    fill: var(--sys-surface-tint);
+  }
+  mat-card-footer .mat-mdc-button:not(:disabled) {
+    color: var(--sys-surface-tint);
+
+    path {
+      fill: var(--sys-surface-tint);
+    }
+  }
+}
+.search-history-list .search-history-row .search-history-row-item.search-item:hover {
+  text-decoration: underline !important;
 }
 
 /* natural language search */
@@ -617,6 +693,20 @@ nde-ill-request {
       color: #fff;
       min-height: 150px;
       margin-bottom: 3rem;
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--latrobe-red-shade-40);
+        opacity: 0.3;
+        z-index: 0;
+      }
 
       h2 {
         width: 100%;
@@ -624,6 +714,8 @@ nde-ill-request {
         font-size: 1.5rem;
         font-weight: 500;
         text-transform: unset;
+        position: relative;
+        z-index: 1;
       }
     }
     
@@ -662,19 +754,34 @@ nde-ill-request {
 
 /* Research assistant */
 .research-assistant-side-button {
-  background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, #9161af, #1c92cc) !important;
+  border-radius: 0 0 0.25rem 0.25rem;
+  background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, var(--latrobe-purple), var(--latrobe-blue)) !important;
+  /*box-shadow: var(--mat-app-elevation-shadow-level-2);*/
   /*background: radial-gradient(114.66% 93.08% at 63.18% 97.39%, var(--sys-surface-tint), var(--sys-primary)) !important;
   border-radius: 0 0 0.5rem 0.5rem;
   outline: none;*/
 
   &:hover {
-    background: radial-gradient(172.66% 165.08% at 63.18% 97.39%,#9161af,#1c92cc) !important;
-    /*background: var(--sys-surface-tint) !important;
-    outline: none !important;*/
+    background: radial-gradient(172.66% 165.08% at 63.18% 97.39%,var(--latrobe-purple),var(--latrobe-blue)) !important;
+    box-shadow: var(--mat-app-elevation-shadow-level-2);
+    outline: none !important;
+    /*background: var(--sys-surface-tint) !important; */
   }
 }
-nde-research-assistant-widget .mat-icon svg path {
-    fill: var(--sys-primary);
+nde-research-assistant-widget {
+  .snackbar-container {
+    border-style: solid;
+    border-color: var(--latrobe-blue);
+    border-width: 2px 0 2px 2px;
+    border-radius: 0.25rem 0 0 0.25rem;
+    top: 40% !important;
+    padding-top: 0.75rem !important;
+  }
+
+  .mat-icon svg path {
+    /*fill: var(--sys-primary);*/
+    fill: var(--latrobe-blue);
+  }
 }
 
 
