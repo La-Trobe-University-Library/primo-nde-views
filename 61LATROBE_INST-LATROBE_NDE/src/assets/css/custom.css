@@ -1,3 +1,19 @@
+/* indicator for sandbox/work-in-progress */
+body::before {
+  content: 'Primo NDE - Do not use';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  background: deeppink;
+  color: #fff;
+  z-index: 999;
+  padding: 5px 10px;
+  border-radius: 0 0 10px 0;
+}
+
+/* css variables */
 :root {
   --latrobe-black: #242424;
   --latrobe-red: #e2231b;
@@ -189,6 +205,12 @@ section.container .top-bar {
 
     @media screen and (min-width: 600px) {
       order: unset;  
+    }
+
+    .main-menu-mobile-btn {
+      svg path {
+        fill: #fff;
+      }
     }
   }
 }
@@ -386,6 +408,15 @@ footer {
 }
 nde-search-results-top-bar .results-top-bar-container {
     box-shadow: 0 -8px 0 0px var(--whiteBG);
+}
+nde-record-main-details .record-main-details-font-size {
+  & > span.margin-right-small:first-child {
+    display: none;
+  }
+
+  .padding-right-small {
+    margin-inline-start: 0.25rem;
+  }
 }
 .quicklink-button:not(:disabled):hover {
     /*color: var(--sys-surface-tint);
