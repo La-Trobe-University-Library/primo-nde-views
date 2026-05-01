@@ -45,8 +45,7 @@ module.exports = {
       globOptions: {
       ignore: [
               "**/.gitkeep", // Make sure this matches exactly the files you want to exclude
-              "**/.*", // This pattern excludes all hidden files
-              "**/*-local-config.json"
+              "**/.*" // This pattern excludes all hidden files
             ] } } // Adjust the paths as needed
       ]
     }),
