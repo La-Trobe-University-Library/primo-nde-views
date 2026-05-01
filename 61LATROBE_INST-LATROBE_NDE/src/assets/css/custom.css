@@ -536,6 +536,50 @@ nde-full-display-navigation {
   }
 }
 
+/* browse the shelf */
+nde-virtual-browse {
+  .card-link {
+    &:hover, &:focus {
+      .carousel-card {
+        &:not(.focused) {
+          border-color: #666;
+          box-shadow: 0 0 0 1px #666;
+        }
+        .mat-mdc-card-content .mat-mdc-card-title {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .carousel-card {
+      top: 1px;
+    }
+  } 
+
+  .next-btn-container {
+    width: 4rem !important;
+    right: -1px !important;
+  }
+  .prev-btn-container {
+    width: 4rem !important;
+    left: -1px !important;
+
+    .prev-button {
+      left: -20px !important;
+    }
+  }
+}
+nde-virtual-browse-card {
+  .carousel-card {
+    min-width: 165px;
+    background: var(--sys-tinted-on-surface) !important;
+    
+    &.focused {
+      border-width: 2px;
+    }
+  }
+}
+
 /* databases */
 nde-journal-database-layout-component {
   margin-bottom: 3rem;
