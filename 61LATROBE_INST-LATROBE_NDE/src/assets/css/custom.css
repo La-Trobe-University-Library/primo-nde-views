@@ -1,6 +1,6 @@
 /* indicator for sandbox/work-in-progress */
 body::before {
-  content: 'Primo NDE - Do not use';
+  content: 'Primo NDE - Do not use (yet)';
   display: block;
   position: fixed;
   top: 0;
@@ -11,6 +11,10 @@ body::before {
   z-index: 999;
   padding: 5px 10px;
   border-radius: 0 0 10px 0;
+
+  /* for sandbox only 
+  content: 'Primo NDE Sandbox - Do not use';
+  background: darkgoldenrod;*/
 }
 
 /* css variables */
@@ -19,6 +23,7 @@ body::before {
   --latrobe-red: #e2231b;
   --latrobe-red-shade-20: #b51c16;
   --latrobe-red-shade-40: #881510;
+  --latrobe-red-shade-65: #4f0c09;
   --latrobe-red-shade-70: #44110f;
   --latrobe-red-tint-50: #e84f49;
   --latrobe-red-tint-90: #fce9e8;
@@ -27,6 +32,7 @@ body::before {
 
   --sys-primary: #e2231b;  
   --sys-secondary: #242424;
+  --sys-primary-on-grey: #D21F19;
   --sys-primary-container: #ffdad4;
   --sys-primary-fixed: var(--sys-primary);
   --sys-primary-fixed-dim: #e9c5c3;
@@ -138,11 +144,18 @@ html {
 }
 
 section.container .custom-search-bar-container {
-  height: 20rem !important;
+  height: 13rem !important;
 
   .background-overlay {
     /*background-color: var(--sys-secondary) !important;*/
-    background-color: var(--latrobe-red-shade-70) !important;
+    /*background-color: var(--latrobe-red-shade-65) !important;*/
+
+    background-color: var(--latrobe-red-shade-20) !important;
+    opacity: 0.75 !important;
+  }
+
+  h1 {
+    font-size: 2.75rem !important;
   }
 
   h2 {
@@ -186,7 +199,7 @@ section.container .top-bar {
   }
 
   nde-logo {
-    margin-right: 20px;
+    /*margin-right: 20px;*/
     margin-left: 20px;
     order: 1;
 
@@ -227,6 +240,11 @@ section.container .top-bar {
       top: 80px !important;
     }
   }
+}
+
+/* have sign-in snackbar appear above the main menu overlay (on large displays) */
+.cdk-global-overlay-wrapper:has(mat-snack-bar-container) {
+  z-index: 1001;
 }
 
 /* main menu */
@@ -280,6 +298,10 @@ section.container .top-bar {
   }
 
   nde-main-menu {
+    .main-menu-container > ul > li:first-child {
+      margin-left: 20px;
+    }
+
     .mat-mdc-button:not(:disabled) {
       color: var(--sys-on-primary-fixed-variant);
       text-decoration: none;
@@ -334,13 +356,26 @@ nde-collection-discovery-lobby-header .collection-discovery-header:has(.collecti
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--latrobe-red-shade-40);
+    /*background: var(--latrobe-red-shade-40);
+    opacity: 0.3;*/
+    background: var(--latrobe-red-shade-20);
+    opacity: 0.75;
     z-index: 0;
-    opacity: 0.3;
 }
 .general-search-header, .collection-discovery-header .content {
     position: relative;
     z-index: 1;
+}
+
+/* language selector */
+nde-language-selector-container {
+  --secondaryActionIcon: var(--sys-outline);
+  --mat-select-enabled-arrow-color: var(--sys-tinted-on-surface);
+  --mat-select-focused-arrow-color: var(--sys-tinted-on-surface);
+
+  #language-select-dropdown {
+    color: #fff;
+  }
 }
 
 /* change the tooltip color (to be contrast better if the header is the blank version) */
@@ -360,13 +395,24 @@ nde-main-menu-dialog li:has(a[href*="/nde/tags?"]) {
 
 /* footer */
 footer {
-  font-size: 0.9em;
-  text-align: center; 
-  padding: 1em; 
-  background-color: var(--sys-tinted-on-surface); 
+  text-align: center;
+  background: #242424;
+  color: #fff;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
 
   > :last-child,  > :last-child > :last-child {
     margin-bottom: 0;
+  }
+
+  a:not(.link-reset) {
+    color: #fff;
+    text-decoration: underline;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
   }
 }
 
@@ -474,6 +520,19 @@ nde-record-image .record-thumbnail[src*="/assets/images/icon_"] {
 }
 .filter-checkbox.mat-mdc-checkbox .mdc-label div {
   padding-block-start: 10px;
+}
+nde-search-results-top-bar {
+  nde-results-per-page .results-per-page mat-select {
+    color: var(--sys-primary-on-grey) !important;
+  }
+
+  nde-save-query-and-export-all-dropdown button {
+    color: var(--sys-primary-on-grey) !important;
+  }
+
+  .bulk-action-icon .mat-icon svg path {
+    fill: var(--sys-primary-on-grey) !important;
+  }
 }
 
 /* full display of search result */
@@ -636,7 +695,7 @@ nde-collection-discovery-lobby-header .collection-discovery-header {
 }
 nde-collection-discovery-header  .collection-discovery-header {
   .background-image:after {
-    background-color: var(--latrobe-red-shade-70) !important;
+    background-color: var(--latrobe-red-shade-65) !important;
     opacity: 0.7 !important;
   }
 }
