@@ -109,6 +109,7 @@
     }
 
     .about {
+      background-color: var(--sys-tinted-on-surface);
       border-radius: .625rem;
       min-width: 45%;
       overflow: hidden;
@@ -120,7 +121,6 @@
 
       .about-text {
         padding: 2rem;
-        background-color: var(--sys-tinted-on-surface);
         gap: 1.5rem;
 
         /*@include mixing.respond-to('small', 'xsmall') {*/
@@ -134,7 +134,7 @@
         }
 
         a {
-          color: var(--sys-primary);
+          color: var(--sys-primary-on-grey);
           text-decoration: none;
 
           &:hover {
