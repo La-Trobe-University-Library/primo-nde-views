@@ -837,8 +837,8 @@ nde-ill-request {
         bottom: 0;
         left: 0;
         right: 0;
-        background: var(--latrobe-red-shade-40);
-        opacity: 0.3;
+        background: var(--latrobe-red-shade-20);
+        opacity: 0.75;
         z-index: 0;
       }
 
