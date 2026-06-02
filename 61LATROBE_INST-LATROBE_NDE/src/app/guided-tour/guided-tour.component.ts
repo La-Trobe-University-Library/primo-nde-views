@@ -21,6 +21,7 @@ export class GuidedTourComponent implements AfterViewInit {
   ) {}
 
   ngOnInit() {
+    // load driver.js base stylesheet from CDN
     this.stylesheetLoader.loadStylesheet(
       'driver-js-css',
       'https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css'
@@ -28,10 +29,16 @@ export class GuidedTourComponent implements AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    // small delay helps in Primo (DOM can still be rendering)
-    setTimeout(() => {
-      //this.startTour();
-    }, 100);
+    // check whether a URL param is set to trigger the tour
+    const urlParams = new URLSearchParams(window.location.search);
+    const tourParam = urlParams.get('startTour');
+
+    if (tourParam === '1') {
+      // small delay helps in Primo (DOM can still be rendering)
+      setTimeout(() => {  
+          this.startTour();
+      }, 100);
+    }
   }
 
   startTour() {
