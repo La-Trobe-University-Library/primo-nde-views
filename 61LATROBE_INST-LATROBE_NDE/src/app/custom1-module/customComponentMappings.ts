@@ -2,6 +2,7 @@ import { AvailabilityCountComponent } from "../availability-count/availability-c
 import { BrowseHomePageContentComponent } from "../browse-home-page-content/browse-home-page-content.component";
 import { CollectionAuthorDateComponent } from "../collection-author-date/collection-author-date.component";
 import { DatabaseHomepageNoticeComponent } from "../database-homepage-notice/database-homepage-notice.component";
+import { GuidedTourComponent } from "../guided-tour/guided-tour.component";
 import { LibchatComponent } from "../libchat/libchat.component";
 
 // Define the map
@@ -12,5 +13,6 @@ export const selectorComponentMap = new Map<string, any>([
     ['nde-search-filters-side-nav-bottom', AvailabilityCountComponent],
     ['nde-database-home-page-bottom', DatabaseHomepageNoticeComponent],
     ['nde-browse-home-page-bottom', BrowseHomePageContentComponent],
+    ['nde-skip-links-after', GuidedTourComponent],
 
 ]);
