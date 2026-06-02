@@ -394,7 +394,7 @@ nde-main-menu-dialog li:has(a[href*="/nde/tags?"]) {
 }
 
 /* footer */
-footer {
+nde-footer footer {
   text-align: center;
   background: #242424;
   color: #fff;

@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { driver } from 'driver.js';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -10,6 +9,7 @@ import { StylesheetLoaderService } from '../services/stylesheet-loader.service';
 @Component({
   selector: 'custom-guided-tour',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [MatIconModule, MatButtonModule, MatRippleModule],
   templateUrl: './guided-tour.component.html',
   styleUrl: './guided-tour.component.scss'
@@ -17,18 +17,10 @@ import { StylesheetLoaderService } from '../services/stylesheet-loader.service';
 export class GuidedTourComponent implements AfterViewInit {
 
   constructor(
-    private matIconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer,
     private stylesheetLoader: StylesheetLoaderService
   ) {}
 
   ngOnInit() {
-    this.matIconRegistry.addSvgIconSet(
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        '/nde/custom/61LATROBE_INST-LATROBE_NDETEST/assets/icons/custom_icons.svg'
-      )
-    );
-
     this.stylesheetLoader.loadStylesheet(
       'driver-js-css',
       'https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css'
@@ -48,9 +40,9 @@ export class GuidedTourComponent implements AfterViewInit {
       animate: true, 
       popoverClass: 'ltu-tour',
 
-      nextBtnText: 'Next',
-      prevBtnText: 'Back',
-      doneBtnText: 'Done',
+      nextBtnText: 'Next <span class="material-icons">chevron_right</span>',
+      prevBtnText: '<span class="material-icons">chevron_left</span> Back',
+      doneBtnText: 'Done <span class="material-icons">check</span>',
 
       showButtons: ['next', 'previous', 'close'],
     });
