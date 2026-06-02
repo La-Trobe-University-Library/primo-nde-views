@@ -23,7 +23,6 @@ body::before {
   --latrobe-red: #e2231b;
   --latrobe-red-shade-20: #b51c16;
   --latrobe-red-shade-40: #881510;
-  --latrobe-red-shade-65: #4f0c09;
   --latrobe-red-shade-70: #44110f;
   --latrobe-red-tint-50: #e84f49;
   --latrobe-red-tint-90: #fce9e8;
@@ -148,8 +147,7 @@ section.container .custom-search-bar-container {
 
   .background-overlay {
     /*background-color: var(--sys-secondary) !important;*/
-    /*background-color: var(--latrobe-red-shade-65) !important;*/
-
+  
     background-color: var(--latrobe-red-shade-20) !important;
     opacity: 0.75 !important;
   }
@@ -695,8 +693,8 @@ nde-collection-discovery-lobby-header .collection-discovery-header {
 }
 nde-collection-discovery-header  .collection-discovery-header {
   .background-image:after {
-    background-color: var(--latrobe-red-shade-65) !important;
-    opacity: 0.7 !important;
+    background-color: var(--latrobe-red-shade-20) !important;
+    opacity: 0.75 !important;
   }
 }
 nde-collection-discovery-gallery-collection .collection-grid-card .grid-collection-properties .collection-title {
