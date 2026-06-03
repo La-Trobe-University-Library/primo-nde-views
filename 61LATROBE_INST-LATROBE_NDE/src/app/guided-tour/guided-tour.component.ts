@@ -22,9 +22,13 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private tour: any;
   public tourType:string = '';
+  public buttonLabel: string = '';
+  public buttonIcon: string = '';
   public tooltipText: string = '';
   private previousTourType: string = '';
 
+  private isMobileView: boolean = false;
+  private isSmallView: boolean = false;
 
   constructor(
     private stylesheetLoader: StylesheetLoaderService,
@@ -89,21 +93,37 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     // clear the tour type & tooltip
     this.previousTourType = this.tourType;
     this.tourType = '';
+    this.buttonLabel = '';
+    this.buttonIcon = '';
     this.tooltipText = '';
+
+    // check whether Primo is showing its 'mobile' (xs) view
+    this.isMobileView = document.querySelector('nde-app-root.XSmall') != null;
+    this.isSmallView = document.querySelector('nde-app-root.Small') != null;
+
+    console.log('Is mobile view:', this.isMobileView);
+    console.log('Is small view:', this.isSmallView);
     
     // assign the tour steps based on the URL
     let currentSteps: any[] = [];
-    if (url.includes('/home')) {
+    if (url.includes('/home?')) {
       // collections home page
       this.tourType = 'home';
       this.tooltipText = 'Tour the Library collections search page';
       currentSteps = this.searchHomeSteps;
-    } else if (url.includes('/search')) {
-      // collections search results page
-      this.tourType = 'search results';
-      this.tooltipText = 'Tour the Library collections search results page';
-      currentSteps = this.searchResultsSteps;
-    } else if (url.includes('/dbsearch')) {
+    } else if (url.includes('/search?')) {
+      if (url.includes('browseQuery=')) {
+        // browse search results page
+        this.tourType = 'browse results';
+        this.tooltipText = 'Tour the browse results page';
+        currentSteps = this.browseResultsSteps;
+      } else {
+        // collections search results page
+        this.tourType = 'search results';
+        this.tooltipText = 'Tour the Library collections search results page';
+        currentSteps = this.searchResultsSteps;
+      }
+    } else if (url.includes('/dbsearch?')) {
       if (url.includes('query=')) {
         // database results page
         this.tourType = 'dbsearch results';
@@ -115,7 +135,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         this.tooltipText = 'Tour the database search page';
         currentSteps = this.databaseHomeSteps;
       }
-    } else if (url.includes('/npsearch')) {
+    } else if (url.includes('/npsearch?')) {
       if (url.includes('query=')) {
         // newspaper results page
         this.tourType = 'npsearch results';
@@ -127,19 +147,19 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         this.tooltipText = 'Tour the newspaper articles search page';
         currentSteps = this.newspaperHomeSteps;
       }
-    } else if (url.includes('/browse')) {
+    } else if (url.includes('/browse?')) {
       if (url.includes('browseQuery=')) {
-        // browse results page
-        this.tourType = 'browse results';
-        this.tooltipText = 'Tour the browse results page';
-        currentSteps = this.browseResultsSteps;
+        // browse list page
+        this.tourType = 'browse list';
+        this.tooltipText = 'Tour the browse list page';
+        currentSteps = this.browseListSteps;
       } else {
         // browse home page
         this.tourType = 'browse';
         this.tooltipText = 'Tour the browse page';
         currentSteps = this.browseHomeSteps;
       }
-    } else if (url.includes('/collectionDiscovery')) {
+    } else if (url.includes('/collectionDiscovery?')) {
       if (url.includes('query=') && url.includes('collectionId=')) {
         // featured collection listing results page
         this.tourType = 'collection listing results';
@@ -161,14 +181,76 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         this.tooltipText = 'Tour the featured collections page';
         currentSteps = this.collectionHomeSteps;
       }
-    } else if (url.includes('/blankIll')) {
+    } else if (url.includes('/blankIll?')) {
       // document delivery page
       this.tourType = 'document delivery';
       this.tooltipText = 'Tour the document delivery page';
       currentSteps = this.docDeliverySteps;
+    } else if (url.includes('/account')) {
+      if (url.includes('/overview')) {
+        // account overview page
+        this.tourType = 'account overview';
+        this.tooltipText = 'Tour the account overview page';
+        currentSteps = this.accountOverviewSteps;
+      } else if (url.includes('/loans')) {
+        // account loans page
+        this.tourType = 'account loans';
+        this.tooltipText = 'Tour the \'Loans\' page';
+        currentSteps = this.accountLoansSteps;
+      } else if (url.includes('/requests')) {
+        // account requests page
+        this.tourType = 'account requests';
+        this.tooltipText = 'Tour the \'Requests\' page';
+        currentSteps = this.accountRequestsSteps;
+      } else if (url.includes('/fines')) {
+        // account fines page
+        this.tourType = 'account fines';
+        this.tooltipText = 'Tour the \'Fines\' page';
+        currentSteps = this.accountFinesSteps;
+      } else if (url.includes('/favorites')) {
+        // account favorites page
+        this.tourType = 'account favorites';
+        this.tooltipText = 'Tour the \'Saved items\' page';
+        currentSteps = this.accountFavoritesSteps;
+      } else if (url.includes('/searchHistory')) {
+        // account search history page
+        this.tourType = 'account search history';
+        this.tooltipText = 'Tour the \'Search history\' page';
+        currentSteps = this.accountSearchHistorySteps;
+      } else if (url.includes('/savedSearches')) {
+        // account saved searches page
+        this.tourType = 'account saved searches';
+        this.tooltipText = 'Tour the \'Saved searches\' page';
+        currentSteps = this.accountSavedSearchesSteps;
+      } else if (url.includes('/settings')) {
+        // account settings page
+        this.tourType = 'account settings';
+        this.tooltipText = 'Tour the \'Settings\' page';
+        currentSteps = this.accountSettingsSteps;
+      }
+    } else if (url.includes('/fulldisplay?')) {
+      // item full display page (from search results)
+      this.tourType = 'full display';
+      this.tooltipText = 'Tour the item page';
+      currentSteps = this.fullDisplaySteps;
+    } else if (url.includes('/dbfulldisplay?')) {
+      // DB item full display page (from search results)
+      this.tourType = 'database full display';
+      this.tooltipText = 'Tour the database item page';
+      currentSteps = this.dbFullDisplaySteps;
+    } else if (url.includes('/npfulldisplay?')) {
+      // Newspaper item full display page (from search results)
+      this.tourType = 'newspaper full display';
+      this.tooltipText = 'Tour the newspaper item page';
+      currentSteps = this.npFullDisplaySteps;
+    } else if (url.includes('/researchAssistant?')) {
+      // Research assistant page
+      this.tourType = 'research assistant';
+      this.buttonIcon = 'info_outline';
+      this.buttonLabel = 'Find out more';
+      this.tooltipText = 'Helpful information about using the research assistant';
+      currentSteps = this.researchAssistantSteps;
     }
-
-    console.log('Tour type set to:', this.tourType);
 
     if(this.previousTourType !== this.tourType || (this.previousTourType == '' && this.tourType != '')) {
       console.log('Tour type changed from', this.previousTourType || '[blank]', 'to', this.tourType);
@@ -180,227 +262,575 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
 
   startTour() {
     // start the tour
-    this.tour.drive();
+    if(this.tour) this.tour.drive();
   }
 
-  private searchHomeSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Search home',
-        description: 'Start your search here'
-      }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+  private get searchHomeSteps(): any[] {
+    const scope = this; // capture the component scope for use in the onNextClick function
+    const menuDelay = 200; // delay in milliseconds to allow the menu to open before moving to the next step
 
-  private searchResultsSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Search results',
-        description: 'Start your search here'
-      }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: "Welcome to the Library collections search",
+          description: "This search allows you to find any resource within the library's many collections.",
+          showButtons: ["next", "close"],
+          popoverClass: 'ltu-tour ltu-tour-wide'
+        }
+      },
+      {
+        element: this.isMobileView ? '.main-menu-mobile-btn' : '.show-more-btn',
+        popover: {
+          title: "Check the menu",
+          description: "<p>The main menu lets you change the type of search you're performing (e.g. search all collections, databases or newspaper articles) as well as allowing you to request items from another library.</p><p>Select the 'More' menu item to view the full main menu.</p><p>Note that when you're in 'mobile' view, some options that are usually on the page (e.g. the 'Advanced search') are within this menu instead.</p>",
+          side: "bottom",
+          align: "end",
+          popoverClass: 'ltu-tour ltu-tour-wide'
+        }
+      },
+      {
+        element: ".search-bar-wrapper",
+        popover: {
+          title: "Search form",
+          description: "<p>Enter the term that you want to search for.</p><p>You can also 'Search by voice' in supported web browsers (Chrome or Edge are recommended).</p>",
+          side: "bottom",
+          align: "center"
+        }
+      }, 
+      {
+        element: "#search-dropdown-container-button-scopes-dropdown",
+        popover: {
+          title: "Online or physical?",
+          description: "<p>If you would like to restrict your search to only online resources or only physical ones, select the appropriate option in this drop-down.</p>",
+          side: "bottom",
+          align: "center",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
 
-  private databaseHomeSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Database home',
-        description: 'Start your search here'
-      }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      }, 
+      // FOLLOWING ELEMENTS ARE EITHER IN MENU OR ON THE PAGE
+      {
+        element: "button[data-qa='natural-language-search-button']",
+        popover: {
+          title: "Search using natural language",
+          description: "<p>If you would like to describe what you;re looking for in your own words, this feature will convert it to a formal search query.</p>",
+          side: "bottom",
+          align: "end",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the previous element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
 
-  private databaseResultsSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Database results',
-        description: 'Start your search here'
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          }
+        }
+      },
+      {
+        element: this.isMobileView ? ".show-more-main-menu-out-inner-wrapper-ul > li:first-child button" : "button[data-qa='advanced_search_button']",
+        popover: {
+          title: "Need more search fields?",
+          description: "Switch between a simple search and an advanced search that lets you specify more filters and criteria.",
+          side: "bottom",
+          align: this.isMobileView ? "start" : "end"
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private newspaperHomeSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Newspaper home',
-        description: 'Start your search here'
+  private get searchResultsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Search results',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private newspaperResultsSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Newspaper results',
-        description: 'Start your search here'
+  private get databaseHomeSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Database home',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private browseHomeSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Browse home',
-        description: 'Start your search here'
+  private get databaseResultsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Database results',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private browseResultsSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Browse results',
-        description: 'Start your search here'
+  private get newspaperHomeSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Newspaper home',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private collectionHomeSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Collection home',
-        description: 'Start your search here'
+  private get newspaperResultsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Newspaper results',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private collectionListingResultsSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Collection listing results',
-        description: 'Start your search here'
+  private get browseHomeSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Browse home',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private collectionResultsSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Collection results',
-        description: 'Start your search here'
+  private get browseListSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Browse list',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private collectionListingsSteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Collection listings',
-        description: 'Start your search here'
+  private get browseResultsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Browse results',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
-      }
-    }
-  ];
+    ];
+  }
 
-  private docDeliverySteps: any[] = [
-    {
-      element: '.search-wrapper',
-      popover: {
-        title: 'Document delivery',
-        description: 'Start your search here'
+  private get collectionHomeSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Collection home',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    },
-    {
-      element: '.result-item',
-      popover: {
-        title: 'Results',
-        description: 'These are your results'
+    ];
+  }
+
+  private get collectionListingResultsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Collection listing results',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
       }
-    }
-  ];
+    ];
+  }
+
+  private get collectionResultsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Collection results',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get collectionListingsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Collection listings',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get docDeliverySteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Document delivery',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountOverviewSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account overview',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountLoansSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account loans',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountRequestsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account requests',
+            description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountFinesSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account fines',
+            description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountFavoritesSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account favorites',
+            description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountSearchHistorySteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account search history',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountSavedSearchesSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account saved searches',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get accountSettingsSteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Account settings',
+          description: 'Start your search here'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get fullDisplaySteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Full display',
+          description: 'This is the full display view of an item'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get dbFullDisplaySteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Database full display',
+          description: 'This is the full display view of a database item'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get npFullDisplaySteps(): any[] {
+    return [
+      {
+        element: '.search-wrapper',
+        popover: {
+          title: 'Newspaper full display',
+          description: 'This is the full display view of a newspaper item'
+        }
+      },
+      {
+        element: '.result-item',
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
+
+  private get researchAssistantSteps(): any[] {
+    return [
+      {
+        popover: {
+          title: 'Research assistant',
+          description: 'This is the research assistant page'
+        }
+      },
+      {
+        popover: {
+          title: 'Results',
+          description: 'These are your results'
+        }
+      }
+    ];
+  }
 }
