@@ -1,6 +1,7 @@
 import { AvailabilityCountComponent } from "../availability-count/availability-count.component";
 import { BrowseHomePageContentComponent } from "../browse-home-page-content/browse-home-page-content.component";
 import { CollectionAuthorDateComponent } from "../collection-author-date/collection-author-date.component";
+import { CredentialChangesComponent } from "../credential-changes/credential-changes.component";
 import { DatabaseHomepageNoticeComponent } from "../database-homepage-notice/database-homepage-notice.component";
 import { GuidedTourComponent } from "../guided-tour/guided-tour.component";
 //import { LibchatComponent } from "../libchat/libchat.component";
@@ -14,5 +15,6 @@ export const selectorComponentMap = new Map<string, any>([
     ['nde-database-home-page-bottom', DatabaseHomepageNoticeComponent],
     ['nde-browse-home-page-bottom', BrowseHomePageContentComponent],
     ['nde-skip-links-after', GuidedTourComponent],
+    ['nde-personal-settings-bottom', CredentialChangesComponent],
 
 ]);
