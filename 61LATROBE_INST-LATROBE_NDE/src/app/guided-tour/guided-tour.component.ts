@@ -26,6 +26,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   public buttonIcon: string = '';
   public tooltipText: string = '';
   private previousTourType: string = '';
+  private currentSize: string = '';
   
   private isMobileView: boolean = false;
   private isSmallView: boolean = false;
@@ -74,8 +75,16 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
 
   @HostListener('window:resize')
   onResize(): void {
-    if(!this.tour.isActive()) {
-      // reapply the steps in case view has changed (e.g. mobile vs desktop) which may require different step targets and actions
+    // check whether the window view has changed between mobile/small/desktop
+    var isMobile = document.querySelector('nde-app-root.XSmall') != null;
+    var isSmall = document.querySelector('nde-app-root.Small') != null;
+    var newSize = isMobile ? 'mobile' : isSmall ? 'small' : 'desktop';
+
+    if(this.currentSize !== newSize) {
+      // stop any active tour as the step targets may no longer be correct in the new view
+      if(this.tour.isActive()) this.tour.destroy()
+      
+      // reapply the steps as the view has changed (e.g. mobile vs desktop) which may require different step targets and actions
       this.updateTourSteps('', true);
     }
   }
@@ -108,9 +117,10 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     this.buttonIcon = '';
     this.tooltipText = '';
 
-    // check whether Primo is showing its 'mobile' (xs) view
+    // check whether Primo is showing its 'mobile' (xs) or 'small' view
     this.isMobileView = document.querySelector('nde-app-root.XSmall') != null;
     this.isSmallView = document.querySelector('nde-app-root.Small') != null;
+    this.currentSize = this.isMobileView ? 'mobile' : this.isSmallView ? 'small' : 'desktop';
 
     //console.log('Is mobile view:', this.isMobileView);
     //console.log('Is small view:', this.isSmallView);
