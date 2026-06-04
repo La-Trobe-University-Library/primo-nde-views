@@ -30,10 +30,10 @@ export class CredentialChangesComponent implements OnInit {
           if(this.SSOUserGroups.includes(userGroup)) {
             // if it is, remove the button
             button.remove();
-          }/* else {
-            // if it is not SSO (i.e. Alma), add the 'allowed' class to the button (so it is shown)
+          } else {
+            // if it is not SSO (i.e. Alma), add the 'allowed' class to the button (so it is shown via CSS in custom.css)
             button.classList.add('allowed');
-          }*/
+          }
         }
       });
   }

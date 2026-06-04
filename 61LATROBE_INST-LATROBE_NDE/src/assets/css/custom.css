@@ -767,10 +767,16 @@ nde-account-overview {
   text-decoration: underline !important;
 }
 nde-personal-settings {
-  button[data-qa="settings-update-login-btn"]:hover, nde-personal-settings button[data-qa="settings-update-login-btn"]:focus {
-    text-decoration: underline;
+  button[data-qa="settings-update-login-btn"] {
+      &:hover, &:focus {
+        text-decoration: underline;
+      }
   }
-  
+
+  mat-card-actions:not(:has(button.allowed)) {
+    display: none;
+  }
+
   .personal-settings-card .mat-mdc-card-actions:empty,
   .settings-drop-down:empty {
     display: none;
