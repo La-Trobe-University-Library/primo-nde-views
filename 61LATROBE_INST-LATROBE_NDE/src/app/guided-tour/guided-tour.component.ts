@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewEncapsulation, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, OnDestroy, OnInit } from '@angular/core';
 import { driver } from 'driver.js';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -8,7 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { StylesheetLoaderService } from '../services/stylesheet-loader.service';
 
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, debounceTime, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'custom-guided-tour',
@@ -53,6 +53,15 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       .subscribe(routerUrl => {
         this.updateTourSteps(routerUrl);
       });
+
+    fromEvent(window, 'resize')
+      .pipe(
+        debounceTime(200),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {
+        this.handleResize();
+      });
   }
 
   async ngAfterViewInit() {
@@ -73,14 +82,15 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  @HostListener('window:resize')
-  onResize(): void {
+  private handleResize(): void {
     // check whether the window view has changed between mobile/small/desktop
     var isMobile = document.querySelector('nde-app-root.XSmall') != null;
     var isSmall = document.querySelector('nde-app-root.Small') != null;
     var newSize = isMobile ? 'mobile' : isSmall ? 'small' : 'desktop';
 
     if(this.currentSize !== newSize) {
+      //console.log('Window resized, view size changed from', this.currentSize || '[blank]', 'to', newSize, '- refreshing tour steps');
+
       // stop any active tour as the step targets may no longer be correct in the new view
       if(this.tour.isActive()) this.tour.destroy()
       
@@ -285,9 +295,9 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     }
   }
 
-  startTour() {
+  startTour(step: number = 0): void {
     // start the tour
-    if(this.tour) this.tour.drive();
+    if(this.tour) this.tour.drive(step);
   }
 
   private get searchHomeSteps(): any[] {
