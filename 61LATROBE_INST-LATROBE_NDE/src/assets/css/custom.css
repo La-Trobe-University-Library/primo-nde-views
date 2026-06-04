@@ -766,6 +766,16 @@ nde-account-overview {
 .search-history-list .search-history-row .search-history-row-item.search-item:hover {
   text-decoration: underline !important;
 }
+nde-personal-settings {
+  button[data-qa="settings-update-login-btn"]:hover, nde-personal-settings button[data-qa="settings-update-login-btn"]:focus {
+    text-decoration: underline;
+  }
+  
+  .personal-settings-card .mat-mdc-card-actions:empty,
+  .settings-drop-down:empty {
+    display: none;
+  }
+}
 
 /* natural language search */
 nde-natural-language-search-dialog .natural-language-search-content .natural-language-search-content-form-container {
