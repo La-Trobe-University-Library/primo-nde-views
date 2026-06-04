@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewEncapsulation, OnDestroy, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { driver } from 'driver.js';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -26,7 +26,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   public buttonIcon: string = '';
   public tooltipText: string = '';
   private previousTourType: string = '';
-
+  
   private isMobileView: boolean = false;
   private isSmallView: boolean = false;
 
@@ -72,6 +72,14 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  @HostListener('window:resize')
+  onResize(): void {
+    if(!this.tour.isActive()) {
+      // reapply the steps in case view has changed (e.g. mobile vs desktop) which may require different step targets and actions
+      this.updateTourSteps('', true);
+    }
+  }
+
   private setupTour() {
     // set up the tour instance
     this.tour = driver({
@@ -88,8 +96,10 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
-  private updateTourSteps(url: string) {
-    console.log('Updating tour steps for URL:', url);
+  private updateTourSteps(url: string = '', forceStepUpdate: boolean = false): void {
+    if(url == '') url = window.location.href; // fallback to the current window URL
+
+    //console.log('Updating tour steps for URL:', url);
 
     // clear the tour type & tooltip
     this.previousTourType = this.tourType;
@@ -102,8 +112,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     this.isMobileView = document.querySelector('nde-app-root.XSmall') != null;
     this.isSmallView = document.querySelector('nde-app-root.Small') != null;
 
-    console.log('Is mobile view:', this.isMobileView);
-    console.log('Is small view:', this.isSmallView);
+    //console.log('Is mobile view:', this.isMobileView);
+    //console.log('Is small view:', this.isSmallView);
     
     // assign the tour steps based on the URL
     let currentSteps: any[] = [];
@@ -253,8 +263,12 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       currentSteps = this.researchAssistantSteps;
     }
 
-    if(this.previousTourType !== this.tourType || (this.previousTourType == '' && this.tourType != '')) {
-      console.log('Tour type changed from', this.previousTourType || '[blank]', 'to', this.tourType);
+    if(this.previousTourType !== this.tourType || (this.previousTourType == '' && this.tourType != '') || forceStepUpdate) {
+      if(forceStepUpdate) {
+        console.log('Tour steps refreshed');
+      } else {
+        console.log('Tour type changed from', this.previousTourType || '[blank]', 'to', this.tourType);
+      }
 
       // the type of tour has changed, so set the tour steps
       this.tour.setSteps(currentSteps);
