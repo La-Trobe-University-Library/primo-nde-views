@@ -3,12 +3,12 @@ import { BrowseHomePageContentComponent } from "../browse-home-page-content/brow
 import { CollectionAuthorDateComponent } from "../collection-author-date/collection-author-date.component";
 import { DatabaseHomepageNoticeComponent } from "../database-homepage-notice/database-homepage-notice.component";
 import { GuidedTourComponent } from "../guided-tour/guided-tour.component";
-import { LibchatComponent } from "../libchat/libchat.component";
+//import { LibchatComponent } from "../libchat/libchat.component";
 
 // Define the map
 export const selectorComponentMap = new Map<string, any>([
 
-    ['nde-footer-before', LibchatComponent],
+    //['nde-footer-before', LibchatComponent], // using LibChat add-on instead (styles copied to custom.css)
     ['nde-collection-discovery-gallery-item-bottom', CollectionAuthorDateComponent],
     ['nde-search-filters-side-nav-bottom', AvailabilityCountComponent],
     ['nde-database-home-page-bottom', DatabaseHomepageNoticeComponent],

@@ -77,6 +77,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     this.tour = driver({
       showProgress: true,
       animate: true, 
+      disableActiveInteraction: true,
       popoverClass: 'ltu-tour',
 
       nextBtnText: 'Next <span class="material-icons">chevron_right</span>',
@@ -280,7 +281,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         }
       },
       {
-        element: this.isMobileView ? '.main-menu-mobile-btn' : '.show-more-btn',
+        element: this.isMobileView ? '.main-menu-mobile-btn' : 'nav [data-qa="main-menu_links"]',//'.show-more-btn',
         popover: {
           title: "Check the menu",
           description: "<p>The main menu lets you change the type of search you're performing (e.g. search all collections, databases or newspaper articles) as well as allowing you to request items from another library.</p><p>Select the 'More' menu item to view the full main menu.</p><p>Note that when you're in 'mobile' view, some options that are usually on the page (e.g. the 'Advanced search') are within this menu instead.</p>",
@@ -325,10 +326,10 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       }, 
       // FOLLOWING ELEMENTS ARE EITHER IN MENU OR ON THE PAGE
       {
-        element: "button[data-qa='natural-language-search-button']",
+        element: this.isMobileView ? ".show-more-main-menu-out-inner-wrapper-ul > li:nth-child(3) button" : "button[data-qa='natural-language-search-button']",
         popover: {
           title: "Search using natural language",
-          description: "<p>If you would like to describe what you;re looking for in your own words, this feature will convert it to a formal search query.</p>",
+          description: "<p>If you would like to describe what you're looking for in your own words, this feature will convert it to a structured search query.</p>",
           side: "bottom",
           align: "end",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -355,7 +356,152 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
           title: "Need more search fields?",
           description: "Switch between a simple search and an advanced search that lets you specify more filters and criteria.",
           side: "bottom",
-          align: this.isMobileView ? "start" : "end"
+          align: this.isMobileView ? "start" : "end",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the next element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      // FOLLOWING ELEMENTS ARE ON THE PAGE
+      {
+        element: "#user-area-button",
+        popover: {
+          title: "Your library account",
+          description: "Sign in to access your library account, where you can view the status of any loans or requests for library resources.",
+          side: "bottom",
+          align: this.isMobileView ? "start" : "end",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the previous element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          }
+        }
+      },
+      {
+        element: ".s-lch-widget-float-btn",
+        popover: {
+          title: "Need help?",
+          description: "Use the chat feature to talk with a librarian, or use the 'Help' option in the main menu to access resources and information to help you with your Library collections search.",
+          side: "bottom",
+          align: "center",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      }, 
+      // FOLLOWING ELEMENTS ARE EITHER IN MENU OR ON THE PAGE
+      {
+        element: this.isMobileView ? ".show-more-main-menu-out-inner-wrapper-ul > li:nth-child(2) button" : "button[data-qa='report_a_problem_button']",
+        popover: {
+          title: "Ran into an issue?",
+          description: "If you have encountered a problem with a search, resource or logging in, select 'Report a problem' to report it to the library.",
+          side: "right",
+          align: "end",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the previous element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          },
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the next element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, menuDelay); 
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      // FOLLOWING ELEMENTS ARE ON THE PAGE
+      {
+        element: "nde-logo",
+        popover: {
+          title: "Library website",
+          description: "To return to the library website, select the La Trobe University logo.",
+          side: "bottom",
+          align: "start",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the previous element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          }
+        }
+      },
+      {
+        element: ".guide-btn",
+        popover: {
+          title: "That's all for now",
+          description: "Thanks for taking the tour. You can restart it at any time from here.",
+          side: "bottom",
+          align: "end",
+          popoverClass: 'ltu-tour ltu-end-tour'
         }
       }
     ];
