@@ -2837,22 +2837,349 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   private get browseResultsSteps(): any[] {
-    return [
+    const scope = this; // capture the component scope for use in the onNextClick function
+
+    var steps: any = [
       {
-        element: '.search-wrapper',
+        element: '.search-result-item',
         popover: {
-          title: 'Browse results',
-          description: 'Start your search here'
+          title: 'Browse search results',
+          description: 'The results of your browse search are listed on the page. Select an item from the results to see its details.',
+          showButtons: ["next", "close"],
+          popoverClass: 'ltu-tour ltu-tour-wide'
         }
       },
       {
-        element: '.result-item',
+        element: this.isMobileView ? 'nde-mobile-filters-toggle button' : '#allFilterToggleButton',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: "View filters",
+          description: "Select this button to show/hide the filters that you can apply to this search.",
+          side: "right",
+          align: "start",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to expand the filters
+              var menuBtn = document.querySelector('nde-mobile-filters-toggle button') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to open
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              var openedFilterBtn = document.querySelector('#allFilterToggleButton.all-filters-open') as HTMLElement;
+
+              if(openedFilterBtn) {
+                // continue to the next step
+                scope.tour.moveNext();
+              } else {
+                // we want to expand the filters
+                var filterBtn = document.querySelector('#allFilterToggleButton') as HTMLElement;
+                if(filterBtn) filterBtn.click();
+
+                // allow time for the menu to open
+                setTimeout(function() {
+                  // continue to the next step
+                  scope.tour.moveNext();
+                }, scope.menuDelay);
+              }
+            }
+          }
+        }
+      },
+      {
+        element: this.isMobileView ? '#filters-panel h2' : 'nde-search-filters-side-nav',
+        popover: {
+          title: "Narrow your results",
+          description: "Apply filters (such as 'Peer-reviewed' and 'Resource type') to narrow down your search.",
+          side: "right",
+          align: "center",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('#close-facet-panel') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the nprevext step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.movePrevious();
+            }
+          },
+          onNextClick: function(element: any, step: any, options: any): void {
+            // scroll so first item is visible
+            const results = document.querySelector('.search-container');
+            if(results) results.scrollIntoView();
+
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the next element
+              var menuBtn = document.querySelector('#close-facet-panel') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the nprevext step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
         }
       }
     ];
+
+    if(scope.isSmallView || scope.isMobileView) {
+      // add a step
+      steps.push(
+        {
+          element: '.search-result-item button[data-qa="mobile-actions-btn"]',
+          popover: {
+            title: "Item actions",
+            description: "Select the '3-dot' menu button to view the actions for an item.",
+            side: "left",
+            align: "center",
+            onPrevClick: function(element: any, step: any, options: any): void {
+              if(scope.isMobileView) {
+                // we want to expand the filters
+                var menuBtn = document.querySelector('nde-mobile-filters-toggle button') as HTMLElement;
+                if(menuBtn) menuBtn.click();
+
+                // allow time for the menu to open
+                setTimeout(function() {
+                  // continue to the next step
+                  scope.tour.movePrevious();
+                }, scope.menuDelay);
+              } else {
+                // continue to the next step
+                scope.tour.movePrevious();
+              }
+            },
+            onNextClick: function(element: any, step: any, options: any): void {
+              if(scope.isSmallView || scope.isMobileView) {
+                // we want to open the menu so we can highlight the next element
+                var menuBtn = document.querySelector('.search-result-item button[data-qa="mobile-actions-btn"]') as HTMLElement;
+                if(menuBtn) menuBtn.click();
+
+                // allow time for the menu to show
+                setTimeout(function() {
+                  // continue to the next step
+                  scope.tour.moveNext();
+                }, scope.menuDelay);
+              } else {
+                // continue to the next step
+                scope.tour.moveNext();
+              }
+            }
+          }
+        }
+      );
+    }
+    
+    // FOLLOWING ELEMENTS ARE DIFFERENT DEPENDING ON THE VIEW
+    steps.push(
+      {
+        element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
+        popover: {
+          title: "Save to favourites",
+          description: "You can save an item to your favourites to make it easier to find again.",
+          side: "left",
+          align: "start",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isSmallView || scope.isMobileView) {
+              // we want to close the menu
+              var menuBtn = document.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to close
+              setTimeout(function() {
+                // continue to the previous step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // continue to the previous step
+              scope.tour.movePrevious();
+            }
+          }
+        }
+      },
+      {
+        element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
+        popover: {
+          title: "Export",
+          description: "These options allow you to export or share the item details.",
+          side: "left",
+          align: "start"
+        }
+      },
+      {
+        element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Citation of"]' : '.search-result-item nde-record-actions button[aria-label^="Citation of"]',
+        popover: {
+          title: "View citation formats",
+          description: "If you need to cite an item in your work, you can select its citation button to view its details in various standard reference formats.",
+          side: "left",
+          align: "start"
+        }
+      },
+      {
+        element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available share options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available share options"]',
+        popover: {
+          title: "Sharing options",
+          description: "Get a permalink (permanent link) for an item or view a QR code that you can scan to view the item's details.",
+          side: "left",
+          align: "start",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isSmallView || scope.isMobileView) {
+              // we want to close the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to close
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      {
+        element: 'nde-full-display-navigation',
+        popover: {
+          title: "Go back",
+          description: "Select this button to return to the browse results list.",
+          side: "right",
+          align: "start",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isSmallView || scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.search-result-item button[data-qa="mobile-actions-btn"]') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.movePrevious();
+            }
+          },
+        }
+      },
+      {
+        element: 'nde-general-search-header > section',
+        popover: {
+          title: "Search form",
+          description: "If you didn't get the results that you were after, try a new search.",
+          side: "bottom",
+          align: "center"
+        }
+      },
+      {
+        element: 'button.s-lch-widget-float-btn',
+        popover: {
+          title: "Need help?",
+          description: "Use the chat feature to talk with a librarian, or use the 'Help' option in the main menu to access resources and information to help you with your library search.",
+          side: "left",
+          align: "end",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      {
+        element: scope.isMobileView ? '.show-more-main-menu-out-inner-wrapper-ul li:nth-child(2) button' : 'nde-report-a-problem',
+        popover: {
+          title: "Ran into an issue?",
+          description: "If you have encountered a problem with a search, resource, or signing in, select 'Report a problem' to report it to the library.",
+          side: "left",
+          align: "end",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the previous element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          },
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the previous element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // go to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              // go to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      {
+        element: 'nde-logo',
+        popover: {
+          title: "Library website",
+          description: "To return to the Library website, select the La Trobe University logo.",
+          side: "bottom",
+          align: "start",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the prev step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // continue to the prev step
+              scope.tour.movePrevious();
+            }
+          }
+        }
+      }
+    );
+    
+    return steps;
   }
 
   private get collectionHomeSteps(): any[] {
