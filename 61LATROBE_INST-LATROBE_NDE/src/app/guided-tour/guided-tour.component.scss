@@ -87,26 +87,26 @@
 .ltu-tour .driver-popover-navigation-btns button {
   border-radius: 28px;
   height: 48px;
-  border: 2px solid #e2231b;
+  border: 2px solid var(--sys-primary);
   font-size: 18px;
   font-family: dm sans;
   font-weight: 500;
   padding: 5px 20px;
-  color: #e2231b;
+  color: var(--sys-primary);
   text-shadow: none;
 }
 .ltu-tour .driver-popover-navigation-btns button:hover, .ltu-tour .driver-popover-navigation-btns button:focus {
   text-decoration: underline;
-  color: #b51c16;
-  border-color: #b51c16;
+  color: var(--latrobe-red-shade-20);
+  border-color: var(--latrobe-red-shade-20);
   background: transparent;
 }
 .ltu-tour .driver-popover-navigation-btns button.driver-popover-next-btn {
-  background: #e2231b;
+  background: var(--sys-primary);
   color: #fff;
 }
 .ltu-tour .driver-popover-navigation-btns button.driver-popover-next-btn:hover, .ltu-tour .driver-popover-navigation-btns button.driver-popover-next-btn:focus {
-  background: #b51c16;
+  background: var(--latrobe-red-shade-20);
   color: #fff;
 }
 /*.ltu-tour .driver-popover-navigation-btns button.driver-popover-next-btn:not(.no-icon):after {
@@ -140,11 +140,11 @@
 }*/
 .ltu-tour .driver-popover-close-btn {
   line-height: 30px;
-  color: #e2231b;
+  color: var(--sys-primary);
   font-size: 26px;
 }
 .ltu-tour .driver-popover-close-btn::before {
-  border: 2px solid #e2231b;
+  border: 2px solid var(--sys-primary);
   border-radius: 50%;
   width: 26px;
   height: 26px;
@@ -157,12 +157,17 @@
   box-sizing: border-box;
 }
 .ltu-tour .driver-popover-close-btn:hover, .ltu-tour .driver-popover-close-btn:focus {
-  color: #b51c16;
+  color: var(--latrobe-red-shade-20);
 }
 .ltu-tour .driver-popover-close-btn:hover:before, .ltu-tour .driver-popover-close-btn:focus:before {
-  border-color: #b51c16;
+  border-color: var(--latrobe-red-shade-20);
 }
 .driver-overlay path {
   stroke: #fff;
   stroke-width: 2;
+}
+
+/* hide the signin panel while guide is active (as it can cover elements) */
+.driver-active mat-snack-bar-container:has(nde-login) {
+  visibility: hidden;
 }
