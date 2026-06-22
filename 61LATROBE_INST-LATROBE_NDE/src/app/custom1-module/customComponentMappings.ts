@@ -4,6 +4,7 @@ import { CollectionAuthorDateComponent } from "../collection-author-date/collect
 import { CredentialChangesComponent } from "../credential-changes/credential-changes.component";
 import { DatabaseHomepageNoticeComponent } from "../database-homepage-notice/database-homepage-notice.component";
 import { GuidedTourComponent } from "../guided-tour/guided-tour.component";
+import { RequestStatusComponent } from "../request-status/request-status.component";
 //import { LibchatComponent } from "../libchat/libchat.component";
 
 // Define the map
@@ -16,5 +17,7 @@ export const selectorComponentMap = new Map<string, any>([
     ['nde-browse-home-page-bottom', BrowseHomePageContentComponent],
     ['nde-skip-links-after', GuidedTourComponent],
     ['nde-personal-settings-bottom', CredentialChangesComponent],
+    ['nde-requests-page-bottom', RequestStatusComponent],
+    ['nde-requests-overview-bottom', RequestStatusComponent],
 
 ]);
