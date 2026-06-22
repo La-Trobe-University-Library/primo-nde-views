@@ -607,6 +607,29 @@ nde-selected-filters {
 nde-search-summary .generated-query-button {
   display: inherit !important;
 }
+button[data-qa="link-to-newspaper-search"] {
+  height: 30px !important;
+  padding: 0.5rem !important;
+  border-radius: 1rem;
+}
+
+button.see-more-btn {
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem !important;
+  border-radius: 1rem;
+  height: 30px !important;
+  font-weight: 500;
+}
+button.see-more-btn + mat-icon {
+  margin-left: -25px;
+}
+button.see-more-btn:hover, button.see-more-btn:focus {
+  font-weight: 500 !important;
+}
+button.facet-name:hover, button.facet-name:focus,
+.mdc-label:hover button.facet-name, .mdc-label:focus button.facet-name {
+  font-weight: 400 !important;
+  box-shadow: none !important;
+}
 
 /* hide 'tlevel' section from filters panel
 nde-search-filters-side-nav nde-filters-group#tlevel {

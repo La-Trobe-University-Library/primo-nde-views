@@ -3183,19 +3183,138 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   private get collectionHomeSteps(): any[] {
+    const scope = this; // capture the component scope for use in the onNextClick function
+    
     return [
-      {
-        element: '.search-wrapper',
+      /*{
         popover: {
-          title: 'Collection home',
-          description: 'Start your search here'
+          title: "Welcome to featured collections",
+          description: "FEATURED_COLLECTIONS",
+          showButtons: ["next", "close"],
+          popoverClass: 'ltu-tour ltu-tour-wide'
+        }
+      },*/
+      {
+        element: "nde-collection-discovery-search-bar",
+        popover: {
+          title: "Search form",
+          description: "Search within all the featured collections.",
+          side: "left",
+          align: "start",
+          showButtons: ["next", "close"],
+          popoverClass: 'ltu-tour ltu-tour-wide'
+        }
+      }, 
+      {
+        element: "nde-collection-discovery-gallery",
+        popover: {
+          title: "Collections",
+          description: "Select a collection to browse the items within it.",
+          side: "top",
+          align: "center"
+        }
+      }, 
+      {
+        element: ".s-lch-widget-float-btn",
+        popover: {
+          title: "Need help?",
+          description: "Use the chat feature to talk with a librarian, or use the 'Help' option in the main menu to access resources and information to help you with your Library collections search.",
+          side: "left",
+          align: "end",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      }, 
+      // FOLLOWING ELEMENTS ARE EITHER IN MENU OR ON THE PAGE
+      {
+        element: this.isMobileView ? ".show-more-main-menu-out-inner-wrapper-ul > li:nth-child(2) button" : "button[data-qa='report_a_problem_button']",
+        popover: {
+          title: "Ran into an issue?",
+          description: "If you have encountered a problem with a search, resource or signing in, select 'Report a problem' to report it to the library.",
+          side: "right",
+          align: "end",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the previous element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          },
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the next element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay); 
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      // FOLLOWING ELEMENTS ARE ON THE PAGE
+      {
+        element: "nde-logo",
+        popover: {
+          title: "Library website",
+          description: "To return to the Library website, select the La Trobe University logo.",
+          side: "bottom",
+          align: "start",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the previous element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          }
         }
       },
       {
-        element: '.result-item',
+        element: ".guide-btn",
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: "That's all for now",
+          description: "Thanks for taking the tour. You can restart it at any time from here.",
+          side: "bottom",
+          align: "end",
+          popoverClass: 'ltu-tour ltu-end-tour'
         }
       }
     ];
