@@ -1396,6 +1396,16 @@ nde-resource-recommender-banner {
   
 }
 
+/* Request statuses */
+nde-requests-overview a.item-details h4,
+div[data-qa="requests-item-status-indication"] {
+  visibility: hidden;
+}
+nde-requests-overview a.item-details h4:has(.updated-request-status),
+div[data-qa="requests-item-status-indication"]:has(.updated-request-status) {
+  visibility: visible;
+}
+
 /* LibChat (and adjusting buttons around it) */
 [dir="rtl"] .s-lch-widget-float[aria-label="Chat Widget"] {
   right: auto;
