@@ -17,7 +17,7 @@ export const selectorComponentMap = new Map<string, any>([
     ['nde-browse-home-page-bottom', BrowseHomePageContentComponent],
     ['nde-skip-links-after', GuidedTourComponent],
     ['nde-personal-settings-bottom', CredentialChangesComponent],
-    ['nde-requests-page-bottom', RequestStatusComponent],
+    ['nde-account-section-results-bottom', RequestStatusComponent],
     ['nde-requests-overview-bottom', RequestStatusComponent],
 
 ]);

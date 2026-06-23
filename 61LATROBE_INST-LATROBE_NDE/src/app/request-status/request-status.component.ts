@@ -12,7 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class RequestStatusComponent implements AfterViewInit, OnDestroy {
   private destroy$ = new Subject<void>();
-
+  
   constructor(
     private store: Store<any>,
     private renderer: Renderer2
@@ -34,18 +34,7 @@ export class RequestStatusComponent implements AfterViewInit, OnDestroy {
       .subscribe(requestList => {
         //console.log('RequestList: '+requestList[0].type);
         this.updateRequestItems(requestList ?? []);
-      });
-
-    /*
-    // create a MutationObserver to watch for changes in the filters sidebar
-    const observer = new MutationObserver((mutations) => {
-      this.injectCountsIntoDom();
-    });
-    observer.observe(targetNode, {
-      childList: true,
-      subtree: true
-    });
-    */
+      }); 
   }
 
   ngOnDestroy(): void {
@@ -61,7 +50,7 @@ export class RequestStatusComponent implements AfterViewInit, OnDestroy {
       const request = requestList[index];
       if (!request) return;
 
-      //console.log('Reuqest type: ', request.type);
+      //console.log('Request type: ', request.type);
 
       let statusText: string = "Request created";
       switch(request.type) {
@@ -78,5 +67,4 @@ export class RequestStatusComponent implements AfterViewInit, OnDestroy {
       this.renderer.setProperty(el, 'innerHTML', fullStatusText);
     });
   }
-
 }

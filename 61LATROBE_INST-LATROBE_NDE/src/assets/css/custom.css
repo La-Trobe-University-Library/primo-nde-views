@@ -630,6 +630,9 @@ button.facet-name:hover, button.facet-name:focus,
   font-weight: 400 !important;
   box-shadow: none !important;
 }
+.record-main-details span:empty {
+  display: none;
+}
 
 /* hide 'tlevel' section from filters panel
 nde-search-filters-side-nav nde-filters-group#tlevel {
