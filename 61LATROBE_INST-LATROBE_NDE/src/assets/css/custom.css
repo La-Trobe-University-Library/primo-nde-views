@@ -1,6 +1,6 @@
 /* indicator for sandbox/work-in-progress */
 body::before {
-  content: 'Primo NDE - Do not use (yet)';
+  content: 'Primo NDE - Do not use';
   display: block;
   position: fixed;
   top: 0;
@@ -376,6 +376,40 @@ nde-collection-discovery-lobby-header .collection-discovery-header:has(.collecti
     z-index: 1;
 }
 
+/* custom alert style (under Header) */
+.header-alert {
+  background: #f2fbfa;
+  padding: 15px 0;
+  border-bottom: 1px solid #c3e3e0;
+
+  &.warning {
+    background: #fffaf2;
+    border-bottom: 1px solid #ead2ab;
+  }
+
+  @media (max-width: 599.98px) {
+    padding: 15px 1rem;
+  }
+}
+.header-alert > * {
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  @media (min-width: 600px) and (max-width: 959.98px) {
+    max-width: clamp(288px, 88.42544317%, 848px);
+  }
+  @media (min-width: 960px) and (max-width: 1279.98px) {
+    max-width: clamp(912px, 85%, 1088px);
+  }
+  @media (min-width: 1280px) {
+    max-width: clamp(1088px, 85%, 1368px);
+  }
+}
+.header-alert > :last-child {
+  margin-bottom: 0;
+}
+
 /* language selector */
 nde-language-selector-container {
   --secondaryActionIcon: var(--sys-outline);
@@ -485,6 +519,34 @@ nde-search-bar-presenter, nde-search-box-presenter {
 
     .authentication-method span {
       font-weight: 500 !important;
+    }
+  }
+}
+
+/* login full page */
+nde-login-page {
+  .top-bar {
+    background-color: var(--sys-secondary) !important;
+    box-shadow: none !important;
+    padding-block: 1.5rem !important;
+  }
+
+  header .login-header-logo:empty {
+    display: none;
+  }
+
+  .mobile-image-section img {
+    height: 12rem !important;
+  }
+
+  @media only screen and (max-width: 599.98px) {
+    .top-bar {
+      padding-inline: 1rem;
+    }
+  }
+  @media only screen and (max-width: 959.98px) {
+    .login-page-container {
+      gap: 0 !important;
     }
   }
 }
@@ -683,6 +745,10 @@ nde-full-display-container {
       margin-top: -19px;
     }
   }
+
+  .full-view-right-content:has(nde-full-display-side-bar:empty) {
+    display: none;
+  }
 }
 nde-full-display-navigation {
   box-shadow: 0 -2px 0 0px var(--whiteBG);
@@ -800,6 +866,9 @@ nde-newspaper-search-container {
   .results-container {
     margin-bottom: 2rem !important;
   }
+}
+nde-featured-np-scope-bar .tabs-row button:not(.tabs-row button:has(.mat-mdc-button-persistent-ripple)):hover {
+  background: #FBECEC;
 }
 
 /* browse */
@@ -1136,6 +1205,12 @@ nde-research-assistant-widget {
 nde-mobile-filters-toggle {
     z-index: 9;
 }
+/* facets panel (on mobile - for Newspaper search) */
+.XSmall .filters-side-bar-content.visible[class] {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+}
 
 /* dialogs */
 .mat-mdc-dialog-actions .mat-mdc-icon-button {
@@ -1215,6 +1290,9 @@ stacked-dropdown, custom-browzine-button {
 }
 .alert-bar span.icon svg {
   color: #00aa98;
+}
+.notification-alert.info {
+  background-color: var(--sys-primary-container) !important;
 }
 
 /* resource recommender banner */
