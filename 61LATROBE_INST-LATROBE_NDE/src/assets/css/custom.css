@@ -1077,6 +1077,21 @@ nde-advanced-search {
   mat-form-field {
     background-color: var(--sys-background);
     --mdc-outlined-text-field-container-shape: 0.5rem;
+    
+    &.mat-mdc-form-field {
+      margin-bottom: .5rem;
+    }
+
+    &.mat-focused {
+      outline-offset: 5px;
+      outline: 2px solid var(--sys-on-background);
+      border-radius: 4px;
+    }
+  }
+
+  nde-search-contain-dropdown button:focus {
+    outline-offset: 2px;
+    outline-width: 2px !important;
   }
   
   .advanced-search-form-for-scope #contain-search-dropdown .search-dropdown-container-button {
@@ -1097,6 +1112,29 @@ nde-advanced-search {
 nde-ill-request {
   margin-block-end: 1rem;
   display: block;
+
+  .focused-by-keyboard.mdc-text-field--outlined {
+    outline: 2px solid var(--sys-on-background);
+    outline-offset: 5px;
+    border-radius: 4px;
+  }
+
+  mat-form-field {
+    &.mat-focused .mat-mdc-text-field-wrapper {
+      outline-offset: 5px !important;
+      outline: 2px solid var(--sys-on-background);
+      border-radius: 4px;
+    }
+
+    .mat-mdc-text-field-wrapper:has(button.cdk-focused, input.cdk-focused) {
+      outline: none !important;
+    }
+  }
+
+  .auto-fill-btn:focus {
+    outline: 2px solid #000;
+    border-radius: 4px;
+  }
 
   .request-form-container.blank-request {
     width: 100% !important;
