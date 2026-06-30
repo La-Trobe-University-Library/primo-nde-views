@@ -4,6 +4,7 @@ import { CollectionAuthorDateComponent } from "../collection-author-date/collect
 import { CredentialChangesComponent } from "../credential-changes/credential-changes.component";
 import { DatabaseHomepageNoticeComponent } from "../database-homepage-notice/database-homepage-notice.component";
 import { GuidedTourComponent } from "../guided-tour/guided-tour.component";
+import { PrefilledAdvancedSearchComponent } from "../prefilled-advanced-search/prefilled-advanced-search.component";
 import { RequestStatusComponent } from "../request-status/request-status.component";
 //import { LibchatComponent } from "../libchat/libchat.component";
 
@@ -19,5 +20,6 @@ export const selectorComponentMap = new Map<string, any>([
     ['nde-personal-settings-bottom', CredentialChangesComponent],
     ['nde-account-section-results-bottom', RequestStatusComponent],
     ['nde-requests-overview-bottom', RequestStatusComponent],
+    ['nde-advanced-search-bottom', PrefilledAdvancedSearchComponent],
 
 ]);
