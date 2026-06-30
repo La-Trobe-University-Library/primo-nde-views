@@ -9,6 +9,7 @@ import { StylesheetLoaderService } from '../services/stylesheet-loader.service';
 
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil, debounceTime, fromEvent } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'custom-guided-tour',
@@ -33,6 +34,9 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private isMobileView: boolean = false;
   private isSmallView: boolean = false;
 
+  private userGroup: string = '';
+  private DocDelUserGroups = ['030', '031', '020', '025', '010'];
+
   constructor(
     private stylesheetLoader: StylesheetLoaderService,
     private store: Store<any>
@@ -44,6 +48,31 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       'driver-js-css',
       'https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css'
     );
+
+    // get the user group from the store
+    this.store
+      .select(state => state?.user?.decodedJwt?.userGroup)
+      .pipe(take(1))
+      .subscribe(userGroup => {
+        this.userGroup = userGroup;
+
+        console.log('GT userGroup: ',this.userGroup);
+        console.log('tourType: ', this.tourType);
+
+        //if(this.tourType == 'document delivery') this.updateTourSteps();
+        
+        /*const button = document.querySelector('nde-personal-settings button[data-qa="settings-update-login-btn"]');
+        if(button) {
+          // check if the user group is in the SSOUserGroups array        
+          if(this.DocDelUserGroups.includes(userGroup)) {
+            // if it is, remove the button
+            button.remove();
+          } else {
+            // if it is not SSO (i.e. Alma), add the 'allowed' class to the button (so it is shown via CSS in custom.css)
+            button.classList.add('allowed');
+          }
+        }*/
+      });
 
     // set up the tour instance
     this.setupTour();
@@ -229,10 +258,13 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         currentSteps = this.collectionHomeSteps;
       }
     } else if (url.includes('/blankIll?')) {
-      // document delivery page
-      this.tourType = 'document delivery';
-      this.tooltipText = 'Tour the document delivery page';
-      currentSteps = this.docDeliverySteps;
+      // check if this user can access the document delivery form (no guide if they can't)
+      if(this.DocDelUserGroups.includes(this.userGroup)) {
+        // document delivery page
+        this.tourType = 'document delivery';
+        this.tooltipText = 'Tour the document delivery page';
+        currentSteps = this.docDeliverySteps;
+      }      
     } else if (url.includes('/account')) {
       if (url.includes('/overview')) {
         // account overview page
@@ -373,9 +405,10 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: "#search-dropdown-container-button-scopes-dropdown",
         popover: {
           title: "Online or physical?",
-          description: "<p>If you would like to restrict your search to only online resources or only physical ones, select the appropriate option in this drop-down.</p>",
+          description: "<p>If you would like to restrict your search to only online resources or only physical ones, select the appropriate option in this drop-down.</p><p><strong>Note:</strong> If you would like to limit your search to certain resource types or languages, you will need to perform an <a href='https://search.lib.latrobe.edu.au/nde/home?vid=61LATROBE_INST:LATROBE_NDETEST&mode=advanced'>Advanced search</a>. (These filters can also be applied after perfroming a search.)</p>",
           side: "bottom",
           align: "center",
+          popoverClass: 'ltu-tour ltu-tour-wide',
           onNextClick: function(element: any, step: any, options: any): void {
             if(scope.isMobileView) {
               // we want to open the menu so we can highlight the next element
@@ -4177,27 +4210,190 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   private get docDeliverySteps(): any[] {
-    // this check doesn't work (as it's run before the content is there)
-    const restrictedContent = document.querySelector('nde-restricted-form-page') as HTMLElement;
-    if(restrictedContent) {
-      console.log('DOCDEL IS RESTRICTED');
-    } else {
-      console.log('DOCDEL IS NOT RESTRICTED');
-    }
+    const scope = this; // capture the component scope for use in the onNextClick function
 
     return [
       {
-        element: '.search-wrapper',
         popover: {
           title: 'Document delivery',
-          description: 'Start your search here'
+          description: "<p>You can request copies of <strong>book chapters</strong> and <strong>journal articles</strong> from external libraries and from the La Trobe Library. Scanned copies of these items (within <a href='https://www.latrobe.edu.au/library/borrowing-and-collections/interlibrary-loan-and-document-delivery-service#trigger-1623439'>copyright restrictions</a>) will be emailed to you once the request has been processed.</p>",
+          showButtons: ["next", "close"],
+          popoverClass: 'ltu-tour ltu-tour-wide'
         }
       },
       {
-        element: '.result-item',
+        element: 'formly-field[data-qa="almaResourceSharing.citationType"]',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: "What are you requesting?",
+          description: "Indicate what type of resource you need here.",
+          side: "right",
+          align: "start",
+          onNextClick: function(element: any, step: any, options: any): void {
+            // make sure 'book' is selected
+            var bookRadioButton = document.querySelector('input[value="BK"]') as HTMLInputElement | null;
+            if(bookRadioButton) {
+              bookRadioButton.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+
+            // allow time for the fields to show
+            setTimeout(function() {
+              // continue to the next step
+              scope.tour.moveNext();
+            }, scope.menuDelay);
+          }
+        }
+      },
+      {
+        element: 'formly-field[data-qa="almaResourceSharing.specificChapterPages"] mat-checkbox',
+        popover: {
+          title: "Full book or specific pages?",
+          description: "If the resource is a book, you can indicate whether you need the full text or just a section of it.",
+          side: "right",
+          align: "start"
+        }
+      },
+      {
+        element: 'formly-group:has(> formly-field[data-qa="almaResourceSharing.title"])',
+        popover: {
+          title: "Enter the book's details",
+          description: "Fill out as much detail as you can to identify the resource and then submit the form to send the request.",
+          side: "top",
+          align: "center",
+          onNextClick: function(element: any, step: any, options: any): void {
+            // make sure 'article' is selected
+            var articleRadioButton = document.querySelector('input[value="CR"]') as HTMLInputElement | null;
+            if(articleRadioButton) {
+              articleRadioButton.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+
+            // allow time for the fields to show
+            setTimeout(function() {
+              // continue to the next step
+              scope.tour.moveNext();
+            }, scope.menuDelay);
+          }
+        }
+      },
+      {
+        element: 'formly-field[data-qa="almaResourceSharing.citationType"]',
+        popover: {
+          title: "Options for an article",
+          description: "If you're requesting an article, the form will have different fields than when you're requesting a book.",
+          side: "right",
+          align: "start",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            // make sure 'book' is selected
+            var bookRadioButton = document.querySelector('input[value="BK"]') as HTMLInputElement | null;
+            if(bookRadioButton) {
+              bookRadioButton.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+
+            // allow time for the fields to show
+            setTimeout(function() {
+              // continue to the prev step
+              scope.tour.movePrevious();
+            }, scope.menuDelay);
+          }
+        }
+      },
+      {
+        element: 'formly-field[data-qa="almaResourceSharing.doi"]',
+        popover: {
+          title: "Auto fill details",
+          description: "<p>If you know the article's DOI or PMID, fill that in first and select 'Auto fill' (the pen icon). If the resource is located in the system, some of its details will be populated within the form for you.</p><p>Fill out any other necessary fields and submit the form to send the request.</p>",
+          side: "right",
+          align: "start"
+        }
+      },
+      {
+        element: 'button.s-lch-widget-float-btn',
+        popover: {
+          title: "Need help?",
+          description: "Use the chat feature to talk with a librarian, or use the 'Help' option in the main menu to access resources and information to help you with your library search.",
+          side: "left",
+          align: "end",
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              // continue to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      {
+        element: scope.isMobileView ? '.show-more-main-menu-out-inner-wrapper-ul li:nth-child(2) button' : 'nde-report-a-problem',
+        popover: {
+          title: "Ran into an issue?",
+          description: "If you have encountered a problem with a search, resource, or signing in, select 'Report a problem' to report it to the library.",
+          side: "left",
+          align: "end",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the previous element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // go back to the previous step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // go back to the previous step
+              scope.tour.movePrevious();
+            }
+          },
+          onNextClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to close the menu so we can highlight the previous element
+              var closeBtn = document.querySelector('nde-main-menu-dialog .close-btn') as HTMLElement;
+              if(closeBtn) closeBtn.click();
+
+              // allow time for the menu to hide
+              setTimeout(function() {
+                // go to the next step
+                scope.tour.moveNext();
+              }, scope.menuDelay);
+            } else {
+              // go to the next step
+              scope.tour.moveNext();
+            }
+          }
+        }
+      },
+      {
+        element: 'nde-logo',
+        popover: {
+          title: "Library website",
+          description: "To return to the Library website, select the La Trobe University logo.",
+          side: "bottom",
+          align: "start",
+          onPrevClick: function(element: any, step: any, options: any): void {
+            if(scope.isMobileView) {
+              // we want to open the menu so we can highlight the next element
+              var menuBtn = document.querySelector('.main-menu-mobile-btn') as HTMLElement;
+              if(menuBtn) menuBtn.click();
+
+              // allow time for the menu to show
+              setTimeout(function() {
+                // continue to the prev step
+                scope.tour.movePrevious();
+              }, scope.menuDelay);
+            } else {
+              // continue to the prev step
+              scope.tour.movePrevious();
+            }
+          }
         }
       }
     ];
