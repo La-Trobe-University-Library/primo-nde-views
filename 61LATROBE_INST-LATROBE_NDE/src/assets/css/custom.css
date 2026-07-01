@@ -1250,6 +1250,21 @@ nde-mobile-filters-toggle {
   border-radius: 0;
 }
 
+nde-filters-group mat-expansion-panel-header.mat-expanded:hover:before {
+  content: '';
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  margin-top: -15px;
+  top: 50%;
+  left: auto;
+  right: 0px;
+  background: #ededed;
+  display: block;
+  border-radius: 50%;
+  z-index: -1;
+}
+
 /* dialogs */
 .mat-mdc-dialog-actions .mat-mdc-icon-button {
   --mdc-icon-button-icon-size: 24px !important;
