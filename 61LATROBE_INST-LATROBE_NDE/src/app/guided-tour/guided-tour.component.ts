@@ -376,7 +376,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     return [
       {
         popover: {
-          title: "Welcome to the Library collections search",
+          title: "Welcome to Library Collections Search",
           description: "This search allows you to find any resource within the library's many collections.",
           showButtons: ["next", "close"],
           popoverClass: 'ltu-tour ltu-tour-wide'
@@ -4297,12 +4297,21 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         }
       },
       {
-        element: 'formly-field[data-qa="almaResourceSharing.doi"]',
+        element: 'formly-field[data-qa="almaResourceSharing.doi"] .mdc-text-field',
         popover: {
           title: "Auto fill details",
-          description: "<p>If you know the article's DOI or PMID, fill that in first and select 'Auto fill' (the pen icon). If the resource is located in the system, some of its details will be populated within the form for you.</p><p>Fill out any other necessary fields and submit the form to send the request.</p>",
+          description: "<p>If you know the article's DOI or PMID, fill that in first and then select 'Auto fill' (the pen icon). If the resource is located in the system, some of its details will be populated within the form for you.</p><p>Fill out any other necessary fields and submit the form to send the request.</p>",
           side: "right",
           align: "start"
+        }
+      },
+      {
+        element: 'formly-field[data-qa="nui.datePicker.pickupDate"] .mdc-text-field',
+        popover: {
+          title: "When should the request be cancelled",
+          description: "<p>If there is a date when you would no longer require this resource, state it here. If the request has not been fulfilled by that date, it will be cancelled.</p>",
+          side: "top",
+          align: "center"
         }
       },
       {
@@ -6271,14 +6280,17 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
     return [
       {
         popover: {
-          title: 'Research assistant',
-          description: 'This is the research assistant page'
+          title: 'Welcome to the Research Assistant',
+          description: "<p>The Research Assistant is a tool powered by Generative Artificial Intelligence (Gen-AI), which allows you explore academic content by asking questions in natural language. It will then identify five resources from the Library's collections that can help answer that question.</p><p><strong>Note:</strong> AI-generated answers should be verified for correctness, as they may not always be accurate or up-to-date.</p>",
+          showButtons: ["next", "close"],
+          popoverClass: 'ltu-tour ltu-tour-wide'
         }
       },
       {
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Tips and restrictions',
+          description: '<ul><li>Ask clear and detailed questions about academic or scientific topics &ndash; be as specific as possible and phrase your query in the form of a question.</li><li>You can specify resource types and dates in your question, for example, you can ask for sources to only consist of peer-reviewed titles (e.g. “what peer-reviewed articles talk about the influence of plastic waste on marine life?”).</li><li>The Research Assistant does not yet support follow-up questions, so each question should be self-contained.</li><li>Due to the nature of Gen-AI, answers to the same question are not always the same &ndash; there may be more than one possible answer and different resources that are relevant.</li><li>If you are not satisfied with your answers, use the “Try again” button.</li></ul>',
+          popoverClass: 'ltu-tour ltu-tour-extra-wide'
         }
       }
     ];

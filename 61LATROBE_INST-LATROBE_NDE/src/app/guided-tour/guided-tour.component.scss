@@ -48,6 +48,11 @@
     padding: 0 8px;
   }
 }
+@media only screen and (min-width:1920px) {
+  body:has(nde-custom-snack-bar nde-login) .guide-btn[type="button"] {
+    right: 290px;
+  }
+}
 
 /* ----- GUIDED TOUR ----- */
 .driver-popover * {
@@ -67,6 +72,9 @@
 .driver-popover.ltu-tour.ltu-tour-wide {
   max-width: 500px;
 }
+.driver-popover.ltu-tour.ltu-tour-extra-wide {
+  max-width: 720px;
+}
 .ltu-tour .driver-popover-title {
   font-size: 28px;
   font-family: 'knockout';
@@ -74,8 +82,12 @@
 }
 .ltu-tour .driver-popover-description {
   font-size: 1rem;
-  font-family: 'dm sans';
+  font-family: 'dm sans', Arial, sans-serif !important;
   font-weight: 400;
+}
+.driver-popover ul, .driver-popover ol {
+    list-style: initial;
+    padding-left: 40px;
 }
 .ltu-tour .driver-popover-footer {
   align-items: end;
