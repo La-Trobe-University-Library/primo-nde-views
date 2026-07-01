@@ -255,6 +255,11 @@ section.container .top-bar {
 .cdk-global-overlay-wrapper:has(mat-snack-bar-container) {
   z-index: 1001;
 }
+/* have the advanced search and generate query above the sign-in snackbar */
+.cdk-global-overlay-wrapper:has(nde-advanced-search),
+.cdk-global-overlay-wrapper:has(nde-natural-language-search-dialog) {
+  z-index: 1002;
+}
 
 /* main menu */
 nde-main-menu {
