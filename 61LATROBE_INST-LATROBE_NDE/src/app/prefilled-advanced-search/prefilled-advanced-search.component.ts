@@ -43,7 +43,12 @@ export class PrefilledAdvancedSearchComponent implements AfterViewInit {
       console.log('simpleSearchTerm: ',simpleSearchTerm);
 
       const advSearchField = document.querySelector('mat-form-field.search-field input') as HTMLInputElement;
-      if(advSearchField) advSearchField.value = simpleSearchTerm;
+      if(advSearchField) {
+        advSearchField.value = simpleSearchTerm;
+
+        // trigger the input event so the form control is updated and the search button is enabled
+        advSearchField.dispatchEvent(new Event("input", { bubbles: true }));
+      }
     }
   }
 }
