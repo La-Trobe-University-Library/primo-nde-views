@@ -770,8 +770,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -796,7 +796,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -1145,8 +1145,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -1171,7 +1171,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -1529,8 +1529,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -1555,7 +1555,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -1952,8 +1952,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -1978,7 +1978,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -2202,7 +2202,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: ".featured-newspapers-container",
         popover: {
           title: "Featured newspapers",
-          description: "You may limit your search to within one of the featured newspapers.",
+          description: "You may limit your search to one of the featured newspaper groups.",
           side: "top",
           align: "center"
         }
@@ -2475,8 +2475,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -2501,7 +2501,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -3096,8 +3096,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -3122,7 +3122,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -3563,8 +3563,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: 'button[data-qa="save-to-favorites-btn"]',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start"
         }
@@ -3826,8 +3826,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: 'button[data-qa="save-to-favorites-btn"]',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start"
         }
@@ -4080,8 +4080,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: 'button[data-qa="save-to-favorites-btn"]',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start"
         }
@@ -4216,7 +4216,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         popover: {
           title: 'Document delivery',
-          description: "<p>You can request copies of <strong>book chapters</strong> and <strong>journal articles</strong> from external libraries and from the La Trobe Library. Scanned copies of these items (within <a href='https://www.latrobe.edu.au/library/borrowing-and-collections/interlibrary-loan-and-document-delivery-service#trigger-1623439'>copyright restrictions</a>) will be emailed to you once the request has been processed.</p>",
+          description: "<p>La Trobe University students and staff can request <strong>some physical items</strong> (e.g. books), provided they are not currently located at your home campus library.</p><p>You can also request copies of <strong>book chapters</strong> and <strong>journal articles</strong> from external libraries and from the La Trobe Library. Scanned copies of these items (within <a href='https://www.latrobe.edu.au/library/borrowing-and-collections/interlibrary-loan-and-document-delivery-service#trigger-1623439'>copyright restrictions</a>) will be emailed to you once the request has been processed.</p>",
           showButtons: ["next", "close"],
           popoverClass: 'ltu-tour ltu-tour-wide'
         }
@@ -4627,8 +4627,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -4653,7 +4653,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -4934,8 +4934,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -4960,7 +4960,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -5223,8 +5223,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -5249,7 +5249,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -5512,8 +5512,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -5538,7 +5538,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -5783,8 +5783,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -5809,7 +5809,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
@@ -6072,8 +6072,8 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet nde-record-actions nde-save-to-favorites' : '.search-result-item nde-record-actions nde-save-to-favorites',
         popover: {
-          title: "Save to favourites",
-          description: "You can save an item to your favourites to make it easier to find again.",
+          title: "Save an item",
+          description: "<p>You can save an item to make it easier to find again.</p><p>Go to 'Saved items' in your account to view all the items you have saved.</p>",
           side: "left",
           align: "start",
           onPrevClick: function(element: any, step: any, options: any): void {
@@ -6098,7 +6098,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: this.isSmallView || this.isMobileView ? 'nde-actions-bottom-sheet button[aria-label^="Click to get all available export options"]' : '.search-result-item nde-record-actions button[aria-label^="Click to get all available export options"]',
         popover: {
           title: "Export",
-          description: "These options allow you to export or share the item details.",
+          description: "These options allow you to export or print the item details.",
           side: "left",
           align: "start"
         }
