@@ -4218,7 +4218,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
           title: 'Document delivery',
           description: "<p>La Trobe University students and staff can request <strong>some physical items</strong> (e.g. books), provided they are not currently located at your home campus library.</p><p>You can also request copies of <strong>book chapters</strong> and <strong>journal articles</strong> from external libraries and from the La Trobe Library. Scanned copies of these items (within <a href='https://www.latrobe.edu.au/library/borrowing-and-collections/interlibrary-loan-and-document-delivery-service#trigger-1623439'>copyright restrictions</a>) will be emailed to you once the request has been processed.</p>",
           showButtons: ["next", "close"],
-          popoverClass: 'ltu-tour ltu-tour-wide'
+          popoverClass: 'ltu-tour ltu-tour-extra-wide'
         }
       },
       {

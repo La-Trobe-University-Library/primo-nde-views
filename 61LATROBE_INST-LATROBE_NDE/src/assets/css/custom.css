@@ -447,7 +447,7 @@ nde-footer footer {
   background: #242424;
   color: #fff;
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem calc(60px + 1rem);
   font-size: 0.8rem;
 
   > :last-child,  > :last-child > :last-child {
@@ -461,6 +461,14 @@ nde-footer footer {
     &:hover, &:focus {
       text-decoration: none;
     }
+  }
+}
+main.sub-container {
+  display: flex;
+  flex-direction: column;
+  
+  nde-footer {
+    margin-top: auto;
   }
 }
 
