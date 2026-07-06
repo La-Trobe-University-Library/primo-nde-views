@@ -8,7 +8,7 @@ function checkForSSOError() {
         console.log('Current URL is for blank page, so redirect')
         // likely blank page after SSO, so redirect to Primo home page
         setTimeout(function() {
-            window.location.href = 'https://search.lib.latrobe.edu.au/nde/home?vid=61LATROBE_INST:LATROBE_NDETEST&lang=en';
+            window.location.href = 'https://search.lib.latrobe.edu.au/nde/home?vid=61LATROBE_INST:LIBRARY&lang=en';
         }, 1000)
     } else if(currentUrl.indexOf('&loginId=') > -1) {
         console.log('Current URL has \'loginId\', so check again soon')
