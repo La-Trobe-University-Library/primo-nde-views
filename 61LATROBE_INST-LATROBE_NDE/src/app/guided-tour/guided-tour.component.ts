@@ -22,8 +22,8 @@ import { take } from 'rxjs/operators';
 export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private tour: any;
-  private currentUrl:string = '';
   public tourType:string = '';
+  public currentUrl:string = '';
   public buttonLabel: string = '';
   public buttonIcon: string = '';
   public tooltipText: string = '';
@@ -4409,19 +4409,116 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   private get accountOverviewSteps(): any[] {
+    const scope = this; // capture the component scope for use in the onNextClick function
+
     return [
       {
         element: '.search-wrapper',
         popover: {
-          title: 'Account overview',
-          description: 'Start your search here'
+          title: 'Welcome to your account',
+          description: "The account overview section is where you can view your current loans, pending requests for resources, pay any outstanding fines for lost items and view your saved searches and items.",
+          showButtons: ["next", "close"],
+          popoverClass: 'ltu-tour ltu-tour-wide',
+          onNextClick: function(element: any, step: any, options: any): void {
+          // we want to open the menu so we can highlight the next element
+            var menuBtn = document.querySelector('#user-area-button') as HTMLElement;
+            if(menuBtn) menuBtn.click();
+
+            // allow time for the menu to show
+            setTimeout(function() {
+              // continue to the next step
+              scope.tour.moveNext();
+            }, scope.menuDelay);
+          }
         }
       },
       {
-        element: '.result-item',
+        element: '.user-area-sub-menu button[aria-label=" Sign out"]',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Signing out',
+          description: "<p>If you are on a Library (or shared) computer, don't forget to sign out once you have finished your work.</p>",
+          onPrevClick: function(element: any, step: any, options: any): void {
+          // we want to open the menu so we can highlight the next element
+            var menuBtn = document.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+            if(menuBtn) menuBtn.click();
+
+            // allow time for the menu to close
+            setTimeout(function() {
+              // continue to the prev step
+              scope.tour.movePrevious();
+            }, scope.menuDelay);
+          },
+          onNextClick: function(element: any, step: any, options: any): void {
+          // we want to open the menu so we can highlight the next element
+            var menuBtn = document.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+            if(menuBtn) menuBtn.click();
+
+            // allow time for the menu to close
+            setTimeout(function() {
+              // continue to the next step
+              scope.tour.moveNext();
+            }, scope.menuDelay);
+          }
+        }
+      },
+      {
+        element: 'nde-loans-overview',
+        popover: {
+          title: 'Current loans',
+          description: "<p>If you have any items on loan, some of them will be listed here.</p><p>If there are more items than are shown, select 'View all loans' to see the full list.</p>",
+          onPrevClick: function(element: any, step: any, options: any): void {
+          // we want to open the menu so we can highlight the next element
+            var menuBtn = document.querySelector('#user-area-button') as HTMLElement;
+            if(menuBtn) menuBtn.click();
+
+            // allow time for the menu to show
+            setTimeout(function() {
+              // continue to the next step
+              scope.tour.movePrevious();
+            }, scope.menuDelay);
+          }
+        }
+      },
+      {
+        element: 'nde-requests-overview',
+        popover: {
+          title: 'Current requests',
+          description: "<p>If you have any pending requests for items, some of them will be listed here.</p><p>If there are more requests than are shown, select 'View all requests' to see the full list.</p>"
+        }
+      },
+      {
+        element: 'nde-fines-overview',
+        popover: {
+          title: 'Outstanding fines',
+          description: "<p>If you have any outstanding fines, they will be listed here.</p><p>If there are more fines than are shown, select 'View all fines' to see the full list.</p>"
+        }
+      },
+      {
+        element: 'nde-favorites-overview',
+        popover: {
+          title: 'Saved items',
+          description: "<p>If you have any items saved, the first few will be listed here.</p><p>Select 'View all saved items' to see the full list, where you can see their details or remove them from your saved items.</p>"
+        }
+      },
+      {
+        element: 'nde-search-history-overview',
+        popover: {
+          title: 'Search history',
+          description: "<p>You can view the previous searches you have most recently performed here.</p><p>Select 'View search history' to see the full list, where you can run a search again or remove it from your history.</p>"
+        }
+      },
+      {
+        element: 'nde-saved-searches-overview',
+        popover: {
+          title: 'Saved searches',
+          description: "<p>If you have any searches saved, the first few will be listed here.</p><p>Select 'View all saved searches' to see the full list, where you can run a search again, set an alert for it or remove it.</p>"
+        }
+      },
+      {
+        element: '.account-menu-container ul',
+        popover: {
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
@@ -4430,17 +4527,23 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private get accountLoansSteps(): any[] {
     return [
       {
-        element: '.search-wrapper',
         popover: {
-          title: 'Account loans',
-          description: 'Start your search here'
+          title: 'Current loans',
+          description: "This page lists any items you currently have on loan and the date that they are due."
         }
       },
       {
-        element: '.result-item',
+        element: '.renew-all-button',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Renew your loans',
+          description: "If you have any items on loan, you can select 'Renew all' to renew them all at once. You can also select the 'Renew' button for individual items to renew them one at a time."
+        }
+      },
+      {
+        element: '.account-menu-container ul',
+        popover: {
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
@@ -4449,17 +4552,17 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private get accountRequestsSteps(): any[] {
     return [
       {
-        element: '.search-wrapper',
+        element: '.account-section-item',
         popover: {
-          title: 'Account requests',
-            description: 'Start your search here'
+          title: 'Current requests',
+          description: "This page lists any requests you have made for items. Select 'Cancel' to cancel a request for an item that you no longer need."
         }
       },
       {
-        element: '.result-item',
+        element: '.account-menu-container ul',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
@@ -4468,17 +4571,17 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private get accountFinesSteps(): any[] {
     return [
       {
-        element: '.search-wrapper',
+        element: '.account-section-item',
         popover: {
-          title: 'Account fines',
-            description: 'Start your search here'
+          title: 'Outstanding fines',
+          description: "This page lists any fines you have for items that you have lost or damaged, with a link to pay them online."
         }
       },
       {
-        element: '.result-item',
+        element: '.account-menu-container ul',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
@@ -4487,17 +4590,53 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private get accountFavoritesSteps(): any[] {
     return [
       {
-        element: '.search-wrapper',
+        element: '.search-result-item',
         popover: {
-          title: 'Account favorites',
-            description: 'Start your search here'
+          title: 'Saved items',
+          description: "Any items that you have saved will be listed on this page."
         }
       },
       {
-        element: '.result-item',
+        element: '.saved-records-toolbar .saved-records-search-field',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Search saved items',
+          description: "<p>Search within your saved items using the search bar.</p>",
+          side: "bottom",
+          align: "end"
+        }
+      },
+      {
+        element: '.add-label-button',
+        popover: {
+          title: 'Add a label',
+          description: "<p>You can add labels to an item to help you organise your saved items. For example, you could add a label for a specific assignment or research project.</p><p>The labels you assign to an item will only be visible to you.</p>",
+          side: "top",
+          align: "start"
+        }
+      },
+      {
+        element: '.saved-records-toolbar .filters-section',
+        popover: {
+          title: 'Filter by labels',
+          description: "<p>Select one or more labels to only show the saved items that have been assigned those labels.</p>",
+          side: "bottom",
+          align: "start"
+        }
+      },
+      {
+        element: 'nde-search-result-item-container .save-to-favorites-icon',
+        popover: {
+          title: 'Remove a saved item',
+          description: 'Select the bookmark icon to remove an item from your saved items.',
+          side: "left",
+          align: "start"
+        }
+      },
+      {
+        element: '.account-menu-container ul',
+        popover: {
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
@@ -4506,17 +4645,26 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private get accountSearchHistorySteps(): any[] {
     return [
       {
-        element: '.search-wrapper',
+        element: '.account-section-item',
         popover: {
-          title: 'Account search history',
-          description: 'Start your search here'
+          title: 'Search history',
+          description: "<p>Any previous searches you have performed will be listed on this page.</p><p>Select the search term for one of the searches to run it again.</p>"
         }
       },
       {
-        element: '.result-item',
+        element: 'button[data-qa="search-history-save-or-remove-button"]',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Save or remove',
+          description: "Select the 3-dot menu button for an item to either add a search to your saved searches or remove it from your search history.",
+          side: "left",
+          align: "start"
+        }
+      },
+      {
+        element: '.account-menu-container ul',
+        popover: {
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
@@ -4525,17 +4673,26 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private get accountSavedSearchesSteps(): any[] {
     return [
       {
-        element: '.search-wrapper',
+        element: '.account-section-item',
         popover: {
-          title: 'Account saved searches',
-          description: 'Start your search here'
+          title: 'Saved searches',
+          description: "<p>Any searches that you have saved will be listed on this page.</p><p>Select the search term for one of the searches to run it again.</p>"
         }
       },
       {
-        element: '.result-item',
+        element: 'button[data-qa="search-history-save-or-remove-button"]',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Set an alert or remove',
+          description: "Select the 3-dot menu button for an item to either remove a saved search or set an alert for it, which means you will receive an email when new items are added to the Library that match the search.",
+          side: "left",
+          align: "start"
+        }
+      },
+      {
+        element: '.account-menu-container ul',
+        popover: {
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
@@ -4544,17 +4701,26 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
   private get accountSettingsSteps(): any[] {
     return [
       {
-        element: '.search-wrapper',
+        element: 'nde-personal-settings',
         popover: {
           title: 'Account settings',
-          description: 'Start your search here'
+          description: 'Here, you can set the preferences for your account, such as whether your search history is saved.'
         }
       },
       {
-        element: '.result-item',
+        element: 'nde-personal-details-view',
         popover: {
-          title: 'Results',
-          description: 'These are your results'
+          title: 'Account details',
+          description: 'You can view the account details that the Library has on file for you, such as your address and patron group.',
+          side: "top",
+          align: "start"
+        }
+      },
+      {
+        element: '.account-menu-container ul',
+        popover: {
+          title: 'Account sections',
+          description: 'Use these links to move between the different section of your account.'
         }
       }
     ];
