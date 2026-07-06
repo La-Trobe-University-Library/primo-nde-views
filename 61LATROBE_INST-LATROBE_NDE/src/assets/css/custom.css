@@ -347,6 +347,14 @@ section.container .top-bar {
     }
   }
 }
+[dir="rtl"] section.container .top-bar {
+  nde-main-menu {
+    .main-menu-container > ul > li:first-child {
+      margin-right: 20px;
+      margin-left: 0;
+    }
+  }
+}
 @media only screen and (min-width: 600px) {
   body .cdk-overlay-container:has(.main-menu-dialog) {
       top: 100px;
@@ -443,6 +451,7 @@ nde-footer footer {
   margin-top: 1rem;
   padding: 0.5rem calc(60px + 1rem);
   font-size: 0.8rem;
+  direction: ltr;
 
   > :last-child,  > :last-child > :last-child {
     margin-bottom: 0;
@@ -1069,6 +1078,10 @@ nde-search-bar-presenter {
     }
   }
 }
+[dir="rtl"] nde-search-bar-presenter button[data-qa="advanced_search_button"] { 
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
 
 .custom-search-bar-container {
   nde-search-bar-presenter {
@@ -1357,6 +1370,16 @@ stacked-dropdown, custom-browzine-button {
 }
 .notification-alert.info {
   background-color: var(--sys-primary-container) !important;
+}
+[dir="rtl"] {
+  .alert-bar .bar-text {
+    padding-left: 0;
+    padding-right: 35px;
+  }
+  .alert-bar span.icon {
+    right: 0;
+    left: auto;
+  }
 }
 
 /* resource recommender banner */

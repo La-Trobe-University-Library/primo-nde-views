@@ -252,4 +252,26 @@
   
 }
 
+[dir="rtl"] .main-landing-page {
+  ul, ol {
+    padding-right: 40px;
+    padding-left: 0;
+  }
+
+  .welcome-about-container {
+    .welcome .welcome-content {
+      ul, ol {
+        li {
+          padding-right: 30px;
+          padding-left: 0;
+
+          img {
+            left: auto;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
 

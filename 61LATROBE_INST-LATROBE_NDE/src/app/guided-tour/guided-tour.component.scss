@@ -35,7 +35,7 @@
   }
 
   .mdc-button__label, .btn-text {
-    margin-left: 5px;
+    margin-left: 3px;
     /*font-family: var(--mdc-text-button-label-text-font,var(--mat-sys-label-large-font) );
     font-weight: 500;*/
 
@@ -52,11 +52,33 @@
   body:has(nde-custom-snack-bar nde-login) .guide-btn[type="button"] {
     right: 290px;
   }
+  [dir="rtl"] body:has(nde-custom-snack-bar nde-login) .guide-btn[type="button"] {
+    right: auto;
+    left: 290px;
+  }
+}
+
+/* RTL layout */
+[dir="rtl"] .guide-btn[type=button] {
+  right: auto;
+  left: 15px;
+
+  .mdc-button__label,
+  .btn-text {
+    margin-right:3px;
+    margin-left: 0;
+  }
+
+  .mat-icon {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* ----- GUIDED TOUR ----- */
 .driver-popover * {
   font-family: 'dm sans';
+  direction: ltr;
 }
 .driver-popover .material-icons {
   font-family: 'Material Icons' !important;
