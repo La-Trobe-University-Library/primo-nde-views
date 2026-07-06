@@ -1,21 +1,18 @@
-/* indicator for sandbox/work-in-progress */
+/* indicator for sandbox/work-in-progress
 body::before {
-  content: 'Primo NDE - Do not use';
+  content: 'Primo NDE Sandbox - Do not use';
+  background: darkgoldenrod;
   display: block;
   position: fixed;
   top: 0;
   left: 0;
   width: auto;
-  background: deeppink;
   color: #fff;
   z-index: 999;
   padding: 5px 10px;
   border-radius: 0 0 10px 0;
-
-  /* for sandbox only 
-  content: 'Primo NDE Sandbox - Do not use';
-  background: darkgoldenrod;*/
 }
+*/
 
 /* css variables */
 :root {
@@ -251,14 +248,11 @@ section.container .top-bar {
   }
 }
 
-/* have sign-in snackbar appear above the main menu overlay (on large displays) */
-.cdk-global-overlay-wrapper:has(mat-snack-bar-container) {
-  z-index: 1001;
-}
-/* have the advanced search and generate query above the sign-in snackbar */
-.cdk-global-overlay-wrapper:has(nde-advanced-search),
-.cdk-global-overlay-wrapper:has(nde-natural-language-search-dialog) {
-  z-index: 1002;
+@media (min-width: 1920px) {
+  /* have sign-in snackbar appear above the main menu overlay (on large displays) */
+  .cdk-overlay-container:has(nde-main-menu-dialog) .cdk-global-overlay-wrapper:has(mat-snack-bar-container) {
+    z-index: 1001;
+  }
 }
 
 /* main menu */
@@ -869,6 +863,10 @@ nde-journal-database-layout-component {
 .mat-tree-node > button {
   --mdc-icon-button-state-layer-size: 35px;
   margin-right: 5px;
+}
+.atoz-component .alphabet-grid .atoz-button {
+  min-width: 32px !important;
+  height: 32px !important;
 }
 
 /* newspapers */
@@ -1494,7 +1492,7 @@ nde-resource-recommender-banner {
     }
 
     /* the following style is dependent on the path of a banner's background image - it's for a 'Cultural sensitivity advice' banner */
-    &[style*="cultural-advice"] {
+    &:has(img[src*="cultural-advice"]) {
       box-shadow: none;
       border: none;
       background-image: none !important;
