@@ -405,7 +405,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: "#search-dropdown-container-button-scopes-dropdown",
         popover: {
           title: "Online or physical?",
-          description: "<p>If you would like to restrict your search to only online resources or only physical ones, select the appropriate option in this drop-down.</p><p><strong>Note:</strong> If you would like to limit your search to certain resource types or languages, you will need to perform an <a href='https://search.lib.latrobe.edu.au/nde/home?vid=61LATROBE_INST:LATROBE_NDETEST&mode=advanced'>Advanced search</a>. (These filters can also be applied after perfroming a search.)</p>",
+          description: "<p>If you would like to restrict your search to only online resources or only physical ones, select the appropriate option in this drop-down.</p><p><strong>Note:</strong> If you would like to limit your search to certain resource types or languages, you will need to perform an <a href='https://search.lib.latrobe.edu.au/nde/home?vid=61LATROBE_INST:LATROBE_NDETEST&mode=advanced'>Advanced search</a>. (These filters can also be applied after performing a search.)</p>",
           side: "bottom",
           align: "center",
           popoverClass: 'ltu-tour ltu-tour-wide',
