@@ -4308,7 +4308,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: 'formly-field[data-qa="nui.datePicker.pickupDate"] .mdc-text-field',
         popover: {
-          title: "When should the request be cancelled",
+          title: "When should the request be cancelled?",
           description: "<p>If there is a date when you would no longer require this resource, state it here. If the request has not been fulfilled by that date, it will be cancelled.</p>",
           side: "top",
           align: "center"
@@ -4518,7 +4518,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -4543,7 +4543,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -4562,7 +4562,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -4581,7 +4581,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -4636,7 +4636,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -4664,7 +4664,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -4692,7 +4692,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -4720,7 +4720,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
         element: '.account-menu-container ul',
         popover: {
           title: 'Account sections',
-          description: 'Use these links to move between the different section of your account.'
+          description: 'Use these links to move between the different sections of your account.'
         }
       }
     ];
@@ -6447,7 +6447,7 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         popover: {
           title: 'Welcome to the Research Assistant',
-          description: "<p>The Research Assistant is a tool powered by Generative Artificial Intelligence (Gen-AI), which allows you explore academic content by asking questions in natural language. It will then identify five resources from the Library's collections that can help answer that question.</p><p><strong>Note:</strong> AI-generated answers should be verified for correctness, as they may not always be accurate or up-to-date.</p>",
+          description: "<p>The Research Assistant is a tool powered by Generative Artificial Intelligence (Gen-AI), which allows you to explore academic content by asking questions in natural language. It will then identify five resources from the Library's collections that can help answer that question.</p><p><strong>Note:</strong> AI-generated answers should be verified for correctness, as they may not always be accurate or up-to-date.</p>",
           showButtons: ["next", "close"],
           popoverClass: 'ltu-tour ltu-tour-wide'
         }
