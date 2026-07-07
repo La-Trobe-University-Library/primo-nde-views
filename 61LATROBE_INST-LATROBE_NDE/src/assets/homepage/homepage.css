@@ -129,6 +129,12 @@
           gap: 1rem;
         }
 
+        @media (max-width: 1279px) {
+          h2 {
+            font-size: var(--font-large);
+          }
+        }
+
         li {
           margin-top: 0.25rem;
         }
