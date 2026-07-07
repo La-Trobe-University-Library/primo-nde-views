@@ -105,11 +105,6 @@ body::before {
 }
 /* ----- END FONTS ----- */
 
-/* Fix for the browse results layout error (pushing the results below the footer) - hopefully temporary until ExLibris fix it in their component */
-.browse-nav {
-  height: auto !important;
-}
-
 /* typography */
 html {
     --sys-body-large: 400 1rem / 1.5rem dm sans, Arial, sans-serif;
@@ -471,7 +466,7 @@ nde-footer footer {
     }
   }
 }
-main.sub-container {
+main.sub-container:not(:has(nde-browse-general-search-nav)) {
   display: flex;
   flex-direction: column;
   
