@@ -441,9 +441,9 @@ nde-language-selector-container {
   }
 
   #form-field-language-selector .mat-mdc-text-field-wrapper {
-    padding-right: 7px;
-    padding-left: 7px;
-    border-radius: 5px;
+    padding-right: 7px !important;
+    padding-left: 7px !important;
+    border-radius: 10px;
 
     &:hover {
       background-color: #ffffff14;
@@ -1566,11 +1566,14 @@ nde-resource-recommender-banner {
       .resource-recommender-banner-overlay {
         padding-right: 60px;
         background: linear-gradient(135deg, #f7d9cf 20%, #d29466 80%); /* when image used */
-        /*background: linear-gradient(135deg, #fce9e8 20%, #ffd3be 80%); */
         /*background: linear-gradient(110deg, #fce9e8 0%, #e9c6b5 80%, #cd9a83 100%); /* when no image */
 
         &:before {
           content: none;
+        }
+
+        > div:has(#bannerMainTitle) {
+          z-index: 1;
         }
 
         &:after {
