@@ -205,12 +205,16 @@ section.container .top-bar {
   }
 
   nde-logo {
-    /*margin-right: 20px;*/
     margin-left: 20px;
     order: 1;
 
     img {
       padding-top: 5px;
+    }
+
+    @media screen and (max-width: 459.99px) {
+      margin-right: 2px;
+      margin-left: 2px;
     }
 
     @media screen and (min-width: 600px) {
@@ -270,6 +274,10 @@ nde-main-menu-dialog {
 }
 nde-user-panel {
   align-self: center;
+
+  .user-panel {
+    gap: 0.25rem;
+  }
 }
 
 /* black header (requires white LTU logo) */
@@ -293,7 +301,11 @@ section.container .top-bar {
 
       img {
         height: 60px;
-        padding: 10px;
+        padding: 14px 6px 6px;
+
+        @media screen and (max-width: 459.99px) {
+          padding: 18px 5px 8px;
+        }
       }
     }
   }
@@ -422,9 +434,20 @@ nde-language-selector-container {
   --secondaryActionIcon: var(--sys-outline);
   --mat-select-enabled-arrow-color: var(--sys-tinted-on-surface);
   --mat-select-focused-arrow-color: var(--sys-tinted-on-surface);
+  margin: 0 2px;
 
   #language-select-dropdown {
     color: #fff;
+  }
+
+  #form-field-language-selector .mat-mdc-text-field-wrapper {
+    padding-right: 7px;
+    padding-left: 7px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #ffffff14;
+    }
   }
 }
 
@@ -1705,11 +1728,12 @@ div[data-qa="requests-item-status-indication"]:has(.updated-request-status) {
     }
   }
 }
+/* adjust the LibChat button when the sign-in snackbar is showing */
 body:has(.side-bottom-buttons.bumped-above-snackbar) .s-lch-widget-float[aria-label="Chat Widget"] {
-    bottom: calc(9rem - 3px);
-
+    bottom: calc(7.75rem - 3px);
+    
     &.open {
-      height: calc(100% - 8rem - 6px);
+      height: calc(100% - 7.75rem - 2px);
     }
 
     @media screen and (min-width: 460px) {
@@ -1718,7 +1742,6 @@ body:has(.side-bottom-buttons.bumped-above-snackbar) .s-lch-widget-float[aria-la
         &.open {
           height: calc(100% - 7.75rem - 2px);
         }
-      
     }
 
     @media screen and (min-width: 600px) {
@@ -1726,8 +1749,7 @@ body:has(.side-bottom-buttons.bumped-above-snackbar) .s-lch-widget-float[aria-la
 
         &.open {
           height: calc(100% - 9rem - 2px);
-        }
-      
+        }      
     }
 
     @media screen and (min-width: 960px) {
@@ -1735,15 +1757,15 @@ body:has(.side-bottom-buttons.bumped-above-snackbar) .s-lch-widget-float[aria-la
 
         &.open {
           height: calc(100% - 8rem - 12px);
-        }
-      
+        }      
     }
 }
+/* adjust the default bottom buttons (e.g. back to top) when the sign-in snackbar is showing */
 body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons {
   inset-block-end: 5.5rem;
 
   &.bumped-above-snackbar {
-      inset-block-end: 13.25rem;
+      inset-block-end: 12rem;
 
       @media screen and (min-width: 460px) {
         inset-block-end: 12rem;
@@ -1755,6 +1777,55 @@ body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons {
 
       @media screen and (min-width: 960px) {
         inset-block-end: 13rem;
+      }
+  }
+}
+/* adjust (+1.25rem, +2.5rem > 600px) for Malay, which has a taller sign-in snackbar */
+[lang="ms"] body:has(.side-bottom-buttons.bumped-above-snackbar) .s-lch-widget-float[aria-label="Chat Widget"] {
+    bottom: calc(9rem - 3px);
+
+    &.open {
+      height: calc(100% - 10.5rem - 2px);
+    }
+
+    @media screen and (min-width: 460px) {
+        bottom: calc(9rem - 3px);
+        
+        &.open {
+          height: calc(100% - 9rem - 2px);
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        bottom: calc(11.5rem - 3px);
+
+        &.open {
+          height: calc(100% - 11.5rem - 2px);
+        }      
+    }
+
+    @media screen and (min-width: 960px) {
+        bottom: calc(11.5rem - 9px);
+
+        &.open {
+          height: calc(100% - 10.5rem - 12px);
+        }      
+    }
+}
+[lang="ms"] body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons {
+  &.bumped-above-snackbar {
+      inset-block-end: 13.25rem;
+
+      @media screen and (min-width: 460px) {
+        inset-block-end: 13.25rem;
+      }
+
+      @media screen and (min-width: 600px) {
+        inset-block-end: 15.75rem;
+      }
+
+      @media screen and (min-width: 960px) {
+        inset-block-end: 15.5rem;
       }
   }
 }
