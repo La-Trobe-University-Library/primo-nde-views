@@ -456,10 +456,11 @@ export class GuidedTourComponent implements AfterViewInit, OnInit, OnDestroy {
       {
         element: this.isMobileView ? ".show-more-main-menu-out-inner-wrapper-ul > li:nth-child(3) button" : "button[data-qa='natural-language-search-button']",
         popover: {
-          title: "Search using natural language",
-          description: "<p>If you would like to describe what you're looking for in your own words, this feature will convert it to a structured search query.</p>",
-          side: "bottom",
-          align: "end",
+          title: "Describe what you're searching for",
+          description: "<p>This feature will convert natural language wording into a structured search query using generative AI. The generated query and search results may need to be refined to better match your needs and can return different results each time you run a search, even when using the exact same wording.</p>",
+          side: "left",
+          align: "start",
+          popoverClass: 'ltu-tour ltu-tour-wide',
           onNextClick: function(element: any, step: any, options: any): void {
             if(scope.isMobileView) {
               // we want to close the menu so we can highlight the next element
