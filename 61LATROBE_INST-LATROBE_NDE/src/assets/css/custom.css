@@ -202,24 +202,37 @@ section.container .top-bar {
 
   & > div > div {
     margin-left: 0 !important;
+
+    /*@media screen and (min-width: 600px) {
+      margin-right: 20px !important;
+    }*/
   }
 
   nde-logo {
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     order: 1;
-
+    
     img {
       padding-top: 5px;
     }
 
     @media screen and (max-width: 459.99px) {
-      margin-right: 2px;
-      margin-left: 2px;
+      margin-inline-end: 2px;
+      margin-inline-start: 2px;
+    }
+
+    @media screen and (min-width: 460px) and (max-width: 599.99px) {
+      margin-inline-start: 20px;
     }
 
     @media screen and (min-width: 600px) {
-      margin-left: 0;
+      /*margin-right: 20px;*/
+      /*margin: 0 20px;*/
       order: unset;  
+
+      &.margin-left-huge {
+        margin-inline-start: 1rem !important;
+      }
     }
   }
   
@@ -275,8 +288,16 @@ nde-main-menu-dialog {
 nde-user-panel {
   align-self: center;
 
+  &.margin-right-huge {
+    margin-inline-end: 1rem !important;
+  }
+
   .user-panel {
     gap: 0.25rem;
+  }
+
+  @media screen and (max-width: 599.99px) {
+    margin-inline-end: 0 !important;
   }
 }
 
@@ -301,10 +322,10 @@ section.container .top-bar {
 
       img {
         height: 60px;
-        padding: 14px 6px 6px;
+        padding: 14px 14px 6px;
 
         @media screen and (max-width: 459.99px) {
-          padding: 18px 5px 8px;
+          padding: 17px 12px 11px;
         }
       }
     }
@@ -319,7 +340,7 @@ section.container .top-bar {
 
   nde-main-menu {
     .main-menu-container > ul > li:first-child {
-      margin-left: 20px;
+      margin-inline-start: 10px;
     }
 
     .mat-mdc-button:not(:disabled) {
@@ -352,17 +373,27 @@ section.container .top-bar {
         text-transform: none;
         font-size: 1rem;
       }
+
+      mat-icon[data-mat-icon-name="research-assistant"] {
+        width: 18px !important;
+        height: 18px !important;
+        margin-right: 5px;
+      }
     }
 
     .main-menu-container .mat-divider {
       display: none;
+    }
+
+    @media only screen and (min-width: 600px) {
+      margin-right: -25px;
     }
   }
 }
 [dir="rtl"] section.container .top-bar {
   nde-main-menu {
     .main-menu-container > ul > li:first-child {
-      margin-right: 20px;
+      margin-right: 10px;
       margin-left: 0;
     }
   }
@@ -450,6 +481,23 @@ nde-language-selector-container {
     }
   }
 }
+#language-select-dropdown-panel {
+  min-width: 150px;
+
+  mat-option .mdc-list-item__primary-text {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /*mat-option[aria-label="العربية"] .mdc-list-item__primary-text {
+    margin-right: 0;
+    margin-left: auto;
+  }*/
+}
+/*[dir="rtl"] #language-select-dropdown-panel mat-option:not([aria-label="العربية"]) .mdc-list-item__primary-text {
+  margin-right: auto;
+  margin-left: 0;
+}*/
 
 /* change the tooltip color (to be contrast better if the header is the blank version) */
 :root {
