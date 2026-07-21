@@ -281,8 +281,14 @@ nde-main-menu {
   }
 }
 nde-main-menu-dialog {
-  .main-menu-modal-btn .mat-icon svg path {
-    fill: var(--sys-primary);
+  .main-menu-modal-btn {
+    &:hover {
+      text-decoration: none;
+    }
+
+    .mat-icon svg path {
+      fill: var(--sys-primary);
+    }
   }
 }
 nde-user-panel {
@@ -298,6 +304,15 @@ nde-user-panel {
 
   @media screen and (max-width: 599.99px) {
     margin-inline-end: 0 !important;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  body:has(nde-custom-snack-bar nde-login) nde-user-panel.margin-right-huge {
+    margin-inline-end: 290px !important;
+  }
+  [dir=rtl] body:has(nde-custom-snack-bar nde-login) nde-user-panel.margin-right-huge {
+    margin-inline-end:auto;
+    margin-inline-start:290px;
   }
 }
 
