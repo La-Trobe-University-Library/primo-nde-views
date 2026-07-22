@@ -362,6 +362,10 @@ section.container .top-bar {
       color: var(--sys-on-primary-fixed-variant);
       text-decoration: none;
 
+      &:not(.show-more-btn) {
+        --mat-text-button-state-layer-color: none;
+      }
+
       &.selected-page {
         text-decoration: none;
       }
