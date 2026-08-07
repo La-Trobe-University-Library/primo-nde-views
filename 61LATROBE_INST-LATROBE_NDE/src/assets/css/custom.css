@@ -620,7 +620,8 @@ nde-search-bar-presenter, nde-search-box-presenter {
   }
 
   .mdc-dialog .mdc-dialog__content {
-    padding: 5px 0 !important;
+    /*padding: 5px 0 !important;*/
+    padding: 10px 5px !important;
   }
 
   .authentication-method-wrapper .authentication-method-btn {
