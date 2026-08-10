@@ -1505,7 +1505,7 @@ nde-resource-recommender-banner {
   .resource-recommender-banner-container[class] {
     margin-bottom: 0;
     max-width: 900px;
-    height: 17rem;
+    height: 15rem;
     /*box-shadow: 0 0 0 2px var(--sys-primary);*/
     border: 2px solid var(--sys-primary);
 
@@ -1585,7 +1585,10 @@ nde-resource-recommender-banner {
         clip-path: path("M251.35,249.99H34.24c-1.94,0-3.76-1.1-4.89-2.98-12.36-20.55-31.43-73.46-3.81-152.39C50.36,23.71,13.02.33,13.02.33L251.35,0v250Z");
       }*/
     }
-
+    
+    @media screen and (min-width: 350px) {
+      height: 14rem;
+    }
     @media screen and (min-width: 400px) {
       .resource-recommender-banner-overlay { 
         .banner-description {
@@ -1594,7 +1597,8 @@ nde-resource-recommender-banner {
       }
     }
     @media screen and (min-width: 500px) {
-      height: 15rem;
+      /*height: 15rem;*/
+      height: 12rem;
     }
     @media screen and (min-width: 700px) {
       .resource-recommender-banner-overlay { 
@@ -1611,7 +1615,8 @@ nde-resource-recommender-banner {
       }
     }
     @media screen and (min-width: 960px) {
-      height: 13rem;
+      /*height: 13rem;*/
+      height: 11.5rem;
     }
 
     /* the following style is dependent on the path of a banner's background image - it's for a 'Cultural sensitivity advice' banner */
