@@ -1,4 +1,12 @@
+nde-filters-value .filter-results-count {
+  color: var(--sys-outline);
+  direction: ltr;
+}
+
 /* align any filter options that don't have an exclude button (e.g. 'Online Access') */
 nde-filters-value .mdc-label:not(:has(.exclude-btn)) .filter-results-count {
   margin-right: calc(32px + .3rem);
+}
+[dir="rtl"] nde-filters-value .mdc-label:not(:has(.exclude-btn)) .filter-results-count {
+  margin-left: calc(32px + .3rem);
 }

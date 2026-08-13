@@ -1,22 +1,30 @@
 /* Adding author & date to collections */
-nde-collection-discovery-gallery-item:has(.author-date ) {
-  .item-grid-card {
-    padding-bottom: 4.25rem;
-    height: 100%;
+nde-collection-discovery-gallery-item {
+  &:has(.author-date ) {
+    .item-grid-card {
+      padding-bottom: 4.25rem;
+      height: 100%;
+    }
   }
 
   .author-date {
-    margin-top: calc(-50px - 1em);
-    display: flex;
-    flex-direction: column;
-    padding: 0 1em 1em;
-    justify-content: flex-end;
-    height: calc(50px + 1em);
+    display: none;
+  }
 
-    > * {
-      font-size: 0.9em;
-      line-height: 1.5;
-      z-index: 1;
+  &:has(.item-grid-card) {
+    .author-date {
+      margin-top: calc(-50px - 1em);
+      display: flex;
+      flex-direction: column;
+      padding: 0 1em 1em;
+      justify-content: flex-end;
+      height: calc(50px + 1em);
+
+      > * {
+        font-size: 0.9em;
+        line-height: 1.5;
+        z-index: 1;
+      }
     }
   }
 }

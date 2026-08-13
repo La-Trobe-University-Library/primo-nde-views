@@ -109,6 +109,7 @@
     }
 
     .about {
+      background-color: var(--sys-tinted-on-surface);
       border-radius: .625rem;
       min-width: 45%;
       overflow: hidden;
@@ -120,7 +121,6 @@
 
       .about-text {
         padding: 2rem;
-        background-color: var(--sys-tinted-on-surface);
         gap: 1.5rem;
 
         /*@include mixing.respond-to('small', 'xsmall') {*/
@@ -129,12 +129,18 @@
           gap: 1rem;
         }
 
+        @media (max-width: 1279px) {
+          h2 {
+            font-size: var(--font-large);
+          }
+        }
+
         li {
           margin-top: 0.25rem;
         }
 
         a {
-          color: var(--sys-primary);
+          color: var(--sys-primary-on-grey);
           text-decoration: none;
 
           &:hover {
@@ -252,4 +258,26 @@
   
 }
 
+[dir="rtl"] .main-landing-page {
+  ul, ol {
+    padding-right: 40px;
+    padding-left: 0;
+  }
+
+  .welcome-about-container {
+    .welcome .welcome-content {
+      ul, ol {
+        li {
+          padding-right: 30px;
+          padding-left: 0;
+
+          img {
+            left: auto;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
 

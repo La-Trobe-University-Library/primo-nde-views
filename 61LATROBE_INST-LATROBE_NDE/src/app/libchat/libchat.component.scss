@@ -1,4 +1,9 @@
 /* LibChat (and adjusting buttons around it) */
+[dir="rtl"] .s-lch-widget-float[aria-label="Chat Widget"] {
+  right: auto;
+  left: calc(1.5rem - 9px);
+}
+
 .s-lch-widget-float[aria-label="Chat Widget"] {
   bottom: calc(1.5rem - 9px);
   right: calc(1.5rem - 9px);
@@ -27,10 +32,8 @@
         }
 
         &:before {
-          content: '–';
+          content: '';
           top: 20px;
-          /*content: 'X';
-          top: 21px;*/
           left: 20px;
           position: absolute;
           background: #000;
@@ -43,6 +46,19 @@
           font-weight: 600;
           font-size: 12px;
         }
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          top: 26px;
+          left: 24px;
+          background: #fff;
+          border-radius: 1px;
+        }
+
 
         &:hover, &:focus {
           &:before {
@@ -78,8 +94,8 @@
     }
 
     svg {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
 
       path {
         fill: none;
@@ -106,22 +122,18 @@ body:has(.side-bottom-buttons.bumped-above-snackbar) .s-lch-widget-float[aria-la
     }
 
     @media screen and (min-width: 600px) {
-        /*bottom: calc(7.5rem - 3px);*/
         bottom: calc(9rem - 3px);
 
         &.open {
-          /*height: calc(100% - 7.5rem - 2px);*/
           height: calc(100% - 9rem - 2px);
         }
       
     }
 
     @media screen and (min-width: 960px) {
-        /*bottom: calc(7.5rem - 9px);*/
         bottom: calc(9rem - 9px);
 
         &.open {
-          /*height: calc(100% - 6.5rem - 12px);*/
           height: calc(100% - 8rem - 12px);
         }
       

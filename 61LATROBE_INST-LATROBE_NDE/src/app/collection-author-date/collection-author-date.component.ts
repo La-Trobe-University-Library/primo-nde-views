@@ -32,7 +32,7 @@ export class CollectionAuthorDateComponent {
 
   private setDetails() {
     this.author = this.hostComponent.recordMainDetails?.pnx?.addata?.au?.[0] || '';
-    this.date = this.hostComponent.recordMainDetails?.pnx?.addata?.date?.[0] || '';
+    this.date = this.hostComponent.recordMainDetails?.pnx?.display?.creationdate?.[0] || '';
 
     this.hasAuthor = this.author !== '';
     this.hasDate = this.date !== '';
