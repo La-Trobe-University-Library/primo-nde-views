@@ -18,4 +18,4 @@ Rights of use and distribution are granted under the terms of the GNU Affero Gen
 
 ### Contact
 
-The maintainer of this repository is Hugh Rundle, who can be contacted at h.rundle@latrobe.edu.au.
+The maintainer of this repository is Shannon Hastwell, who can be contacted at S.Hastwell@latrobe.edu.au.
