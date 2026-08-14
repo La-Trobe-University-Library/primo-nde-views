@@ -1,0 +1,7 @@
+/* if user initials display as '{last initial}{first initial}' use this to reverse it */
+.user-area .user-area-logged-in span {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  display: inline-block !important;
+  line-height: 24px;
+}
