@@ -1,0 +1,8 @@
+/* prevent left border showing when a search result receives focus/interaction */
+.search-result-item:focus-within {
+  border-inline-start: none !important;
+}
+/* show left border when item's checkbox is selected */
+.search-result-item:has(.mdc-checkbox--selected) {
+  border-inline-start: 4px solid var(--sys-primary) !important;
+}
