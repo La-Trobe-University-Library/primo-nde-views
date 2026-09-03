@@ -1,0 +1,23 @@
+<div class="service-page-alert-container">
+    @if (isQuestionable) {
+        <div class="alert alert-warning">
+            <div class="alert-content">
+                <span class="alert-icon"><mat-icon class="material-icons-outlined" aria-hidden="true">info_outline</mat-icon></span>
+                <div class="alert-text">
+                    <p [innerHTML]="questionableLabel"></p>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (isPossiblyLegitimate) {
+        <div class="alert alert-info">
+            <div class="alert-content">
+                <span class="alert-icon"><mat-icon class="material-icons-outlined" aria-hidden="true">info_outline</mat-icon></span>
+                <div class="alert-text">
+                    <p [innerHTML]="possiblyLegitimateLabel"></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -6,6 +6,7 @@ import { DatabaseHomepageNoticeComponent } from "../database-homepage-notice/dat
 import { GuidedTourComponent } from "../guided-tour/guided-tour.component";
 import { PrefilledAdvancedSearchComponent } from "../prefilled-advanced-search/prefilled-advanced-search.component";
 import { RequestStatusComponent } from "../request-status/request-status.component";
+import { ServicePageNoticeComponent } from "../service-page-notice/service-page-notice.component";
 //import { LibchatComponent } from "../libchat/libchat.component";
 
 // Define the map
@@ -17,9 +18,10 @@ export const selectorComponentMap = new Map<string, any>([
     ['nde-database-home-page-bottom', DatabaseHomepageNoticeComponent],
     ['nde-browse-home-page-bottom', BrowseHomePageContentComponent],
     ['nde-skip-links-after', GuidedTourComponent],
-    ['nde-personal-settings-bottom', CredentialChangesComponent],
+    //['nde-personal-settings-bottom', CredentialChangesComponent],
     ['nde-account-section-results-bottom', RequestStatusComponent],
     ['nde-requests-overview-bottom', RequestStatusComponent],
     ['nde-advanced-search-bottom', PrefilledAdvancedSearchComponent],
+    ['nde-service-page-top', ServicePageNoticeComponent],
 
 ]);
