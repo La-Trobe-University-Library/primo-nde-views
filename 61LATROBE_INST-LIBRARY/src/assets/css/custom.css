@@ -1,4 +1,4 @@
-/* indicator for sandbox/work-in-progress
+/* indicator for sandbox/work-in-progress 
 body::before {
   content: 'Primo NDE Sandbox - Do not use';
   background: darkgoldenrod;
@@ -355,7 +355,7 @@ section.container .top-bar {
 
   nde-main-menu {
     .main-menu-container > ul > li:first-child {
-      margin-inline-start: 10px;
+      margin-inline-start: 20px;
     }
 
     .mat-mdc-button:not(:disabled) {
@@ -1476,15 +1476,20 @@ stacked-dropdown, custom-browzine-button {
   top: -2px;
 }
 .alert-bar span.icon svg,
-.alert .alert-icon svg,
-.alert .alert-icon .mat-icon {
+.alert .alert-icon svg {
   color: #00aa98;
+}
+.alert .alert-icon .mat-icon {
   fill: #00aa98;
+  color: #00aa98;
 }
 .alert-bar.alert-warning span.icon svg,
+.alert.alert-warning .alert-icon svg {
+  color: #ff9700;
+}
 .alert-bar.alert-warning mat-icon,
-.alert.alert-warning .alert-icon svg,
 .alert.alert-warning .alert-icon mat-icon {
+  fill: #ff9700;
   color: #ff9700;
 }
 .notification-alert.info {

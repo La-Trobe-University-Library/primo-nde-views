@@ -49,7 +49,7 @@ export class ServicePageNoticeComponent {
           this.questionableLabel = this.translate.instant('nui.record.questionable');
 
           this.isQuestionable = true;
-        } else {
+        } else if(recordid) {
           // record data is there and an associated source record was found
 
           // get the label for the "possibly legitimate" notice
@@ -57,7 +57,7 @@ export class ServicePageNoticeComponent {
 
           // get the referrer to see where the user came from
           let referrer = document.referrer;
-          //console.log('Referrer:', referrer);
+          console.log('Referrer:', referrer);
           if (referrer) {
             try {
               const referrerUrl = new URL(referrer);
