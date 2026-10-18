@@ -39,7 +39,7 @@ export class CustomNoticeComponent {
     const enabledCode = 'nui.customnotice.enabled';
     const enabledLabel = this.translate.instant(enabledCode) as string;
     if (typeof enabledLabel === 'string' && enabledLabel.trim() !== '' && enabledLabel !== enabledCode) {
-      this.isEnabled = enabledLabel === 'true';
+      this.isEnabled = enabledLabel.toLowerCase() === 'true';
     }
   }
 }

@@ -1,4 +1,4 @@
-/* indicator for sandbox/work-in-progress */
+/* indicator for sandbox/work-in-progress 
 body::before {
   content: 'Primo NDE Sandbox - Do not use';
   background: darkgoldenrod;
@@ -12,7 +12,7 @@ body::before {
   padding: 5px 10px;
   border-radius: 0 0 10px 0;
 }
-
+*/
 
 /* css variables */
 :root {
