@@ -1,4 +1,4 @@
-/* indicator for sandbox/work-in-progress
+/* indicator for sandbox/work-in-progress 
 body::before {
   content: 'Primo NDE Sandbox - Do not use';
   background: darkgoldenrod;
@@ -1912,5 +1912,15 @@ body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons {
       @media screen and (min-width: 960px) {
         inset-block-end: 15.5rem;
       }
+  }
+}
+
+/* change ordering of the header when a custom notice is present (to place it under the header) */
+section:has(.custom-notice) {
+  nde-header {
+    order: -2;
+  }
+  header {
+    order: -1;
   }
 }
