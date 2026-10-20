@@ -1940,3 +1940,13 @@ body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons {
       }
   }
 }
+
+/* change ordering of the header when a custom notice is present (to place it under the header) */
+section:has(.custom-notice) {
+  nde-header {
+    order: -2;
+  }
+  header {
+    order: -1;
+  }
+}

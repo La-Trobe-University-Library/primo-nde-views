@@ -1016,8 +1016,10 @@ nde-account-overview mat-card-footer .mat-mdc-button:not(:disabled) path {
 nde-personal-settings button[data-qa=settings-update-login-btn]:hover, nde-personal-settings button[data-qa=settings-update-login-btn]:focus {
   text-decoration: underline;
 }
-nde-personal-settings mat-card-actions:not(:has(button.allowed)) {
-  display: none;
+nde-personal-settings {
+  /*mat-card-actions:not(:has(button.allowed)) {
+    display: none;
+  }*/
 }
 nde-personal-settings .personal-settings-card .mat-mdc-card-actions:empty,
 nde-personal-settings .settings-drop-down:empty {

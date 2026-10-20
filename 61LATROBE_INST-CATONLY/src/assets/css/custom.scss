@@ -1093,9 +1093,9 @@ nde-personal-settings {
       }
   }
 
-  mat-card-actions:not(:has(button.allowed)) {
+  /*mat-card-actions:not(:has(button.allowed)) {
     display: none;
-  }
+  }*/
 
   .personal-settings-card .mat-mdc-card-actions:empty,
   .settings-drop-down:empty {
