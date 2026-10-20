@@ -15,11 +15,13 @@ import { Subject } from 'rxjs/internal/Subject';
 export class ServicePageNoticeComponent {
   private destroy$ = new Subject<void>();
 
+  private unmatchedCode = 'nui.record.unmatched';
+  public isUnmatched: boolean = false;
+  public unmatchedLabel: string = '';
+
+  private questionableCode = 'nui.record.questionable';
   public isQuestionable: boolean = false;
   public questionableLabel: string = '';
-
-  public isPossiblyLegitimate: boolean = false;
-  public possiblyLegitimateLabel: string = '';
 
   constructor(
     private store: Store<any>,
@@ -46,18 +48,24 @@ export class ServicePageNoticeComponent {
         if(recordid && !sourcerecordid) {
           // record data is there but no associated source record was found, so this may not be a legit record
 
-          this.questionableLabel = this.translate.instant('nui.record.questionable');
+          this.unmatchedLabel = this.translate.instant(this.unmatchedCode);
 
-          this.isQuestionable = true;
+          // don't show the unmatched notice if the label is missing or only 1 character long
+          if(!this.unmatchedLabel || this.unmatchedLabel === this.unmatchedCode || this.unmatchedLabel.length <= 1) return;
+
+          this.isUnmatched = true;
         } else if(recordid) {
           // record data is there and an associated source record was found
 
-          // get the label for the "possibly legitimate" notice
-          this.possiblyLegitimateLabel = this.translate.instant('nui.record.possibly_legitimate');
+          // get the label for the questionable notice
+          this.questionableLabel = this.translate.instant(this.questionableCode);
+
+          // don't show the questionable notice if the label is missing or only 1 character long
+          if(!this.questionableLabel || this.questionableLabel === this.questionableCode || this.questionableLabel.length <= 1) return;
 
           // get the referrer to see where the user came from
           let referrer = document.referrer;
-          console.log('Referrer:', referrer);
+          //console.log('Referrer:', referrer);
           if (referrer) {
             try {
               const referrerUrl = new URL(referrer);
@@ -76,16 +84,16 @@ export class ServicePageNoticeComponent {
               //console.log('Whitelisted hosts:', whitelistedHostnames);
 
               if (!whitelistedHostnames.includes(referrerUrl.hostname.toLowerCase())) {
-                // user arrived from an un-whitelisted source - show the "possibly legitimate" notice
-                this.isPossiblyLegitimate = true;
+                // user arrived from an un-whitelisted source - show the questionable notice
+                this.isQuestionable = true;
               }
             } catch {
-              // invalid/unexpected referrer - show the "possibly legitimate" notice
-              this.isPossiblyLegitimate = true;
+              // invalid/unexpected referrer - show the questionable notice
+              this.isQuestionable = true;
             }
           } else {
-            // no referrer - show the "possibly legitimate" notice
-            this.isPossiblyLegitimate = true;
+            // no referrer - show the questionable notice
+            this.isQuestionable = true;
           }
         }
       });

@@ -1,21 +1,21 @@
 <div class="service-page-alert-container">
-    @if (isQuestionable) {
+    @if (isUnmatched) {
         <div class="alert alert-warning">
             <div class="alert-content">
                 <span class="alert-icon"><mat-icon class="material-icons-outlined" aria-hidden="true">info_outline</mat-icon></span>
                 <div class="alert-text">
-                    <p [innerHTML]="questionableLabel"></p>
+                    <p [innerHTML]="unmatchedLabel"></p>
                 </div>
             </div>
         </div>
     }
 
-    @if (isPossiblyLegitimate && !isQuestionable) {
+    @if (isQuestionable && !isUnmatched) {
         <div class="alert alert-info">
             <div class="alert-content">
                 <span class="alert-icon"><mat-icon class="material-icons-outlined" aria-hidden="true">info_outline</mat-icon></span>
                 <div class="alert-text">
-                    <p [innerHTML]="possiblyLegitimateLabel"></p>
+                    <p [innerHTML]="questionableLabel"></p>
                 </div>
             </div>
         </div>
