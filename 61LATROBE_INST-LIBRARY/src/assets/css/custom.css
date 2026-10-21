@@ -1941,6 +1941,17 @@ body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons {
   }
 }
 
+/* improve spacing on the service page (/openurl) */
+@media only screen and (max-width: 599.98px) {
+  nde-service-page .card {
+    padding-inline: 1rem !important;
+    margin-inline: 1rem;
+  }
+  nde-service-page .search-result-item-container {
+    padding-inline-end: 0 !important;
+  }
+}
+
 /* change ordering of the header when a custom notice is present (to place it under the header) */
 section:has(.custom-notice) {
   nde-header {
