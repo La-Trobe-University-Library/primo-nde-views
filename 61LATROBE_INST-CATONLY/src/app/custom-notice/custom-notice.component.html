@@ -1,0 +1,8 @@
+@if (isEnabled) {
+<div class="custom-notice {{ noticeType || 'warning' }}" role="status">
+  <div class="notice-icon">
+    <mat-icon aria-hidden="true">{{ noticeIcon || 'info_outline' }}</mat-icon>
+  </div>
+  <div class="notice-content" [innerHTML]="'nui.customnotice.description' | translate"></div>
+</div>
+}

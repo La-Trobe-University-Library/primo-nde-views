@@ -1330,7 +1330,7 @@ stacked-dropdown, custom-browzine-button {
 }
 
 /* alert bar (notice) */
-.alert-bar {
+.alert-bar, .alert {
   margin: 0 1rem 4rem;
   padding: 1rem;
   max-width: 100%;
@@ -1339,14 +1339,26 @@ stacked-dropdown, custom-browzine-button {
   background-color: #f2fbfa;
 }
 
-.alert-bar .bar-text {
+.alert-bar.alert-warning, .alert.alert-warning {
+  border-top: 1px solid #ead2ab;
+  border-bottom: 1px solid #ead2ab;
+  background-color: #fffaf2;
+}
+
+.alert-bar .bar-text, .alert .alert-content {
   position: relative;
   display: table;
   margin: 0 auto;
   padding-left: 35px;
 }
 
-.alert-bar span.icon {
+.alert-bar .notice-text > :last-child,
+.alert .alert-text > :last-child {
+  margin-bottom: 0;
+}
+
+.alert-bar span.icon,
+.alert .alert-icon {
   width: 24px;
   height: 24px;
   display: block;
@@ -1355,19 +1367,38 @@ stacked-dropdown, custom-browzine-button {
   top: -2px;
 }
 
-.alert-bar span.icon svg {
+.alert-bar span.icon svg,
+.alert .alert-icon svg {
   color: #00aa98;
+}
+
+.alert .alert-icon .mat-icon {
+  fill: #00aa98;
+  color: #00aa98;
+}
+
+.alert-bar.alert-warning span.icon svg,
+.alert.alert-warning .alert-icon svg {
+  color: #ff9700;
+}
+
+.alert-bar.alert-warning mat-icon,
+.alert.alert-warning .alert-icon mat-icon {
+  fill: #ff9700;
+  color: #ff9700;
 }
 
 .notification-alert.info {
   background-color: var(--sys-primary-container) !important;
 }
 
-[dir=rtl] .alert-bar .bar-text {
+[dir=rtl] .alert-bar .bar-text,
+[dir=rtl] .alert .alert-content {
   padding-left: 0;
   padding-right: 35px;
 }
-[dir=rtl] .alert-bar span.icon {
+[dir=rtl] .alert-bar span.icon,
+[dir=rtl] .alert .alert-icon {
   right: 0;
   left: auto;
 }
@@ -1776,4 +1807,22 @@ body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons.bum
   [lang=ms] body:has(.s-lch-widget-float[aria-label="Chat Widget"]) .side-bottom-buttons.bumped-above-snackbar {
     inset-block-end: 15.5rem;
   }
+}
+
+/* improve spacing on the service page (/openurl) */
+@media only screen and (max-width: 599.98px) {
+  nde-service-page .card {
+    padding-inline: 1rem !important;
+    margin-inline: 1rem;
+  }
+  nde-service-page .search-result-item-container {
+    padding-inline-end: 0 !important;
+  }
+}
+/* change ordering of the header when a custom notice is present (to place it under the header) */
+section:has(.custom-notice) nde-header {
+  order: -2;
+}
+section:has(.custom-notice) header {
+  order: -1;
 }

@@ -1,11 +1,13 @@
 import { AvailabilityCountComponent } from "../availability-count/availability-count.component";
 import { BrowseHomePageContentComponent } from "../browse-home-page-content/browse-home-page-content.component";
 import { CollectionAuthorDateComponent } from "../collection-author-date/collection-author-date.component";
+import { CustomNoticeComponent } from "../custom-notice/custom-notice.component";
 //import { CredentialChangesComponent } from "../credential-changes/credential-changes.component";
 import { DatabaseHomepageNoticeComponent } from "../database-homepage-notice/database-homepage-notice.component";
 import { GuidedTourComponent } from "../guided-tour/guided-tour.component";
 import { PrefilledAdvancedSearchComponent } from "../prefilled-advanced-search/prefilled-advanced-search.component";
 import { RequestStatusComponent } from "../request-status/request-status.component";
+import { ServicePageNoticeComponent } from "../service-page-notice/service-page-notice.component";
 //import { LibchatComponent } from "../libchat/libchat.component";
 
 // Define the map
@@ -21,5 +23,7 @@ export const selectorComponentMap = new Map<string, any>([
     ['nde-account-section-results-bottom', RequestStatusComponent],
     ['nde-requests-overview-bottom', RequestStatusComponent],
     ['nde-advanced-search-bottom', PrefilledAdvancedSearchComponent],
+    ['nde-service-page-top', ServicePageNoticeComponent],
+    ['nde-header-after', CustomNoticeComponent],
 
 ]);
